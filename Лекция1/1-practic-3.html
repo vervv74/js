@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	function getRandomInt(min, max) {
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+	function func(arr){
+		return arr[getRandomInt(0, arr.length-1)];
+	}
+	document.write(func([1,2,3,4,5,6,7]));
+</script>
+</body>
+</html>

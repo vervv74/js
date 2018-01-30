@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	function inter(arr, arr1){
+		var arr2=[];
+		var check;
+		for (i=0; i<arr.length;i++){
+		  check=true;
+			for (j=0; j<arr1.length;j++){
+				if (arr[i]==arr1[j]){
+					check=false;
+					break;
+				}
+			}
+			if (check==true){
+				arr2.push(arr[i]);
+			}
+		}
+		return arr2;
+	}
+	function addInter(arr, arr1){
+		var arr3=inter(arr, arr1);
+		var arr4=inter(arr1, arr);
+		for (k=0; k<arr4.length;k++){
+			arr3.push(arr4[k]);
+		}
+		return arr3;
+	}
+	document.write(addInter([1,2,3,4,5,6],[3,4,5,7,10,15])+'<br>');
+	
+</script>
+</body>
+</html>
