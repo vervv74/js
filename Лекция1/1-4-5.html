@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	function isSimple(m){
+		for (i=1; i<m;i++) {
+			if(m%i==0 && i!=1)
+				return false;
+		}
+		return true;
+	}
+	for (j=2; j<101;j++){
+		if(isSimple(j)==true)
+			{document.write(j+'<br>');}
+		}
+</script>
+
+</body>
+</html>
