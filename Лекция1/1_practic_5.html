@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	function getRandomInt(min, max) {
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+	function func(arr){
+		var arr1=[];
+		while (arr1.length < arr.length){
+					var random=arr[getRandomInt(0,arr.length-1)];
+					var check;
+					for (i=0;i<arr1.length;i++){
+						check==true;
+						if(arr1[i]==random){
+						  check==false;
+						}
+					}
+					if (check==true) {arr1.push(random);}
+					else {break;}
+		}
+		
+		/*while(arr1.length<arr.length){
+			var random=arr[getRandomInt(0,arr.length-1)];
+			for (i=0;i<arr1.length;i++){
+				if(arr1[i]==random){
+				break;
+				}
+				arr1.push(random);
+			}
+		}*/
+		return arr1;
+	}
+	document.write(func([1,2,3,4,5]));
+	/*var arr2=[1,2,3,4,5];
+	document.write(arr2[getRandomInt(0, arr2.length-1)]);*/
+</script>
+</body>
+</html>
