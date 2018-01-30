@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	function isFriendly(a,s){
+		return sumArr(getDivide(a))== s && sumArr(getDivide(s))== a;
+	}
+	function sumArr(arr){
+		var sum=0;
+		for (i=0;i<arr.length; i++){
+			sum+=arr[i];
+		}
+		return sum;
+	}
+	function getDivide(m) {
+	  var arrDivide=[];
+	  for(i=1; i<m;i++){
+	  	if(m%i==0){
+	  		arrDivide.push(i);
+		}
+		
+	  }
+			return arrDivide;
+		}
+		document.write(isFriendly(17296,18416));
+		
+</script>
+</body>
+</html>
