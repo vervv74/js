@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	// Функция для сложения двух массивов без дублей
+	function union(arr1, arr2){
+		var arr3=[];
+		for (i=0; i<arr1.length; i++){
+			if (check(arr3, arr1[i])){
+				arr3.push(arr1[i]);
+			}
+		}
+			for (k=0; k<arr2.length; k++){
+				if (check(arr3, arr2[k])){
+					arr3.push(arr2[k]);
+				}
+			}
+		return arr3;
+	}
+		// Функция для проверки наличия числа в массиве
+		function check(arr4, qwe) {
+			var check1=true;
+			for (j=0; j<arr4.length; j++){
+				if (arr4[j]==qwe)
+				{check1=false;}
+			}
+			return check1;
+		}
+		
+	document.write(union([1,2,3],[3,4,5,2,6]));
+	
+</script>
+</body>
+</html>

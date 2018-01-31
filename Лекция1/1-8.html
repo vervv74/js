@@ -6,6 +6,7 @@
 </head>
 <body>
 <script>
+	// Функция для заполнения массива совпадающих чисел
 	function getIntersect(arr1, arr2){
 		var arr3=[];
 		for (i=0; i<arr1.length; i++){
@@ -17,6 +18,7 @@
 		}
 		return arr3;
 	}
+	// Функция для удаления повторяющихся чисел
 		function getIntersect1(arr){
 		  for(k=0;k<arr.length;k++){
 		  	for(k1=k+1;k1<arr.length;k1++){
@@ -27,7 +29,7 @@
 		  }
 		  return arr;
 		}
-		document.write(getIntersect1(getIntersect([2,2,3,4,5,6,9],[3,6,9,2])));
+		document.write(getIntersect1(getIntersect([2,2,3,4,5,9],[3,6,9,2,1])));
 	
 </script>
 </body>

@@ -6,38 +6,45 @@
 </head>
 <body>
 <script>
+	//Функция для получения случайного числа в диапазоне
 	function getRandomInt(min, max) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
-	function func(arr){
+	// Функция для заполнения массива неповторяющихся случайных чисел
+	function randomOrder(arr){
 		var arr1=[];
-		while (arr1.length < arr.length){
-					var random=arr[getRandomInt(0,arr.length-1)];
-					var check;
-					for (i=0;i<arr1.length;i++){
-						check==true;
-						if(arr1[i]==random){
-						  check==false;
-						}
+		arr1[0]= getRandomInt(0, arr.length-1);
+		for (j=1; j<arr.length; j++){
+			var check2=false;
+					while (check2==false){
+						var a=getRandomInt(0, arr.length-1);
+						check2=check(arr1, a);
 					}
-					if (check==true) {arr1.push(random);}
-					else {break;}
+					arr1.push(a);
 		}
-		
-		/*while(arr1.length<arr.length){
-			var random=arr[getRandomInt(0,arr.length-1)];
-			for (i=0;i<arr1.length;i++){
-				if(arr1[i]==random){
-				break;
-				}
-				arr1.push(random);
-			}
-		}*/
-		return arr1;
+			return arr1;
 	}
-	document.write(func([1,2,3,4,5]));
-	/*var arr2=[1,2,3,4,5];
-	document.write(arr2[getRandomInt(0, arr2.length-1)]);*/
+	// Функция для проверки наличия числа в массиве
+	function check(arr2, qwe) {
+	  var check1=true;
+	  for (i=0; i<arr2.length; i++){
+	  	if (arr2[i]==qwe)
+	  	{check1=false;}
+	  }
+	  return check1;
+	}
+	// Функция для перемешивания массива
+	function shuffle(arr4){
+		var arr5=randomOrder(arr4);
+		var arr6=[];
+		for (k=0; k<arr4.length; k++ ){
+			arr6.push(arr4[arr5[k]]);
+		}
+		return arr6;
+	}
+	
+		document.write(shuffle([1,2,3,4,5,6,7])+'<br>');
+	
 </script>
 </body>
 </html>
