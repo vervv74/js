@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+</body>
+<script>
+	var q=[1,2,3];
+	var ul=document.createElement('ul');
+	document.body.appendChild(ul);
+	for(i=0; i<q.length;i++){
+		var li=document.createElement('li');
+		li.innerHTML=q[i];
+		li.addEventListener('click', func);
+		ul.appendChild(li);
+	}
+	function func(){
+		this.innerHTML+='!';
+		this.removeEventListener('click', func);
+	}
+</script>
+</html>
