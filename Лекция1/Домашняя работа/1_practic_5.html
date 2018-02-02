@@ -14,7 +14,7 @@
 	function randomOrder(arr){
 		var arr1=[];
 		arr1[0]= getRandomInt(0, arr.length-1);
-		for (j=1; j<arr.length; j++){
+		for (var j=1; j<arr.length; j++){
 			var check2=false;
 					while (check2==false){
 						var a=getRandomInt(0, arr.length-1);
@@ -25,10 +25,10 @@
 			return arr1;
 	}
 	// Функция для проверки наличия числа в массиве
-	function check(arr2, qwe) {
+	function check(arr2, number) {
 	  var check1=true;
-	  for (i=0; i<arr2.length; i++){
-	  	if (arr2[i]==qwe)
+	  for (var i=0; i<arr2.length; i++){
+	  	if (arr2[i]==number)
 	  	{check1=false;}
 	  }
 	  return check1;
@@ -37,7 +37,7 @@
 	function shuffle(arr4){
 		var arr5=randomOrder(arr4);
 		var arr6=[];
-		for (k=0; k<arr4.length; k++ ){
+		for (var k=0; k<arr4.length; k++ ){
 			arr6.push(arr4[arr5[k]]);
 		}
 		return arr6;

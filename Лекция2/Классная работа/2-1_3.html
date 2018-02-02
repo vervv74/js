@@ -10,7 +10,7 @@
 	var q=[1,2,3];
 	var ul=document.createElement('ul');
 	document.body.appendChild(ul);
-	for(i=0; i<q.length;i++){
+	for(var i=0; i<q.length;i++){
 		var li=document.createElement('li');
 		li.innerHTML=q[i];
 		li.addEventListener('click', func);
