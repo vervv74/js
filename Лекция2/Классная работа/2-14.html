@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<p>10</p>
+<p style="opacity: 0">отчет закончен</p>
+<input type="submit" value="запуск" onclick="func()">
+</body>
+<script>
+	function func(){
+		document.getElementsByTagName('input')[0].disabled=true;
+		window.timerid=window.setInterval(timer, 500);
+	}
+	function timer(){
+		document.getElementsByTagName('p')[0].innerHTML=parseInt(document.getElementsByTagName('p')[0].innerHTML)-1;
+		if(document.getElementsByTagName('p')[0].innerHTML==0){
+			stop();
+		}
+	}
+		function stop(){
+			document.getElementsByTagName('p')[1].style.opacity=100;
+			window.clearInterval(window.timerid);
+		}
+	
+	
+</script>
+</html>
