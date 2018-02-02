@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+	function func(arr){
+		var ul=document.createElement('ul');
+		document.body.appendChild(ul);
+		for (var i=0; i<arr.length; i++){
+		  var li=document.createElement('li');
+		  li.innerHTML=arr[i];
+		  li.addEventListener('click', func1);
+		  ul.appendChild(li);
+				
+	  }
+	}
+	function func1(){
+		var number=parseInt(this.innerHTML);
+	  this.innerHTML=number+1;
+	  var inp=document.createElement('input');
+	  inp.addEventListener('mouseout', func2);
+	  document.getElementsByTagName('ul')[0].insertBefore(inp, this);
+	  
+	}
+	function func2(){
+	  this.nextElementSibling.innerHTML=this.value;
+	}
+		window.onload=func([1,2,3,4]);
+</script>
+</html>

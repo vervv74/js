@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+	function func1(arr){
+			var sum = 0;
+			for (var i=0; i<arr.length; i++) {
+							var input = document.createElement('input');
+							input.setAttribute('type', 'text');
+							input.setAttribute('value', arr[i]);
+							document.body.appendChild(input);
+							document.body.appendChild(document.createElement('br'));
+							sum += arr[i];
+						}
+			var p = document.createElement('p');
+			p.innerHTML = sum;
+			document.body.appendChild(p);
+	}
+	window.onload=func1([1,2,3,4]);
+</script>
+</html>
