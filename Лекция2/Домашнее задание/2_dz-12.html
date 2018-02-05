@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<input type="text"><br>
+<input type="submit" value="запустить" onclick="func()"><br>
+</body>
+<script>
+	var arr=[0,1,2,3,4,5,6,7,8,9];
+		var	j=0;
+			function func(){
+				
+				document.getElementsByTagName('input')[1].disabled=true;
+		 window.setInterval(timer, 500);
+	}
+	function timer(){
+			
+			document.getElementsByTagName('input')[0].value=arr[j];
+			j++;
+			if (j>arr.length){
+				j=0;
+				timer();
+			}
+	
+	  	}
+</script>
+</html>

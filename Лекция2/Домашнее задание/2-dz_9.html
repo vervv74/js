@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+	document.body.appendChild(document.createElement('ul'));
+	var products = [
+			{name: 'Коля', age: 30, salary: 400},
+			{name: 'Вася', age: 31, salary: 500},
+			{name: 'Петя', age: 32, salary: 600},
+	];
+	var sum=0;
+	for(var i=0;i<products.length;i++){
+		var li=document.createElement('li');
+		li.innerHTML=products[i]['name'];
+		document.getElementsByTagName('ul')[0].appendChild(li);
+		if (parseInt(products[i]['age'])>30){
+		sum+=parseInt(products[i]['salary']);}
+	}
+		document.body.appendChild(document.createElement('p'));
+		document.getElementsByTagName('p')[0].innerHTML=sum;
+		
+</script>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<input type="text" data-length="10" value="" onmouseout="func()">
+</body>
+<script>
+	window.onload=func();
+	function func(){
+			var length=parseInt(document.getElementsByTagName('input')[0].getAttribute('data-length'));
+			var text=document.getElementsByTagName('input')[0].value;
+			var text_length=text.length;
+		
+		if (text_length<=length){
+			
+					document.getElementsByTagName('input')[0].style.backgroundColor='green';
+	} else {
+					alert("Too long text")
+					document.getElementsByTagName('input')[0].style.backgroundColor='red';
+		}
+}
+</script>
+</html>

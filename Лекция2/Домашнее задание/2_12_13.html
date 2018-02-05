@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<input type="text"><br>
+<input type="submit" value="запустить" onclick="func()"><br>
+<input type="submit" value="остановить" onclick="stop()">
+</body>
+<script>
+	function func(){
+		document.getElementsByTagName('input')[1].disabled=true;
+		document.getElementsByTagName('input')[0].value=1;
+		window.timerid=window.setInterval(timer, 1000);
+	}
+	function timer(){
+		document.getElementsByTagName('input')[0].value=parseInt(document.getElementsByTagName('input')[0].value)+1;
+	}
+	function stop(){
+			window.clearInterval(window.timerid);
+			document.getElementsByTagName('input')[2].disabled=true;
+	}
+</script>
+</html>
