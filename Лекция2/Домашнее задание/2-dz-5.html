@@ -8,6 +8,7 @@
 
 </body>
 <script>
+<<<<<<< HEAD
 function func(arr){
 var ul=document.createElement('ul');
 document.body.appendChild(ul);
@@ -37,6 +38,37 @@ function func2(){
 this.nextElementSibling.innerHTML=this.value;
 }
 window.onload=func([1,2,3,4]);
+=======
+	function func(arr){
+		var ul=document.createElement('ul');
+		document.body.appendChild(ul);
+		for (var i=0; i<arr.length; i++){
+		  var li=document.createElement('li');
+		  li.innerHTML=arr[i];
+		  li.addEventListener('click', func1);
+            li.addEventListener('click', func3);
+		  ul.appendChild(li);
+				
+	  }
+	}
+	// Функция для однократного добавления инпута
+	function func1(){
+		var number=parseInt(this.innerHTML);
+	  this.innerHTML=number+1;
+	  var inp=document.createElement('input');
+	  document.getElementsByTagName('ul')[0].insertBefore(inp, this);
+	  this.removeEventListener('click', func1);
+	}
+	//Функция для свойства инпута
+    function func3(){
+        this.previousElementSibling.addEventListener('mouseout', func2);
+    }
+	//Функция для переноса значения инпута в абзац
+	function func2(){
+	  this.nextElementSibling.innerHTML=this.value;
+	}
+		window.onload=func([1,2,3,4]);
+>>>>>>> 47a5a50d7d47e677b83b4c3f57ec3922260e6939
 </script>
 </html>
 
