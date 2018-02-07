@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<p onclick="func()">Первоначальный текст</p>
+<input type="text" value="Корректировка текста в абзаце" onblur="func1()">
+</body>
+<script>
+function func(){
+	document.querySelector('input').focus();
+}
+function func1(){
+	document.querySelector('p').innerHTML=document.querySelector('input').value;
+}
+</script>
+</html>

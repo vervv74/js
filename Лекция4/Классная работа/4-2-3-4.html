@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<ul></ul>
+</body>
+<script>
+	func(['q','e','t','y','u',7]);
+	function func(arr){
+		for(var i=0; i<arr.length;i++){
+		  var span=document.createElement('span');
+		  span.innerHTML=arr[i];
+			var li=document.createElement('li');
+			li.appendChild(span);
+			span.addEventListener('click',input1);
+		   document.querySelector('ul').appendChild(li);
+		   if (i==arr.length-1){
+		   	var input2=document.createElement('input');
+			 input2.setAttribute('type','text');
+						 input2.addEventListener('blur',add);
+			 document.querySelector('ul').appendChild(input2);
+		   }
+		}
+	}
+	// функция для инпута
+	function input1(){
+			this.removeEventListener('click', input1);
+			var input=document.createElement('input');
+			input.setAttribute('type','text');
+			this.parentNode.appendChild(input);
+			input.focus();
+			input.addEventListener('blur',correct);
+	}
+	//функция для корректировки li
+	function correct(){
+		this.parentNode.firstElementChild.innerHTML=this.value;
+	}
+		//функция для добавления li
+	function add(){
+			var li1=document.createElement('li');
+			li1.innerHTML=this.value+' по клику инпуты не добавляются';
+		this.parentNode.insertBefore(li1, this);
+	 
+	}
+</script>
+</html>
