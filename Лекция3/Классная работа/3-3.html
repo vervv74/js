@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<p>текст</p>
+<p>текст</p>
+<p>текст</p>
+</body>
+<script>
+	addText('!', 'p');
+			function addText(text, elem1){
+	  var elem = document.querySelectorAll(elem1);
+	  for (var i=0; i<elem.length; i++) {
+	  	elem[i].innerHTML+=text;
+	  }
+	}
+</script>
+</html>

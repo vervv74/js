@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<p id="elem1"></p>
+<p id="elem2"></p>
+</body>
+<script>
+	setText('elem1', 'первый');
+	setText('elem2', 'второй');
+	function setText(elem, text){
+	var elem1=document.getElementById(elem);
+			elem1.innerHTML=text;
+
+	}
+</script>
+</html>

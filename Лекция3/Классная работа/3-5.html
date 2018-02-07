@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<ul id="elem"></ul>
+</body>
+<script>
+	var elem1 = document.getElementById('elem');
+		appendElem('1', elem1);
+		appendElem('2', elem1);
+		appendElem('3', elem1);
+		appendElem('!', elem1);
+	function appendElem(text, elem){
+		var li=document.createElement('li');
+		li.innerHTML=text;
+		elem.appendChild(li);
+		
+	}
+</script>
+</html>
