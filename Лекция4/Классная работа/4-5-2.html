@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<ul id="ul"></ul>
+<input type="text" id="input">
+</body>
+<script>
+	// функция для добавления инпута к элементу
+	var arr1=['q','w','e','t','y','u'];
+	var ul1=document.getElementById('ul');
+		var inp1=document.getElementById('input');
+	var items1=arrInput(ul1,arr1);// добавляем элементы массива в li
+	for (var i=0;i<items1.length; i++){   //добавляем свойства для каждого li
+		addInput(items1[i].querySelector('span'));
+	}
+	newLi(ul1,inp1);//добавляем свойства в последний инпут
+	//функция добавления нового li при потере фокуса последнего инпута
+	function newLi(ul2, input){
+		input.addEventListener('blur', function(){
+			var li=document.createElement('li');
+			li.innerHTML=this.value;
+			this.value='';
+			addInput1(li);
+			ul2.appendChild(li);
+		})
+	}
+	
+	//  функция удалить родителя
+	function removeParent(elem){
+		var parent=elem.parentNode;
+		var grand=parent.parentNode;
+		grand.removeChild(parent);
+	}
+	
+	//функция для создания массива li из массива
+	function arrInput(ul, arr){
+		var items=[];
+				for (var i=0; i<arr.length;i++){
+				var li=document.createElement('li');
+									li.innerHTML= '<span>'+arr[i]+'</span>';
+			//	li.innerHTML= '<span>'+arr[i]+'</span>'+'<input type="submit" value="удалить" onclick="removeParent(this)">';
+			    ul.appendChild(li);
+			    items.push(li);
+			}
+			return items;
+	}
+	//функция для создания свойств li (инпутов для элемента)
+	function addInput(elem){
+		elem.parentNode.insertAdjacentHTML('beforeEnd', '<input type="submit" value="удалить" onclick="removeParent(this)">');
+			elem.addEventListener('click', function correctTest(){
+			var text=this.innerHTML;
+			var input=document.createElement('input');
+			input.value=text;
+			this.innerHTML='';
+			this.appendChild(input);
+			input.focus();
+			elem.removeEventListener('click', correctTest);
+			var elem1=this;
+			input.addEventListener('blur', function(){
+				elem1.innerHTML=this.value;
+				this.value='';
+				elem1.addEventListener('click', correctTest);
+			})
+		})
+	}
+		//функция для создания свойств li (инпутов для элемента)для последнего инпута
+		function addInput1(elem){
+			
+			elem.addEventListener('click', function correctTest(){
+				var text=this.innerHTML;
+				var input=document.createElement('input');
+				input.value=text;
+				this.innerHTML='';
+				this.appendChild(input);
+				input.focus();
+				elem.removeEventListener('click', correctTest);
+				var elem1=this;
+				input.addEventListener('blur', function(){
+					elem1.innerHTML=this.value;
+					this.value='';
+					elem1.addEventListener('click', correctTest);
+				})
+			})
+		}
+	
+</script>
+</html>
