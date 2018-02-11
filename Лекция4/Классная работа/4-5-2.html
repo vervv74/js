@@ -22,10 +22,10 @@
 	function newLi(ul2, input){
 		input.addEventListener('blur', function(){
 			var li=document.createElement('li');
-			li.innerHTML=this.value;
+			li.innerHTML='<span>'+this.value+'</span>';
 			this.value='';
-			addInput1(li);
 			ul2.appendChild(li);
+            addInput(li.firstElementChild);
 		})
 	}
 	
