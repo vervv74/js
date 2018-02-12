@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<table></table>
+<p></p>
+</body>
+<script>
+	var table=document.querySelector('table');
+	var p=document.querySelector('p');
+	var products = [
+		{name: 'product1', price: 100, quantity: 4},
+		{name: 'product2', price: 200, quantity: 5},
+		{name: 'product3', price: 300, quantity: 6},
+	];
+	productTable(products);
+	p.innerHTML=sum(products);
+	//заполнение строк
+	function productTable(arr) {
+			for (var i = 0; i < arr.length; i++) {
+				var tr=document.createElement('tr');
+				cell(tr, arr[i].name);
+				cell(tr, arr[i].price);
+			    cell(tr, arr[i].quantity);
+			    cell(tr, arr[i].quantity*arr[i].price);
+				table.appendChild(tr);
+			}
+
+	}
+	// заполнение ячеек в строке
+	function cell(parent, text) {
+			var td = document.createElement('td');
+			td.innerHTML = text;
+			parent.appendChild(td);
+		}
+		// сумма
+	function sum(arr){
+		var sum =0;
+		for (var i=0; i<arr.length;i++){
+			sum+=arr[i].price*arr[i].quantity;
+		}
+		return sum;
+	}
+	
+</script>
+</html>
