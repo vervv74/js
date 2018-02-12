@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<input type="text" onblur="format(this)">
+<body>
+<script>
+	//функция для установки формата
+	function format(input) {
+	  input.style.cssText = 'border: 4px  solid green; ';
+	  var elem=calc(splitArr(input.value));
+	  if(!elem){
+	  	input.style.cssText = 'border: 4px solid red; ';
+	  }
+		}
+	//функция для расчета квадрата
+	function calc(arr){
+		var calc=true;
+		for (var i=1; i<arr.length;i++){
+			if (parseInt(arr[i])!=parseInt(arr[i-1])*parseInt(arr[i-1])){
+				calc=false;
+			}
+		}
+		return calc;
+	}
+	//функция для получения массива из строки
+	function splitArr(str){
+		var arr=str.split(',');
+		return arr;
+	}
+</script>
+</body>
+</html>
