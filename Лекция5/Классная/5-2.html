@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<table></table>
+<input type="text" id="name"></br>
+<input type="text" id="price"></br>
+<input type="text" id="quantity"></br>
+<input type="submit" id="submit"></br>
+<p></p>
+</body>
+<script>
+	var table=document.querySelector('table');
+	var p=document.querySelector('p');
+	var submit=document.getElementById('submit');
+	
+
+	submit.addEventListener('click', function(){
+			productTable(table, {
+			  name:document.getElementById('name').value,
+			  price:Number(document.getElementById('price').value),
+			  quantity:Number(document.getElementById('quantity').value),
+			})
+		
+	})
+
+	p.innerHTML=sum(products);//надо поменять
+	//заполнение строк - поменял
+	function productTable(tab, product) {
+				var tr=document.createElement('tr');
+				cell(tr, product.name);
+				cell(tr, product.price);
+			    cell(tr, product.quantity);
+			    cell(tr, product.quantity*product.price);
+				tab.appendChild(tr);
+	}
+	// заполнение ячеек в строке - оставляем как было
+	function cell(tr, text) {
+			var td = document.createElement('td');
+			td.innerHTML = text;
+			tr.appendChild(td);
+		}
+		// сумма  - надо поменять
+	function sum(arr){
+		var sum =0;
+		for (var i=0; i<arr.length;i++){
+			sum+=arr[i].price*arr[i].quantity;
+		}
+		return sum;
+	}
+	
+</script>
+</html>
