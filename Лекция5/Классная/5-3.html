@@ -35,13 +35,27 @@
 				cell(tr, product.price, '2');
 			    cell(tr, product.quantity, '3');
 			    cell(tr, product.quantity*product.price, 'class');
-				tab.appendChild(tr);
+			    aCell(tab,tr);
+			   	tab.appendChild(tr);
 	}
+		//ссылка для удаления
+		function aCell(table, tr) {
+			var a=document.createElement('a');
+			a.setAttribute('href', '#');
+			a.innerHTML='delete';
+	        a.setAttribute('style', 'border: 1px solid black');
+			a.addEventListener('click', function(){
+				table.removeChild(tr);
+			  p.innerHTML=sum(table);
+			});
+			tr.appendChild(a);
+		}
 	// заполнение ячеек в строке - оставляем как было
 	function cell(tr, text, className) {
 			var td = document.createElement('td');
 			td.innerHTML = text;
 			td.classList.add(className);
+			td.setAttribute('style', 'border: 1px solid black');
 			tr.appendChild(td);
 		}
 		// сумма  поменял
