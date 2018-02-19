@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+		td {
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+<input type="text">
+<table>
+	<tr>
+		<td class="inp"></td>
+		<td class="inp">1</td>
+		<td class="inp">2</td>
+		<td class="inp">3</td>
+		<td class="inp">4</td>
+		<td class="inp">5</td>
+		<td class="inp">6</td>
+		<td class="inp">7</td>
+		<td class="inp">8</td>
+		<td class="inp">9</td>
+		<td class="inp">-</td>
+		<td class="inp">+</td>
+		<td class="del">DELETE</td>
+		<td class="inp">!</td>
+	</tr>
+	<tr>
+		<td class="index">CAPS LOCK</td>
+		<td class="inp">и</td>
+		<td class="inp">ц</td>
+		<td class="inp">у</td>
+		<td class="inp">к</td>
+		<td class="inp">е</td>
+		<td class="inp">н</td>
+		<td class="inp">г</td>
+		<td class="inp">ш</td>
+		<td class="inp">щ</td>
+		<td class="inp">з</td>
+		<td class="inp">х</td>
+		<td class="empty"> </td>
+		<td class="inp">ъ</td>
+		<td class="inp">\</td>
+	</tr>
+	<tr>
+		<td class="empty"></td>
+		<td class="inp">ф</td>
+		<td class="inp">ы</td>
+		<td class="inp">в</td>
+		<td class="inp">а</td>
+		<td class="inp">п</td>
+		<td class="inp">р</td>
+		<td class="inp">о</td>
+		<td class="inp">л</td>
+		<td class="inp">д</td>
+		<td class="inp">ж</td>
+		<td class="inp">э</td>
+		<td class="empty"> </td>
+		<td class="inp"> / </td>
+		<td class="inp"> . </td>
+			</tr>
+	<tr>
+		<td class="index"></td>
+		<td class="index">я</td>
+		<td class="inp">ч</td>
+		<td class="inp">с</td>
+		<td class="inp">м</td>
+		<td class="inp">и</td>
+		<td class="inp">т</td>
+		<td class="inp">ь</td>
+		<td class="inp">б</td>
+		<td class="inp">ю</td>
+		<td class="inp">,</td>
+		<td class="inp">?</td>
+		<td class="empty"> </td>
+		<td class="inp">></td>
+		<td class="inp"><</td>
+	</tr>
+</table>
+</body>
+<script>
+	var inp=document.querySelectorAll('.inp');// смена цвета после клика по другой клавише
+	var capL=document.querySelector('.index');//смена цвета по повторному клику
+	var del=document.querySelector('.del');//смена цвета после клика по другой клавише
+	touch(del);
+	var cl=true;
+	// добавляем свойство смены цвета
+	for (var i = 0; i < inp.length; i++){
+	  touch(inp[i]);
+	}
+	//свойство capslock
+	capL.addEventListener('click', function(){
+	//	alert(cl);
+		if (cl){
+			cl = false;
+					capL.setAttribute('style', 'background: yellow');
+		}
+		else{cl = true;
+					capL.setAttribute('style', 'background: white');
+						}
+	})
+	
+	//добавляем свойство корректировки инпута
+		for (var i = 0; i < inp.length; i++){
+				  addinp(inp[i]);
+		}
+	//функция для добавления значения в инпут
+	function addinp(el) {
+			el.addEventListener('click', function(){
+				if(cl)
+				{document.body.querySelector('input').value += el.innerHTML;}
+				else
+				{document.body.querySelector('input').value += el.innerHTML.toUpperCase(); }
+			})
+		}
+		
+	//функция для стирания
+		document.body.querySelector('.del').addEventListener('click', function () {
+			document.body.querySelector('input').value='';
+		})
+	//функция для желтого фона элемента
+	function touch(el) {
+		el.addEventListener('click', function(){
+		 white();
+				this.setAttribute('style', 'background: yellow');
+			})
+		}
+		//функция для белого фона элемента
+	function white(){
+			for (var i = 0; i < document.querySelectorAll('td').length; i++) {
+							if (document.querySelectorAll('td')[i].className != 'index') {
+								document.querySelectorAll('td')[i].setAttribute('style', 'background: white');
+							}
+						}
+	}
+	
+		
+
+</script>
+</html>
