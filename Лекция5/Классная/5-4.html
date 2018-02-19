@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+		td {
+			border: 1px solid black;
+		}
+	</style>
+</head>
+
+<body>
+<table></table>
+<input type="text" id="name"></br>
+<input type="text" id="price"></br>
+<input type="text" id="quantity"></br>
+<input type="submit" id="submit"></br>
+<p></p>
+</body>
+<script>
+	var table=document.querySelector('table');
+	var p=document.querySelector('p');
+	var submit=document.getElementById('submit');
+	
+
+	submit.addEventListener('click', function(){
+			productTable(table, {
+			  name:document.getElementById('name').value,
+			  price:Number(document.getElementById('price').value),
+			  quantity:Number(document.getElementById('quantity').value),
+			})
+			p.innerHTML=sum(table);
+	})
+
+
+	//заполнение строк - поменял
+	function productTable(tab, product) {
+				var tr=document.createElement('tr');
+				cell(tr, product.name,true,'name');
+				cell(tr, product.price, true,'price');
+			    cell(tr, product.quantity,true,'quantity');
+			    cell(tr, product.quantity*product.price,false,'class');
+			    aCell(tab,tr);
+			   	tab.appendChild(tr);
+	}
+		//ссылка для удаления
+		function aCell(table, tr) {
+		var del=document.createElement('td');
+			var a=document.createElement('a');
+			a.setAttribute('href', '#');
+			a.innerHTML='delete';
+	     			a.addEventListener('click', function(){
+				table.removeChild(tr);
+			  p.innerHTML=sum(table);
+			});
+	     			del.appendChild(a);
+			tr.appendChild(del);
+		}
+	// заполнение ячеек в строке - оставляем как было
+	function cell(tr, text, editable, className) {
+			var td = document.createElement('td');
+			td.innerHTML = text;
+			td.classList.add(className);
+			td.setAttribute('style', 'border: 1px solid black');
+			if (editable){
+				edit(td,tr);
+			}
+			tr.appendChild(td);
+		}
+		// сумма  поменял
+	function sum(table1){
+		var arr=table1.querySelectorAll('.class');
+		var sum =0;
+		for (var i=0; i<arr.length;i++){
+			sum+=parseInt(arr[i].innerHTML);
+		}
+		return sum;
+	}
+	//функция для перерасчета
+	function score(tr) {
+		var price =parseInt(tr.querySelector('.price').innerHTML);
+	 var quantity =parseInt(tr.querySelector('.quantity').innerHTML);
+	 tr.querySelector('.class').innerHTML=price*quantity;
+			p.innerHTML=sum(tr.parentNode);
+		}
+		//функция редактирования текста
+		function edit(elem,tr){
+
+			elem.addEventListener('click', function correctTest(){
+				var text=this.innerHTML;
+				var input=document.createElement('input');
+				input.value=text;
+				this.innerHTML='';
+				this.appendChild(input);
+				input.focus();
+				elem.removeEventListener('click', correctTest); //убираем вставку инпута, чтобы инпут не вставлялся в инпут
+				var elem1=this; // вспомогательная функция, чтобы отратиться к текущему элементу
+				input.addEventListener('blur', function(){
+					elem1.innerHTML=this.value;
+					this.value='';
+					elem1.addEventListener('click', correctTest);
+					score(tr);
+					
+				})
+			
+			})
+		}
+</script>
+</html>
