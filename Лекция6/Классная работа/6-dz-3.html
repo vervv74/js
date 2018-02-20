@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+		.qwe {
+			border: 1px solid black;
+			width:200px;
+			height: 20px;
+		}
+		.qwe1 {
+			border: 1px solid black;
+			width:200px;
+			height: 50px;
+		}
+	</style>
+</head>
+<body>
+<input type = "text" class = "qwe"><br>
+<input type = "text" class = "qwe"><br>
+<input type = "text" class = "qwe"><br>
+<input class = "qwe" type = "submit" value = "найти квадратное уравнение">
+<p class="qwe1"></p>
+</body>
+<script>
+	//формула дискриминанта
+	function disc(a,b,c){
+		var disc=parseInt(b)*parseInt(b)-4*parseInt(a)*parseInt(c);
+		return disc;
+	}
+	//формула корней уравнения
+	function core(a,b,c){
+		var x1;
+		var x2;
+		var str;
+	if (disc(a,b,c)>0)
+	{
+		x1=((-parseInt(b)+Math.sqrt(disc(a,b,c)))/(2*a)).toFixed(1);
+		x2=((-parseInt(b)-Math.sqrt(disc(a,b,c)))/(2*a)).toFixed(1);
+		str = 'Корень 1 ='+x1+'<br>Корень 2 ='+x2;
+	}
+	 else if (disc(a,b,c)==0)
+		{
+			x1=(-parseInt(b)+Math.sqrt(disc(a,b,c)))/(2*a);
+			str = 'Корень 1 ='+x1+'<br>Корень 2 отсутствует';
+		}
+		else {
+		str='нет корней уравнения'
+	}
+	return str;
+	}
+	//расчет корней уравнения
+	document.querySelectorAll('input')[3].addEventListener('click', function(){
+		document.querySelector('p').innerHTML=core(document.querySelectorAll('input')[0].value, document.querySelectorAll('input')[1].value, document.querySelectorAll('input')[2].value );
+		console.log(disc(document.querySelectorAll('input')[0].value, document.querySelectorAll('input')[1].value, document.querySelectorAll('input')[2].value ));
+	})
+</script>
+</html>

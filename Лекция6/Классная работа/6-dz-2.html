@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+		.qwe {
+			border: 1px solid black;
+			width:200px;
+			height: 20px;
+		}
+	</style>
+</head>
+<body>
+<input type="text" class="qwe"><br>
+<input class="qwe" type="submit" value="найти факториал">
+<p class="qwe"></p>
+</body>
+<script>
+//значение факториала по клику
+document.querySelectorAll('input')[1].addEventListener('click', function(){
+	document.querySelector('p').innerHTML=fact(document.querySelectorAll('input')[0].value);
+})
+//расчет факториала
+function fact(elem){
+	var sum =1;
+	for (var i = 2; i < elem; i++){
+		sum*=i;
+	}
+	return sum;
+}
+</script>
+</html>

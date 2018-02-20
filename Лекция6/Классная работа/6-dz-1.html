@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+		.qwe {
+			border: 1px solid black;
+			width:200px;
+			height: 20px;
+		}
+	</style>
+</head>
+<body>
+<input type="text" class="qwe"><span>Фаренгейт - ввести</span>
+<p class="qwe"></p>
+</body>
+<script>
+	//расчет Цельсия
+	document.querySelector('input').addEventListener('keyup', function(){
+			document.querySelector('p').innerHTML=((parseInt(document.querySelector('input').value)-32)*(5/9)).toFixed(2);
+	})
+</script>
+</html>
