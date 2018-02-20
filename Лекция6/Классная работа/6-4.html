@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+		td {
+			border: 1px solid black;
+			width:30px;
+		}
+	</style>
+</head>
+<body>
+<input type="text">
+<table>
+	<tr>
+		<td class="inp">-</td>
+		<td class="inp">+</td>
+		<td class="inp">*</td>
+		<td class="inp">/</td>
+		<td class="calc">=</td>
+	</tr>
+	<tr>
+		<td class="inp">1</td>
+		<td class="inp">2</td>
+		<td class="inp">3</td>
+		<td class="inp">4</td>
+		<td class="inp">5</td>
+	</tr>
+	<tr>
+		<td class="inp">6</td>
+		<td class="inp">7</td>
+		<td class="inp">8</td>
+		<td class="inp">9</td>
+		<td class="inp">0</td>
+	</tr>
+</table>
+</body>
+<script>
+	var td=document.body.querySelectorAll('td');// все ячейки
+	var input = document.body.querySelector('input');// поле для расчета
+	var calc = document.body.querySelector('.calc'); //равно
+	var figures=document.body.querySelectorAll('.inp');// цифры и знаки
+	//добавляем функцию add
+	for (var i = 0; i <figures.length; i++){
+		add(figures[i]);
+		
+	}
+		//добавляем функцию touch
+		for (var i = 0; i <td.length; i++){
+			touch(td[i]);
+		}
+	var check=true;
+	//функция для проведения расчета
+		calc.addEventListener('click', function(){
+					alert(eval(input.value));
+					check=false;
+		});
+	//функция для заполнения инпута
+	function add(elem){
+			elem.addEventListener('click', function(){
+				if(check)
+				{input.value += elem.innerHTML;}
+				else
+				{
+				  input.value='';
+				  check=true;
+				  input.value += elem.innerHTML;
+				}
+			})
+	}
+		//функция для белого фона элемента
+		function white(){
+			for (var i = 0; i < td.length; i++) {
+				td[i].setAttribute('style', 'background: white');
+						}
+		}
+		
+		//функция для желтого фона элемента
+		function touch(el) {
+			el.addEventListener('click', function(){
+				white();
+				this.setAttribute('style', 'background: yellow');
+			})
+		}
+	
+</script>
+</html>
