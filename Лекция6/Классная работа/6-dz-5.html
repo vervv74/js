@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+
+<body>
+<input type="text">
+<span>Введите число от 1 до 100</span>
+<p></p>
+</body>
+<script>
+	var num;
+	var sec=30;
+	var check=true;
+	var input = document.querySelector('input');
+	var span = document.querySelector('span');
+	var p = document.querySelector('p');
+	input.addEventListener('blur', function (){
+		if (check==true) {
+			num=getRandomInt(1, 100);
+					window.timer1 = window.setTimeout(stop, sec * 1000);
+					console.log(window.timer1+check+' число  '+num);
+					analysis(input.value, num, span, window.timer1);
+				}else{
+					analysis(input.value, num, span, window.timer1);
+		}
+				
+	})
+	// анализ
+	function analysis(figure, ran, elem, timerStop) {
+	  if (figure==ran){
+	  	check=true;
+	  	elem.innerHTML='Угадал '+figure+'.Начинай снова';
+		input.value = '';
+		clearTimeout(timerStop);
+		  }
+	  else if (figure>ran) {
+	  	check=false;
+		elem.innerHTML='Введите число поменьше';
+	  } else{
+				check=false;
+				elem.innerHTML='Введите число побольше';
+	  }
+		}
+	//стоп
+	function stop() {
+			check=true;
+			span.innerHTML = 'Закончилось время'+window.timer1;
+			input.value = '';
+			clearInterval(window.timer2);
+		}
+		//случайное число
+		function getRandomInt(min, max) {
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+</script>
+</html>
