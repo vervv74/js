@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+		/*td {
+			border: 1px solid black;
+			width:50px;
+			height: 50px;
+		}*/
+	
+	</style>
+</head>
+<body>
+<script>
+	var tr1=[];
+	var td=[];
+	var table = document.createElement('table');
+	var check=true;
+	document.body.appendChild(table);
+	for (var i = 0; i < 3; i++){
+		tr1[i] = document.createElement('tr');
+			for (var j = 0; j < 3; j++){
+			td[i+j] = document.createElement('td');
+			td[i+j].style.cssText='border: 1px solid black; width:50px; height: 50px;';
+			td[i+j].addEventListener('click', function fill(){
+							if(check) {
+								this.innerHTML = '1';
+								check = false;
+								this.removeEventListener('click', fill);
+							} else {
+								this.innerHTML = '2';
+								check = true;
+							  this.removeEventListener('click', fill);
+							}
+			});
+			tr1[i].appendChild(td[i+j]);
+		}
+			table.appendChild(tr1[i]);
+	}
+	
+	
+</script>
+
+</body>
+</html>

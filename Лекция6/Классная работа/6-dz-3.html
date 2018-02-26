@@ -29,6 +29,10 @@
 		var disc=parseInt(b)*parseInt(b)-4*parseInt(a)*parseInt(c);
 		return disc;
 	}
+	//формула для одного корня
+	function core1(a,b,c){
+		return (Math.sqrt(disc(a,b,c)));
+	}
 	//формула корней уравнения
 	function core(a,b,c){
 		var x1;
@@ -36,8 +40,8 @@
 		var str;
 	if (disc(a,b,c)>0)
 	{
-		x1=((-parseInt(b)+Math.sqrt(disc(a,b,c)))/(2*a)).toFixed(1);
-		x2=((-parseInt(b)-Math.sqrt(disc(a,b,c)))/(2*a)).toFixed(1);
+		x1=((-parseInt(b)+core1(a,b,c)/(2*a)).toFixed(1);
+		x2=((-parseInt(b)-core1(a,b,c)/(2*a)).toFixed(1);
 		str = 'Корень 1 ='+x1+'<br>Корень 2 ='+x2;
 	}
 	 else if (disc(a,b,c)==0)
