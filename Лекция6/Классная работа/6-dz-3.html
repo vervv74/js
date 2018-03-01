@@ -24,29 +24,35 @@
 <p class="qwe1"></p>
 </body>
 <script>
+	var inp1= document.querySelectorAll('input')[0];
+	var inp2= document.querySelectorAll('input')[1];
+	var inp3= document.querySelectorAll('input')[2];
+	var inp4= document.querySelectorAll('input')[3];
+	var p = document.querySelector('p');
 	//формула дискриминанта
 	function disc(a,b,c){
 		var disc=parseInt(b)*parseInt(b)-4*parseInt(a)*parseInt(c);
 		return disc;
 	}
-	//формула для одного корня
+	/*формула для одного корня
 	function core1(a,b,c){
 		return (Math.sqrt(disc(a,b,c)));
-	}
+	}*/
 	//формула корней уравнения
 	function core(a,b,c){
 		var x1;
 		var x2;
 		var str;
+		var core1=Math.sqrt(disc(a,b,c));
 	if (disc(a,b,c)>0)
 	{
-		x1=((-parseInt(b)+core1(a,b,c)/(2*a)).toFixed(1);
-		x2=((-parseInt(b)-core1(a,b,c)/(2*a)).toFixed(1);
+		x1=((-parseInt(b)+core1)/(2*a)).toFixed(1);
+		x2=((-parseInt(b)-core1)/(2*a)).toFixed(1);
 		str = 'Корень 1 ='+x1+'<br>Корень 2 ='+x2;
 	}
 	 else if (disc(a,b,c)==0)
 		{
-			x1=(-parseInt(b)+Math.sqrt(disc(a,b,c)))/(2*a);
+			x1=(-parseInt(b)+core1)/(2*a);
 			str = 'Корень 1 ='+x1+'<br>Корень 2 отсутствует';
 		}
 		else {
@@ -55,9 +61,9 @@
 	return str;
 	}
 	//расчет корней уравнения
-	document.querySelectorAll('input')[3].addEventListener('click', function(){
-		document.querySelector('p').innerHTML=core(document.querySelectorAll('input')[0].value, document.querySelectorAll('input')[1].value, document.querySelectorAll('input')[2].value );
-		console.log(disc(document.querySelectorAll('input')[0].value, document.querySelectorAll('input')[1].value, document.querySelectorAll('input')[2].value ));
+		inp4.addEventListener('click', function(){
+			p.innerHTML=core(inp1.value, inp2.value, inp3.value);
+		console.log(disc(inp1.value, inp2.value, inp3.value));
 	})
 </script>
 </html>
