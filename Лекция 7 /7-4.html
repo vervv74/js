@@ -4,88 +4,106 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style type="text/css">
-        td {
+        .inp {
             border: 1px solid black;
             width:20px;
             height: 20px;
         }
+       
 
     </style>
 </head>
 <body>
 <table>
     <tr>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><input type="text" class="inp"></td>
+        <td><input type="text" class="inp"></td>
+        <td><input type="text" class="inp"></td>
     </tr>
     <tr>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><input type="text" class="inp"></td>
+        <td><input type="text" class="inp"></td>
+        <td><input type="text" class="inp"></td>
     </tr>
     <tr>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><input type="text" class="inp"></td>
+        <td><input type="text" class="inp"></td>
+        <td><input type="text" class="inp"></td>
     </tr>
-    <p>Играйте</p>
 </table>
+<p>Играйте</p>
+<input type="submit" value="Играть с начала" onclick="null1(td)">
 </body>
 <script>
     var table = document.querySelector('table');
     var p = document.querySelector('p');
-    var td = document.querySelectorAll('td');
+    var td = document.querySelectorAll('.inp');
     var addX=true;
     //навешиваем на ячейки свойства заполнения
     for(var i = 0; i < td.length; i++ ){
         add(td[i]);
+     check(td[i]);
     }
     //заполняем ячейки
     function add(elem) {
         elem.addEventListener('click', function (){
-           if (addX){
-               elem.innerHTML = 'x';
+             console.log(checkO(td)+'  x '+checkX(td));
+        	if(checkX(td) == false && checkO(td) == false){
+            if (addX){
+               elem.value = 'x';
                addX = false;
            } else {
-               elem.innerHTML = 'o';
+               elem.value = 'o';
                addX = true;
-           }
+           }}
         })
-
-    }
+       }
+		//проверяем ячейки
+		function check(elem) {
+          elem.addEventListener('mousemove', function(){
+            if (checkO(td)){
+              p.innerHTML = 'O выиграл, начинайте снова';
+              null1(td);
+            } else if(checkX(td)){
+              p.innerHTML = 'X выиграл, начинайте снова';
+              null1(td);
+            }
+                    })
+		}
     //проверяем х и о
     function checkX(arr) {
-        if ((arr[0].innerHTML == 'x' && arr[1].innerHTML  == 'x' && arr[2].innerHTML  == 'x') || (arr[3].innerHTML == 'x' && arr[4].innerHTML == 'x' && arr[5].innerHTML == 'x') || (arr[6].innerHTML=='x' && arr[7].innerHTML=='x' && arr[8].innerHTML=='x')||(arr[0].innerHTML=='x' && arr[3].innerHTML=='x' && arr[6].innerHTML=='x') || (arr[1].innerHTML=='x' && arr[4].innerHTML=='x' && arr[7].innerHTML=='x') || (arr[2].innerHTML=='x' && arr[5].innerHTML=='x' && arr[8].innerHTML=='x')||  (arr[0].innerHTML=='x' && arr[4].innerHTML=='x' && arr[8].innerHTML=='x')|| (arr[2].innerHTML=='x' && arr[4].innerHTML=='x' && arr[6].innerHTML=='x')){
+        if ((arr[0].value == 'x' && arr[1].value  == 'x' && arr[2].value  == 'x') || (arr[3].value == 'x' && arr[4].value == 'x' && arr[5].value == 'x') || (arr[6].value=='x' && arr[7].value=='x' && arr[8].value=='x')||(arr[0].value=='x' && arr[3].value=='x' && arr[6].value=='x') || (arr[1].value=='x' && arr[4].value=='x' && arr[7].value=='x') || (arr[2].value=='x' && arr[5].value=='x' && arr[8].value=='x')||  (arr[0].value=='x' && arr[4].value=='x' && arr[8].value=='x')|| (arr[2].value=='x' && arr[4].value=='x' && arr[6].value=='x')){
+					
         return true;
         } else {return false;}
     }
     function checkO(arr) {
-        if ((arr[0].innerHTML == 'o' && arr[1].innerHTML  == 'o' && arr[2].innerHTML  == 'o') || (arr[3].innerHTML == 'o' && arr[4].innerHTML == 'o' && arr[5].innerHTML == 'o') || (arr[6].innerHTML=='o' && arr[7].innerHTML=='o' && arr[8].innerHTML=='o')||(arr[0].innerHTML=='o' && arr[3].innerHTML=='o' && arr[6].innerHTML=='o') || (arr[1].innerHTML=='o' && arr[4].innerHTML=='o' && arr[7].innerHTML=='o') || (arr[2].innerHTML=='o' && arr[5].innerHTML=='o' && arr[8].innerHTML=='o')||  (arr[0].innerHTML=='o' && arr[4].innerHTML=='o' && arr[8].innerHTML=='o')|| (arr[2].innerHTML=='o' && arr[4].innerHTML=='o' && arr[6].innerHTML=='o')){
+        if ((arr[0].value == 'o' && arr[1].value  == 'o' && arr[2].value  == 'o') || (arr[3].value == 'o' && arr[4].value == 'o' && arr[5].value == 'o') || (arr[6].value=='o' && arr[7].value=='o' && arr[8].value=='o')||(arr[0].value=='o' && arr[3].value=='o' && arr[6].value=='o') || (arr[1].value=='o' && arr[4].value=='o' && arr[7].value=='o') || (arr[2].value=='o' && arr[5].value=='o' && arr[8].value=='o')||  (arr[0].value=='o' && arr[4].value=='o' && arr[8].value=='o')|| (arr[2].value=='o' && arr[4].value=='o' && arr[6].value=='o')){
+					
         return true;
         } else {return false;}
     }
-    //проверяем таблицу на соответствие
+    /*проверяем таблицу на соответствие
 table.addEventListener('click', checkTable);
 
     //проверка на соответствие
     function checkTable(){
         if (checkO(td)){
-            setTimeout(nulll(td), 2000);
+            nulll(td);
             p.innerHTML = 'O выиграл, начинайте снова';
         } else if(checkX(td)){
-            window.set
             nulll(td);
             addX = true;
             p.innerHTML = 'X выиграл, начинайте снова'
         }
         console.log('o '+checkO(td)+'  x '+checkX(td));
 
-    }
+    }*/
     //обнуление таблицы
-function nulll(arr){
+function null1(arr){
     for(var i = 0; i < arr.length; i++ ){
-        arr[i].innerHTML = '';
+        arr[i].value = '';
+			addX = true;
     }
     }
 </script>
