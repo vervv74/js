@@ -47,8 +47,7 @@
     //заполняем ячейки
     function add(elem) {
         elem.addEventListener('click', function (){
-             console.log(checkO(td)+'  x '+checkX(td));
-        	if(checkX(td) == false && checkO(td) == false){
+          if(checkX1(td)==0){
             if (addX){
                elem.value = 'x';
                addX = false;
@@ -61,44 +60,33 @@
 		//проверяем ячейки
 		function check(elem) {
           elem.addEventListener('mousemove', function(){
-            if (checkO(td)){
-              p.innerHTML = 'O выиграл, начинайте снова';
-              null1(td);
-            } else if(checkX(td)){
-              p.innerHTML = 'X выиграл, начинайте снова';
+            if (checkX1(td)!=0){
+              p.innerHTML = checkX1(td)+' выиграл, начинайте снова';
+              console.log(checkX1(td));
               null1(td);
             }
-                    })
+          })
 		}
-    //проверяем х и о
-    function checkX(arr) {
-        if ((arr[0].value == 'x' && arr[1].value  == 'x' && arr[2].value  == 'x') || (arr[3].value == 'x' && arr[4].value == 'x' && arr[5].value == 'x') || (arr[6].value=='x' && arr[7].value=='x' && arr[8].value=='x')||(arr[0].value=='x' && arr[3].value=='x' && arr[6].value=='x') || (arr[1].value=='x' && arr[4].value=='x' && arr[7].value=='x') || (arr[2].value=='x' && arr[5].value=='x' && arr[8].value=='x')||  (arr[0].value=='x' && arr[4].value=='x' && arr[8].value=='x')|| (arr[2].value=='x' && arr[4].value=='x' && arr[6].value=='x')){
-					
-        return true;
-        } else {return false;}
+       // универсальная проверка х и о
+    function checkX1(arr){
+    	var set = [
+          [0,1,2],
+          [3,4,5],
+          [6,7,8],
+          [0,3,6],
+          [1,4,7],
+          [2,5,8],
+          [0,4,8],
+          [2,4,6],
+        ];
+    	var checkX1 = 0;
+     for (var i = 0; i < set.length; i++){
+    		if ((arr[set[i][0]].value=='x' && arr[set[i][1]].value=='x' && arr[set[i][2]].value=='x') || (arr[set[i][0]].value=='o' && arr[set[i][1]].value=='o' && arr[set[i][2]].value=='o') ) {
+    			checkX1 = arr[set[i][0]].value;
+            }
+      }
+			return checkX1;
     }
-    function checkO(arr) {
-        if ((arr[0].value == 'o' && arr[1].value  == 'o' && arr[2].value  == 'o') || (arr[3].value == 'o' && arr[4].value == 'o' && arr[5].value == 'o') || (arr[6].value=='o' && arr[7].value=='o' && arr[8].value=='o')||(arr[0].value=='o' && arr[3].value=='o' && arr[6].value=='o') || (arr[1].value=='o' && arr[4].value=='o' && arr[7].value=='o') || (arr[2].value=='o' && arr[5].value=='o' && arr[8].value=='o')||  (arr[0].value=='o' && arr[4].value=='o' && arr[8].value=='o')|| (arr[2].value=='o' && arr[4].value=='o' && arr[6].value=='o')){
-					
-        return true;
-        } else {return false;}
-    }
-    /*проверяем таблицу на соответствие
-table.addEventListener('click', checkTable);
-
-    //проверка на соответствие
-    function checkTable(){
-        if (checkO(td)){
-            nulll(td);
-            p.innerHTML = 'O выиграл, начинайте снова';
-        } else if(checkX(td)){
-            nulll(td);
-            addX = true;
-            p.innerHTML = 'X выиграл, начинайте снова'
-        }
-        console.log('o '+checkO(td)+'  x '+checkX(td));
-
-    }*/
     //обнуление таблицы
 function null1(arr){
     for(var i = 0; i < arr.length; i++ ){
