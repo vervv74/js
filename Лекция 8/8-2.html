@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+	document.write(randomMassive(range(0,7)));
+	//функция для массива случайных чисел
+	function randomMassive(arr){
+		var randomOrder = [];
+		var new_arr = [];
+		while (randomOrder.length < arr.length) {
+			var check = true;
+			var rand1 = rand(0, arr.length-1);
+			for (var i = 0; i < randomOrder.length ; i ++) {
+				if (randomOrder[i] == rand1){
+					check = false;
+				}
+			}
+			if (check){
+			  randomOrder.push(rand1);}
+		}
+	  for (var i = 0; i < randomOrder.length ; i ++){
+			new_arr[i]=arr[randomOrder[i]];
+		}
+		return new_arr;
+	}
+	//функция для случайного числа
+	function rand(min, max) {
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+	//функция для заполнения массива
+		function range(one, two) {
+			var arr = [];
+			for (var i = one; i <= two; i++){
+				arr.push(i);
+			}
+			return arr;
+		}
+</script>
+</html>
