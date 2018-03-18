@@ -15,40 +15,54 @@
 </head>
 <body>
 <div id="vklady">
-	<a href="#">Вкладка1</a>
-	<a href="#">Вкладка2</a>
-	<a href="#">Вкладка3</a>
+	<a href="#" data-number="">Вкладка1</a>
+	<a href="#" data-number="">Вкладка2</a>
+	<a href="#" data-number="">Вкладка3</a>
 </div>
 <div id="text">
-    <p class="nonactive">Текст1</p>
-	<p class="nonactive">Текст2</p>
-	<p class="nonactive">Текст3</p>
+    <p class="nonactive" data-number="">Текст1</p>
+	<p class="nonactive" data-number="">Текст2</p>
+	<p class="nonactive" data-number="">Текст3</p>
 </div>
 
 </body>
 <script>
 	var vkl = document.getElementById('vklady');
-	var a1 = vkl.querySelectorAll('a');
+    var p = document.getElementById('text');
+	var a1 = vkl.querySelectorAll('[data-number]');
+    var p1 = p.querySelectorAll('[data-number]');
+	addNumbers(a1);
+    addNumbers(p1);
 		for (var i = 0; i < a1.length; i++){
-			activateA(a1[i]);
-		}
-		//универсальная функция для активации ссылки
-		function activateA(elem) {
-			  elem.addEventListener('click', function func(){
-			  	deactivateA();
-			  	elem.classList.add('active');
-			})
-		}
-		//функция для деактивации активной ссылки
-		function deactivateA(){
-			var vkl1 = vkl.querySelector('.active');
-			if (vkl1) {
-				console.log(vkl1.innerHTML);
-				vkl1.classList.remove('active');
-			}
-			
+			a1[i].addEventListener('click', function func(){//активируем ссылку
+                deactivate(this.parentElement);
+                this.classList.add('active');
+                var p1 = p.querySelector('[data-number="'+this.dataset.number +'"]');
+                activateP(p1);
+            })
 		}
 
+		//добавляем номера
+	function addNumbers(elem1) {
+		    for (var i = 0; i < elem1.length; i++){
+		        elem1[i].dataset.number = i;
+		        console.log(elem1[i].dataset.number);
+			}
+
+    }
+    //  универсальная функция для деактивации активного элемента
+    function deactivate(parent) {
+        var act = parent.querySelector('.active');//поиск активной ссылки
+        if (act) {
+            act.classList.remove('active');
+        }
+    }
+            //функция для активации абзаца
+            function activateP(elem) {
+                    deactivate(elem.parentElement);
+                    elem.classList.add('active');
+
+            }
 
 </script>
 </html>
