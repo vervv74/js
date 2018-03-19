@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+	var ul = document.createElement('ul');
+	document.body.appendChild(ul);
+	liArr(['w',1,2,'rt5']);
+	function liArr(arr) {
+		for (var i = 0; i <arr.length; i++){
+			var li = document.createElement('li');
+			li.innerHTML = arr[i];
+			ul.appendChild(li);
+		}
+		}
+</script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+		.true{
+			color: green;
+		}
+		.false {
+			color: red;
+		}
+	</style>
+</head>
+<body>
+<ul>
+
+</ul>
+</body>
+<script>
+	var ul = document.querySelector('ul');
+	var products = [
+		{name: 'Коля', active: true},
+		{name: 'Вася', active: true},
+		{name: 'Петя', active: false},
+	];
+	func(products);
+	function func(arr) {
+			for (var i = 0; i < arr.length; i++) {
+				var li = document.createElement('li');
+				li.innerHTML = arr[i].name;
+				if(arr[i].active){
+					li.classList.add('true');
+				}
+				else{
+				  li.classList.add('false');
+				}
+				ul.appendChild(li);
+			}
+		}
+	
+</script>
+</html>

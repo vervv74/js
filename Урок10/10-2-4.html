@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+		.input{
+			display: none;
+		}
+		.active {
+			font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+<ul></ul>
+<input class="input" value="Изменить текст" type = "button">
+<input class="input" type = "text">
+<input class="input" type = "text">
+</body>
+<script>
+	var ul = document.querySelector('ul');
+	var activeA = document.getElementsByClassName('active');
+	var input = document.querySelectorAll('input');
+		var products = [
+		{name: 'Коля', age: 30},
+		{name: 'Вася', age: 40},
+		{name: 'Петя', age: 50},
+	];
+		liArr(products);
+	//функция для создания  li  с необходимыми свойствами
+		function liArr(arr){
+			for ( var i = 0; i < arr.length; i++){
+							var li = document.createElement('li');
+							li.innerHTML = arr[i].name + arr[i].age;
+							var a = document.createElement('a');
+							a.innerHTML = 'Редактировать';
+							a.setAttribute('href', '#');
+							a.addEventListener('click', function func(){
+								if(activeA[0]) {
+									activeA[0].classList.remove('active');
+								}
+								this.classList.add('active');
+							for (var i = 0; i < input.length; i++){
+								input[i].classList.remove('input');
+							}
+							})
+							ul.appendChild(li);
+							ul.appendChild(a);
+			}
+		}
+		//функция свойств инпута
+	input[0].addEventListener('click', function (){
+		var input1 = input[1].value;
+	    var input2 = input[2].value;
+	    activeA[0].previousElementSibling.innerHTML = input1 + input2;
+			for (var i = 0; i < input.length; i++){
+				input[i].classList.add('input');
+			}
+		})
+		
+</script>
+</html>

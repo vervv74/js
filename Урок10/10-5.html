@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+		p:not(.active){
+			display: none;
+		}
+		.active {
+		
+		}
+	</style>
+</head>
+<body>
+<input type="checkbox">
+<span>Показать абзац</span>
+<p>aбзац</p>
+</body>
+<script>
+var inp = document.querySelector('input');
+var p = document.querySelector('p');
+inp.addEventListener('click', function (){
+	if(inp.checked){
+		p.classList.add('active');
+	} else{
+			p.classList.remove('active');
+	}
+} )
+
+</script>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+	var arr = [true, false, false, true, 4];
+		checkbox(arr);
+	//функция для вывода чекбоксов
+	function checkbox(arr){
+		for (var i = 0; i < arr.length; i++){
+		var inp = document.createElement('input');
+		if (arr[i] == true) {
+					inp.setAttribute('type', 'checkbox');
+					inp.checked = true;
+					document.body.appendChild(inp);
+				}
+				else if (arr[i] == false){
+					inp.setAttribute('type', 'checkbox');
+					inp.checked = false;
+					document.body.appendChild(inp);
+		}
+		}
+	}
+</script>
+</html>
