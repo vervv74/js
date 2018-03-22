@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+		.right {
+			border: 1px solid green;
+		}
+		.wrong {
+			border: 1px solid red;
+		}
+	
+	</style>
+</head>
+<body>
+<div id = "inp">
+</div>
+<input type="button" value="Проверить">
+</body>
+<script>
+	var input = document.querySelector('[id = "inp"]');
+	newinp(input, [0,1,2,3]);
+	var inp = input.querySelectorAll('[data-number]');
+	var button = document.querySelector('[value="Проверить"]');
+	button.addEventListener('click', function(){
+			for ( var i = 0; i < inp.length; i++){
+				if (inp[i].value == inp[i].dataset.number){
+									inp[i].classList.add('right');
+				} else {
+									inp[i].classList.add('wrong');
+				}
+			}
+	})
+	// вставка инпутов
+	function newinp(input, arr){
+		for ( var i = 0; i < arr.length; i++){
+			var inp = document.createElement('input');
+			inp.setAttribute('type', 'text');
+			inp.setAttribute('data-number', arr[i]);
+			input.appendChild(inp);
+		}
+	}
+	
+</script>
+</html>

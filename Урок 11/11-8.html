@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+		.nonactive {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+<input type="text"><br>
+<a href="#">Следующий элемент</a>
+</body>
+<script>
+	var a = document.querySelector('a');
+	var arr =['q','w','er','fd','s','v'];
+	var count = 0;
+	var inp = document.querySelector('input');
+	inp.value = arr[0];
+	a.addEventListener('click', output);
+	//функция для вывода элемента массива
+	function output() {
+	if (count < (arr.length-1)) {
+	  count++;
+	  inp.value = arr[count];
+	}
+	else{
+			count = 0;
+			inp.value = arr[count];
+		}
+	}
+</script>
+</html>

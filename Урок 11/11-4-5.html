@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+		.right {
+			border: 1px solid green;
+		}
+		.wrong {
+			border: 1px solid red;
+		}
+	
+	</style>
+</head>
+<body>
+<input type="text">
+<input type="text">
+<input type="text">
+<input type="text">
+<input type="text">
+<input type="button" value="Проверить">
+</body>
+<script>
+	var arr =[];
+	var inp = document.querySelectorAll('[type="text"]');
+	var button = document.querySelector('[value="Проверить"]');
+	button.addEventListener('click', function(){
+		var arr1 = [];
+			for ( var i = 0; i < inp.length; i++){
+			  arr1.push(inp[i].value);
+			  inp[i].value = '';
+			}
+			arr.push(arr1);
+			console.log(arr);
+	})
+	
+	
+</script>
+</html>

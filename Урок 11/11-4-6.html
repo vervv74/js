@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+		.right {
+			border: 1px solid green;
+		}
+		.wrong {
+			border: 1px solid red;
+		}
+	.input{
+		width: 40px;
+	}
+	</style>
+</head>
+<body>
+<input class="input" type="text">
+<input class="input" type="text">
+<input class="input" type="text">
+<input class="input" type="text">
+<input class="input" type="text">
+<input type="button" value="Проверить">
+<p></p>
+</body>
+<script>
+	var arr =[];
+	var inp = document.querySelectorAll('[type="text"]');
+	var button = document.querySelector('[value="Проверить"]');
+	var p = document.querySelector('p');
+	button.addEventListener('click', function(){
+			for ( var i = 0; i < inp.length; i++){
+			  arr.push(inp[i].value);
+			  inp[i].value = '';
+			}
+			var sum = 0;
+			for ( var i = 0; i < arr.length; i++){
+				sum += parseInt(arr[i]);
+			}
+			p.innerHTML = 'Сумма элементов массива ' + sum;
+	})
+	
+	
+</script>
+</html>

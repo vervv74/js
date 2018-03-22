@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+		.right {
+			border: 1px solid green;
+		}
+		.wrong {
+			border: 1px solid red;
+		}
+	
+	</style>
+</head>
+<body>
+<input type="text" data-number="0">
+<input type="text" data-number="1">
+<input type="text" data-number="2">
+<input type="text" data-number="3">
+<input type="text" data-number="4">
+<input type="button" value="Проверить">
+</body>
+<script>
+	var inp = document.querySelectorAll('[data-number]');
+	var button = document.querySelector('[value="Проверить"]');
+	button.addEventListener('click', function(){
+			for ( var i = 0; i < inp.length; i++){
+				if (inp[i].value == inp[i].dataset.number){
+				  inp[i].classList.add('right');
+				} else {
+				  inp[i].classList.add('wrong');
+				}
+			}
+	})
+	
+	
+</script>
+</html>

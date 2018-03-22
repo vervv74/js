@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+<input type="text"><br>
+<a href="#">Следующий элемент</a><br>
+<a href="#" class="nonactive">Предыдущий элемент</a>
+</body>
+<script>
+	var ahead = document.querySelectorAll('a')[0];
+	var back = document.querySelectorAll('a')[1];
+	var arr =['q','w','er','fd','s','v'];
+	var count = 0;
+	var inp = document.querySelector('input');
+	inp.value = arr[0];
+	ahead.addEventListener('click', output);
+		back.addEventListener('click', backOutput);
+	//функция для вывода элемента массива вперед
+	function output() {
+	 
+	  if (count < (arr.length-1)) {
+	  count++;
+	  inp.value = arr[count];
+	  console.log(count);
+	}
+	else{
+			count = 0;
+			inp.value = arr[count];
+			console.log(count);
+		}
+	}
+	//функция для вывода элемента массива назад
+		function backOutput() {
+			
+			if (count !=0 ) {
+				count--;
+				inp.value = arr[count];
+							console.log(count);
+			}
+			else{
+				count = arr.length-1;
+				inp.value = arr[count];
+							console.log(count);
+			}
+		}
+
+
+</script>
+</html>

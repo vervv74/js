@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+		.wrong {
+					color: red;
+				
+		}
+	
+	</style>
+</head>
+<body>
+<p>2*1=?</p>
+<input type="text" data-right-answer="2">
+<span></span>
+<p>2*2=?</p>
+<input type="text" data-right-answer="4">
+<span></span>
+<p>2*3=?</p>
+<input type="text" data-right-answer="6">
+<span></span>
+<p>2*4=?</p>
+<input type="text" data-right-answer="8">
+<span></span>
+<p>2*5=?</p>
+<input type="text" data-right-answer="10">
+<span></span><br>
+<input type="button" value="Проверить">
+</body>
+<script>
+	var inp = document.querySelectorAll('[data-right-answer]');
+	var button = document.querySelector('[value="Проверить"]');
+	button.addEventListener('click', function(){
+			for ( var i = 0; i < inp.length; i++){
+				if (inp[i].classList.contains('wrong')){
+				  inp[i].classList.remove('wrong')
+				}
+				inp[i].nextElementSibling.innerHTML = '';
+				if (inp[i].value != inp[i].dataset.rightAnswer){
+				  inp[i].classList.add('wrong');
+				  inp[i].nextElementSibling.innerHTML = 'Правильный ответ - '+inp[i].dataset.rightAnswer;
+				}
+				
+			}
+			
+	})
+	
+	
+</script>
+</html>
