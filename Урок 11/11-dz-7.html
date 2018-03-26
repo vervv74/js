@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+</body>
+<script>
+var radio = ['кнопка 1', 'кнопка 2', 'кнопка 3', 'кнопка 4'];
+radio1(radio);
+var button = document.querySelectorAll('input');
+for (var i = 0; i < button.length; i++) {
+	button[i].addEventListener('click', function(){
+		if (document.querySelector('p')){
+		  document.querySelector('p').innerHTML = this.value;
+		} else {
+		var p = document.createElement('p');
+		p.innerHTML = this.value;
+		document.body.appendChild(p);}
+	})
+}
+
+// функция для вывода радиокнопок
+	function radio1(arr){
+	for (var i = 0; i < arr.length; i++){
+		var input = document.createElement('input');
+		input.setAttribute('type', 'radio');
+	  input.setAttribute('name', arr);
+			input.setAttribute('value', arr[i]);
+			var span = document.createElement('span');
+			span.innerHTML = arr[i];
+			document.body.appendChild(input);
+			document.body.appendChild(span);
+	}
+	}
+	
+	
+</script>
+</html>

@@ -14,31 +14,10 @@
 var radio = document.querySelectorAll('input');
 var p = document.querySelector('p');
 for (var i = 0; i < radio.length; i++){
-	         radio[i].addEventListener('click', check);
+	         radio[i].addEventListener('click', function(){
+	         	p.innerHTML = this.value;
+			 });
 }
-
-//функция для
-function check() {
-  for (var i = 0; i < radio.length; i++){
-if (radio[i].checked == true){
-	p.innerHTML = radio[i].value;
-}
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </script>
 </html>
