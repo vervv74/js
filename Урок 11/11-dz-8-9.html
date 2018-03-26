@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+	var buttons = [
+			[
+				'1-1',
+				'1-2',
+				'1-3',
+			],
+			[
+				'2-1',
+				'2-2',
+				'2-3',
+						],
+		[
+				'3-1',
+				'3-2',
+				'3-3',
+				],
+		[
+				'4-1',
+				'4-2',
+				'4-3',
+				],
+		[
+				'5-1',
+				'5-2',
+				'5-3',
+				],
+		];
+//	document.write(buttons[0][2]);
+
+	radio(buttons);
+	function radio(arr) {
+	  for (var i = 0; i < arr.length; i ++){
+				var div = document.createElement('div');
+	  	for (var j = 0; j < arr[i].length; j++){
+		           var radioButton = document.createElement('input');
+					radioButton.setAttribute('type', 'radio');
+					radioButton.setAttribute('name', arr[i]);
+					radioButton.setAttribute('value', arr[i][j]);
+					var span = document.createElement('span');
+					span.innerHTML = arr[i][j];
+					div.appendChild(radioButton);
+					radioButton.addEventListener('click', function(){
+					  if (this.parentElement.querySelector('p')){this.parentElement.querySelector('p').innerHTML = this.value;
+					  } else {
+						var p = document.createElement('p');
+						p.innerHTML = this.value;
+						this.parentElement.appendChild(p);}})
+					div.appendChild(span);
+		}
+		document.body.appendChild(div);
+	  }
+		}
+</script>
+</html>
