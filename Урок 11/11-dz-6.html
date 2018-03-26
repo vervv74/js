@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<input type = "radio" name = "one" value = "кнопка 1" > кнопка 1
+<input type = "radio" name = "one" value = "кнопка 2">  кнопка 2
+<input type = "radio" name = "one"  value = "кнопка 3"> кнопка 3
+<p></p>
+</body>
+<script>
+var radio = document.querySelectorAll('input');
+var p = document.querySelector('p');
+for (var i = 0; i < radio.length; i++){
+	         radio[i].addEventListener('click', check);
+}
+
+//функция для
+function check() {
+  for (var i = 0; i < radio.length; i++){
+if (radio[i].checked == true){
+	p.innerHTML = radio[i].value;
+}
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>
