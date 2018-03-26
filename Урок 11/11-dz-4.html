@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+		.right {
+			float: right;
+			position: relative;
+			top: -20px;
+		}
+		.table {
+			width: 500px;
+		}
+		.nonactive {
+			display: none;
+		}
+		
+	</style>
+</head>
+<body>
+<div class="table">
+<div>Вопросы</div><input class="right" type="text">
+</div>
+<div class="table">
+	<input  type="button" value = "Запомнить ответ">
+	<input class="right" type="text"><br>
+</div>
+<a href="#">Следующий вопрос</a>
+<p></p>
+</body>
+<script>
+	var a = document.querySelector('a');
+	var p = document.querySelector('p');
+	var questions =['Вопрос1','Вопрос2','Вопрос3','Вопрос4','Вопрос5','Вопрос6'];
+	var rightAnswers =['1','2','3','4','5','6'];
+	var count = 0;
+	var inp = document.querySelectorAll('input')[0];
+	var button = document.querySelectorAll('input')[1];
+	var inpAns = document.querySelectorAll('input')[2];
+	var answer = {};
+	inp.value = questions[0];
+	a.addEventListener('click', output);
+	button.addEventListener('click', addAnswer);
+		//функция для вывода элемента массива
+		function output() {
+			if (count < (questions.length-1)) {
+				count++;
+				inp.value = questions[count];
+			}
+			else{
+				a.classList.add('nonactive');
+				p.innerHTML = 'Вопросы закончились';
+				for (var i = 0; i < questions.length; i++){
+					var p_ans = document.createElement('p');
+					if (answer[questions[i]] && answer[questions[i]] ==  rightAnswers[i]){
+						p_ans.innerHTML = questions[i]+'? - Ответ: '+ answer[questions[i]] + '. Это правильный ответ ';
+					}
+						else if (answer[questions[i]]) {
+					  p_ans.innerHTML = questions[i]+'? - Ответ: '+ answer[questions[i]] + '. Это неправильный ответ, правильный - ' +rightAnswers[i];
+					}
+					else {
+						p_ans.innerHTML = questions[i]+'? - Ответ: без ответа';}
+					document.body.appendChild(p_ans);
+				}
+
+			}
+
+		}
+		//функция для массива ответов
+		function addAnswer(){
+			answer[inp.value] = inpAns.value;
+		  console.log(answer);
+		}
+</script>
+</html>
