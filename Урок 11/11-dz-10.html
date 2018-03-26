@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+		.right {
+			color: green;
+		}
+		.wrong {
+			color: red;
+		}
+	</style>
+</head>
+<body>
+
+</body>
+<script>
+	var radio = [
+			{
+				question: 'Вопрос 1',
+				answers: [
+					'Ответ 1',
+					'Ответ 2',
+					'Ответ 3',
+					'Ответ 4',
+					'Ответ 5',
+				],
+				right: 1, //номер правильного ответа
+			},
+			{
+				question: 'Вопрос 2',
+				answers: [
+					'Ответ 1',
+					'Ответ 2',
+					'Ответ 3',
+					'Ответ 4',
+					'Ответ 5',
+				],
+				right: 2, //номер правильного ответа
+			},
+			{
+				question: 'Вопрос 3',
+				answers: [
+					'Ответ 1',
+					'Ответ 2',
+					'Ответ 3',
+					'Ответ 4',
+					'Ответ 5',
+				],
+				right: 3, //номер правильного ответа
+			},
+			{
+				question: 'Вопрос 4',
+				answers: [
+					'Ответ 1',
+					'Ответ 2',
+					'Ответ 3',
+					'Ответ 4',
+					'Ответ 5',
+				],
+				right: 4, //номер правильного ответа
+			},
+			{
+				question: 'Вопрос 5',
+				answers: [
+					'Ответ 1',
+					'Ответ 2',
+					'Ответ 3',
+					'Ответ 4',
+					'Ответ 5',
+				],
+				right: 5, //номер правильного ответа
+			},
+		];
+	radio1(radio);
+	function radio1(arr){
+		for (var i = 0; i < arr.length; i++) {
+			var div = document.createElement('div');
+			var p = document.createElement('div');
+			p.innerHTML = arr[i].question;
+			div.appendChild(p);
+			div.setAttribute('data-number', arr[i].right);
+			for ( var j = 0; j < arr[i].answers.length; j++){
+				var radioButton = document.createElement('input');
+			    radioButton.setAttribute('type', 'radio');
+			    radioButton.setAttribute('name', arr[i].question);
+			    radioButton.setAttribute('value', arr[i].answers[j]);
+			    var span = document.createElement('span');
+			    span.innerHTML = arr[i].answers[j];
+			  
+			  radioButton.addEventListener('click', function(){
+				for (var c = 0; c < this.parentElement.querySelectorAll('input').length; c++){
+				  this.parentElement.querySelectorAll('span')[c].classList.remove('right');
+				  this.parentElement.querySelectorAll('span')[c].classList.remove('wrong');
+				}
+				if ( this.parentElement.querySelectorAll('span')[this.parentElement.dataset.number-1].innerHTML == this.nextElementSibling.innerHTML) {
+				  this.nextElementSibling.classList.add('right');
+									console.log('Правильно '+this.parentElement.querySelectorAll('span')[this.parentElement.dataset.number-1].innerHTML);
+									console.log('Выбрали '+this.nextElementSibling.innerHTML);
+				} else{
+				  this.nextElementSibling.classList.add('wrong');
+									console.log('Правильно '+this.parentElement.querySelectorAll('span')[this.parentElement.dataset.number-1].innerHTML);
+									console.log('Выбрали '+this.nextElementSibling.innerHTML);
+				}
+			  })
+			    div.appendChild(radioButton);
+			    div.appendChild(span);
+			}
+			document.body.appendChild(div);
+		}
+	}
+</script>
+</html>
