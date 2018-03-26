@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+		.active {
+			font-size: 20px;
+		}
+		p:not(.active){
+			display: none;
+		}
+		
+	</style>
+</head>
+<body>
+<div id="vkladki">
+	<a href="#">Вкладка1</a>
+	<a href="#">Вкладка2</a>
+	<a href="#">Вкладка3</a>
+</div>
+<div id="text">
+    <p class="nonactive">Текст1</p>
+	<p class="nonactive">Текст2</p>
+	<p class="nonactive">Текст3</p>
+</div>
+
+</body>
+<script>
+	var vkl = document.getElementById('vkladki');
+	var a1 = vkl.querySelectorAll('a');
+	for (var i = 0; i < a1.length; i++){
+		activateA(a1[i]);
+	}
+	//универсальная функция для активации ссылки
+	function activateA(elem) {
+	  		elem.addEventListener('click', function func(){
+			elem.classList.add('active');
+		})
+			deactivateA();
+	}
+	
+	//универсальная функция для деактивации ссылки
+	function deactivateA(){
+		if (searchA()) {
+			searchA().classList.remove('active');
+		}
+	}
+	
+	//функция для поиска активной ссылки
+	function searchA(){
+		var vkl1 = a1.querySelector('.active');
+		if (vkl1) {
+					console.log(vkl1.innerHTML);
+					return vkl1;
+				}
+	}
+
+</script>
+</html>

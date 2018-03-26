@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+	p {
+	width: 200px;
+		height: 50px;
+		border: 1px solid black;
+	}
+	.red {
+	background-color: red;
+		border: 1px solid red;
+		
+	}
+	.grey {
+		background-color: grey;
+		border: 1px solid black;
+		
+	}
+	.op {
+				opacity: 0.3;
+	}
+	</style>
+</head>
+<body>
+<p></p>
+<p></p>
+<p></p>
+</body>
+<script>
+	var p = document.querySelectorAll('p');
+		var redArr = document.getElementsByClassName('red');
+		var greyArr = document.getElementsByClassName('grey');
+		for (var i = 0; i < p.length; i++) {
+		color(p[i]);
+	}
+	//функция для смены цвета
+	function color(elem) {
+	  elem.addEventListener('click', function red(){
+				if(redArr.length == 1){
+				  if (greyArr.length == 1){
+					greyArr[0].classList.remove('grey');
+				  }
+				  redArr[0].classList.add('grey');
+				  redArr[0].classList.remove('red');
+				  console.log('до'+redArr.length);
+				}
+			
+		this.classList.add('red');
+				console.log('после'+redArr.length);
+	  })
+		}
+</script>
+</html>

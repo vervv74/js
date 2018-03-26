@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+			.appear {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+<p class="appear">Абзац</p>
+<input type="button" >
+</body>
+<script>
+	var inp = document.querySelector('input');
+	var p = document.querySelector('p');
+		inp.addEventListener('click', add);
+	function add(){
+			p.classList.remove('appear');
+			inp.removeEventListener('click', add);
+			inp.addEventListener('click',  function remove() {
+				p.classList.add('appear');
+				inp.removeEventListener('click', remove);
+				inp.addEventListener('click', add);
+			});
+		}
+	
+</script>
+</html>

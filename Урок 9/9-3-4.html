@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+		.appear {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+<p id="one">id="one"</p>
+<p id="two">id="two"</p>
+<p id="three">id="three"</p>
+<input type="text">
+<input type="button">
+<p id="four"></p>
+<p id="five"></p>
+</body>
+<script>
+	var appear = document.getElementsByClassName('appear');
+	var four = document.getElementById('four');
+	var five = document.getElementById('five');
+	var text = document.querySelectorAll('input')[0];
+	var button = document.querySelectorAll('input')[1];
+	button.addEventListener('click', function hide(){
+		var hideId = text.value;
+		hideElem(hideId);
+	})
+	function hideElem(id){
+	var id1 = document.getElementById(id);
+	if(id1){
+		for (var i = 0; i < appear.length; i++){
+			appear[i].classList.remove('appear');
+		}
+		id1.classList.add('appear');
+		four.innerHTML='Cкрыт абзац с id='+id1.id;
+	}
+	else{
+		four.innerHTML='Нет такого id. Попробуйьте еще раз';
+	}
+}
+
+</script>
+</html>
