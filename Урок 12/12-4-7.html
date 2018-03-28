@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .current {
+           color: green;
+            font-size: 25px;
+        }
+        .dayoff{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<ul></ul>
+</body>
+<script>
+
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth();
+    var current = now.getDate();
+    document.write(new Date(year, month, current).getDay());
+    var last = new Date(year,(month+1),0).getDate();// количество дней текущего месяца день
+
+   for (var i = 1; i <= last; i++){
+       var li = document.createElement('li');
+       li.innerHTML = i;
+       if (i == current){
+           li.classList.add('current');
+       }
+       if (new Date(year, month, i).getDay() == 0 || new Date(year, month, i).getDay() == 6){
+           li.classList.add('dayoff');
+       }
+       document.querySelector('ul').appendChild(li);
+   }
+</script>
+</html>

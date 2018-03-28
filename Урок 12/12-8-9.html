@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        a {
+            font-size: 25px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<p></p>
+<span>&#8592   </span><span>   &#8594</span>
+</body>
+<script>
+    var month=['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь', 'ноябрь', 'декабрь'];
+    var date = new Date();
+    var monthNumber = date.getMonth();
+    var currentMonth = month[monthNumber];
+    var year = date. getFullYear();
+    document.querySelector('p').innerHTML = currentMonth + ' '+year;
+       document.querySelectorAll('span')[1].addEventListener('click', function(){
+           if (monthNumber != 11)
+           { monthNumber ++;
+           currentMonth = month[monthNumber];
+           console.log(monthNumber);}
+           else {
+               monthNumber = 0;
+               currentMonth = month[monthNumber];
+               year ++;
+           }
+
+           document.querySelector('p').innerHTML = currentMonth + ' '+year;
+
+               });
+    document.querySelectorAll('span')[0].addEventListener('click', function(){
+        if (monthNumber != 0)
+        { monthNumber --;
+            currentMonth = month[monthNumber];
+            console.log(monthNumber);}
+        else {
+            monthNumber = 11;
+            currentMonth = month[monthNumber];
+            year --;
+        }
+
+        document.querySelector('p').innerHTML = currentMonth + ' '+year;
+
+    });
+
+
+</script>
+</html>

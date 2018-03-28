@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .current{
+            color: red;
+        }
+        div#bottom {
+width: 670px;
+            position: relative;
+        }
+        div#year {
+            right: 0px;
+            top: 0px;
+            position:absolute;
+        }
+        div#right {
+           right: 0px;
+            top: 0px;
+            position:absolute;
+        }
+        div#table {
+           left:30px;
+            top: 0px;
+            position:absolute;
+        }
+
+        div#top  {
+            width: 150px;
+            position: relative;
+        }
+        div#year {
+            right: 0px;
+            top: 0px;
+            position:absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="top">
+    <div id="month"></div>
+    <div id="year"></div>
+</div>
+<div id="bottom">
+    <div id="left">&#8592</div>
+    <div id="table">
+        <table>
+            <tr></tr>
+        </table>
+    </div>
+    <div id="right">&#8594</div>
+</div>
+</body>
+<script>
+    var month=['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь', 'ноябрь', 'декабрь'];
+    var now = new Date();
+    var year = now.getFullYear();
+    var currentMonth = now.getMonth();
+    document.getElementById('month').innerHTML = month[currentMonth];
+    document.getElementById('year').innerHTML = year;
+    var next =  document.getElementById('right');//стрелка - будущий месяц
+    var previous = document.getElementById('left');//стрелка - текущий месяц
+    var tr =    document.querySelector('tr');
+    table(year,currentMonth);
+    // стрелка вправо
+    next.addEventListener('click', function(){
+        if (currentMonth != 11){
+            clear(tr);
+            currentMonth++;
+            table(year,currentMonth);
+            document.getElementById('month').innerHTML = month[currentMonth];
+            document.getElementById('year').innerHTML = year;
+        }
+        else{
+            clear(tr);
+            currentMonth = 0;
+            year ++;
+            table(year,currentMonth);
+            document.getElementById('month').innerHTML = month[currentMonth];
+            document.getElementById('year').innerHTML = year;
+        }
+    })
+    // стрелка влево
+    previous.addEventListener('click', function(){
+        if (currentMonth != 0){
+            clear(tr);
+            currentMonth--;
+            table(year,currentMonth);
+            document.getElementById('month').innerHTML = month[currentMonth];
+            document.getElementById('year').innerHTML = year;
+        }
+        else{
+            clear(tr);
+            currentMonth = 11;
+            year --;
+            table(year,currentMonth);
+            document.getElementById('month').innerHTML = month[currentMonth];
+            document.getElementById('year').innerHTML = year;
+        }
+    })
+  // функция для заполнения таблицы числами
+    function table(year, month) {
+        var date1 = new Date;
+        var current_year = date1.getFullYear();
+        var current_month = date1.getMonth();
+        var current_day  = date1.getDate();
+        var last = new Date(year,(month+1),0).getDate();// количество дней текущего месяца день
+        for (var i = 0; i <= last; i++){
+        var td = document.createElement('td');
+        td.innerHTML = i;
+        if (year == current_year && month == current_month && i == current_day) {
+            td.classList.add('current');
+        }
+        tr.appendChild(td);
+    }
+    }
+    //очистить таблицу
+    function clear(parent) {
+        var arr = parent.children;
+       while (arr[0]) {
+           parent.removeChild(arr[0]);
+           arr = parent.children;
+       }
+    }
+</script>
+</html>

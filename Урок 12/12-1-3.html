@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var month=['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь'];
+    var week = ['понедельник','вторник','среда','четверг','пятница','суббота','воскресенье'];
+    var now = new Date();
+    document.write('Текущая дата (день, месяц, год) -'+now.getDate()+' '+month[now.getMonth()]+' '+now.getFullYear()+'<br>');
+    document.write('Текущий день недели - '+week[now.getDay()-1]+'<br>')
+  var last = new Date(now.getFullYear(),(now.getMonth()+1),0).getDate();
+    document.write('Послений день текущего месяца - '+last+' '+month[now.getMonth()]);
+</script>
+</html>
