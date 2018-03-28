@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var week = ['воскресенье', 'понедельник','вторник','среда','четверг','пятница','суббота'];
+    var now = new Date();
+    var currentMonth = now.getMonth();
+    var currentYear = now.getFullYear();
+    var firstDayWeek = week[new Date(currentYear, currentMonth, 1).getDay()];
+    var lastDayWeek = week[new Date(currentYear, currentMonth+1, 0).getDay()];
+    document.write('Первый день текущего месяца - '+firstDayWeek);
+    document.write('<br>Понедельник был раньше на '+ (new Date(currentYear, currentMonth, 1).getDay()-1)+' дня');
+    document.write('<br>Последний день текущего месяца - '+lastDayWeek);
+    document.write('<br>Воскресенье будет через '+ (7-new Date(currentYear, currentMonth+1, 0).getDay())+' день');
+
+</script>
+</html>

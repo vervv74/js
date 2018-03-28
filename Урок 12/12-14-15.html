@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul></ul>
+</body>
+<script>
+     var ul = document.querySelector('ul');
+     var week = ['воскресенье', 'понедельник','вторник','среда','четверг','пятница','суббота'];
+     var now = new Date();
+     var currentMonthsDays = new Date(now.getFullYear(), now.getMonth()+1, 0).getDate();
+     for (var i = 1; i <= currentMonthsDays; i++ ){
+         var li = document.createElement('li');
+         li.innerHTML = i+ ' '+ week[new Date(now.getFullYear(), now.getMonth(), i).getDay()];
+         ul.appendChild(li);
+     }
+</script>
+</html>
