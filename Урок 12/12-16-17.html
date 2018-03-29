@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul></ul>
+</body>
+<script>
+     var ul = document.querySelector('ul');
+     var month=['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь', 'ноябрь', 'декабрь'];
+     var week = ['воскресенье', 'понедельник','вторник','среда','четверг','пятница','суббота'];
+     var now = new Date();
+     var currentMonthsDays = new Date(now.getFullYear(), now.getMonth()+1, 0).getDate();
+     for (var i = 1; i <= currentMonthsDays; i++ ){
+         if (i == 1 && new Date(now.getFullYear(), now.getMonth(), i).getDay() == 1  ){
+             var li = document.createElement('li');
+             li.innerHTML = i + ' ' + week[new Date(now.getFullYear(), now.getMonth(), i).getDay()];
+             ul.appendChild(li);
+         }
+         else if (i == 1 && new Date(now.getFullYear(), now.getMonth(), i).getDay() != 1 ) {
+             var j = new Date(now.getFullYear(), now.getMonth(), i).getDay()-1;
+                      for (var d = 1; d <= j; d++) {
+                 var li = document.createElement('li');
+                 li.innerHTML = new Date(now.getFullYear(), now.getMonth(), (0-j+d)).getDate()+' '+month[new Date(now.getFullYear(), now.getMonth(), (0-j+d)).getMonth()]+' '+ week[new Date(now.getFullYear(), now.getMonth(), (0-j+d)).getDay()];
+                 ul.appendChild(li);
+                 console.log
+             }
+             var li = document.createElement('li');
+             li.innerHTML = 1 +' '+month[new Date(now.getFullYear(), now.getMonth(), 1).getMonth()]+ ' ' + week[new Date(now.getFullYear(), now.getMonth(), 1).getDay()];
+             ul.appendChild(li);
+         }
+        else if (i > 1 && i < currentMonthsDays) {
+             var li = document.createElement('li');
+             li.innerHTML = i +' '+month[new Date(now.getFullYear(), now.getMonth(), i).getMonth()]+ ' ' + week[new Date(now.getFullYear(), now.getMonth(), i).getDay()];
+             ul.appendChild(li);
+         }
+
+         else  {
+             var li = document.createElement('li');
+             li.innerHTML = i +' '+month[new Date(now.getFullYear(), now.getMonth(), i).getMonth()]+ ' ' + week[new Date(now.getFullYear(), now.getMonth(), i).getDay()];
+             ul.appendChild(li);
+             var jj =7-new Date(now.getFullYear(), now.getMonth(), i).getDay()-0;
+             console.log(jj);
+             for (var ii = 1; ii <= jj; ii++) {
+                 var li = document.createElement('li');
+                 li.innerHTML = ii +' '+month[new Date(now.getFullYear(), now.getMonth()+1, ii).getMonth()]+ ' ' + week[new Date(now.getFullYear(), now.getMonth()+1, ii).getDay()];
+                 ul.appendChild(li);
+             }
+         }
+     }
+</script>
+</html>
