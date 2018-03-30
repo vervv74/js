@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+ .table{
+
+ }
+ .taskList{
+
+ }
+ .done{
+    color: red;
+     text-decoration: line-through;
+     disabled: true;
+ }
+ .focus{
+     color:red;
+     font-size: 20px;
+ }
+        div#bottom {
+width: 200px;
+            position: relative;
+        }
+        div#year {
+            right: 0px;
+            top: 0px;
+            position:absolute;
+        }
+        div#right {
+           right: 0px;
+            top: 0px;
+            position:absolute;
+        }
+        div#table {
+           left:30px;
+            top: 0px;
+           position:relative;
+        }
+
+        div#top  {
+            width: 150px;
+            position: relative;
+        }
+        div#year {
+            right: 0px;
+            top: 0px;
+            position:absolute;
+        }
+        .none{
+            display: none;
+        }
+ .tdnone{
+     display: none;
+ }
+    </style>
+</head>
+<body>
+<div id="top">
+    <div id="month"></div>
+    <div id="year"></div>
+</div>
+<div id="bottom">
+    <div id="left">&#8592</div>
+    <div id="table">
+        <table>
+          </table>
+    </div>
+    <div id="right">&#8594</div>
+</div>
+<input class = "none" type = "button" value = "Добавьте задачу для выбранной даты" onclick="taskAdd()">
+<input class = "none" type = "text">
+<table style = "width:500px; position:relative;"></table>
+</body>
+<script>
+    var month=['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь', 'ноябрь', 'декабрь'];
+    var now = new Date();
+    var year = now.getFullYear();
+    var currentMonth = now.getMonth();
+    document.getElementById('month').innerHTML = month[currentMonth];
+    document.getElementById('year').innerHTML = year;
+    var next =  document.getElementById('right');//стрелка - будущий месяц
+    var previous = document.getElementById('left');//стрелка - текущий месяц
+    var table =    document.querySelectorAll('table')[0]; //таблица для дат
+    var tableTask =    document.querySelectorAll('table')[1]; //таблица для задач
+    var task ={};
+    tableFill(year,currentMonth);
+    // стрелка вправо
+    next.addEventListener('click', function(){
+        if (currentMonth != 11){
+            clear(table);
+            currentMonth++;
+            tableFill(year,currentMonth);
+            document.getElementById('month').innerHTML = month[currentMonth];
+            document.getElementById('year').innerHTML = year;
+        }
+        else{
+            clear(table);
+            currentMonth = 0;
+            year ++;
+            tableFill(year,currentMonth);
+            document.getElementById('month').innerHTML = month[currentMonth];
+            document.getElementById('year').innerHTML = year;
+        }
+    })
+    // стрелка влево
+    previous.addEventListener('click', function(){
+        if (currentMonth != 0){
+            clear(table);
+            currentMonth--;
+            tableFill(year,currentMonth);
+            document.getElementById('month').innerHTML = month[currentMonth];
+            document.getElementById('year').innerHTML = year;
+        }
+        else{
+            clear(table);
+            currentMonth = 11;
+            year --;
+            tableFill(year,currentMonth);
+            document.getElementById('month').innerHTML = month[currentMonth];
+            document.getElementById('year').innerHTML = year;
+        }
+    })
+  // функция для заполнения таблицы числами
+    function tableFill(year, month) {
+        var last = new Date(year,(month+1),0).getDate();// количество дней текущего месяца день
+     tableColumn(last,6);
+    }
+    //очистить таблицу c датами
+    function clear(table) {
+        var arr = table.querySelectorAll('.table');
+        for (var i = 0; i < arr.length; i++){
+            arr[i].parentNode.removeChild(arr[i]);
+        }
+    }
+    //очистить таблицу c задачами
+    function clearTask() {
+        var arr = tableTask.querySelectorAll('.taskList');
+        for (var i = 0; i < arr.length; i++){
+            arr[i].parentNode.removeChild(arr[i]);
+        }
+    }
+    //заполнение таблицы с заданным числом столбцов
+    function tableColumn(total, column){
+        var figure = 1;
+        for (var i = 0; i <= Math.ceil(total/column); i++){
+            var row = document.createElement('tr');
+            row.classList.add('table');
+            for (var j = 1; j <= column; j++){
+                var td = document.createElement('td');
+                if (figure <= total){
+                    td.innerHTML = figure;
+                    figure ++;
+                   td.addEventListener('click', function(){
+                       if (document.querySelector('.focus'))
+                       {clearFocus();}
+                       this.classList.add('focus');
+                       if(document.querySelectorAll('.none')){
+                           clearNone();
+                       }
+                       if(!task[formKey()]){
+                           task[formKey()] =[];
+                       }
+                       taskOutput();
+                   })
+                }
+                td.classList.add('table');
+                row.appendChild(td);
+            }
+            table.appendChild(row);
+        }
+    }
+    //убираем класс focus
+    function clearFocus(){
+        var focus = document.querySelector('.focus');
+        focus.classList.remove('focus');
+    }
+    //убираем класс none
+    function clearNone(){
+        var none = document.querySelectorAll('.none');
+        for (var i = 0; i < none.length; i++){
+            none[i].classList.remove('none');
+        }
+    }
+    //функция для добавления задачи в список
+    function taskAdd(){
+        var task1 = document.querySelectorAll('input')[1].value;
+        var arr = [task1,'able'];
+        task[formKey()].push(arr);
+        taskOutput();
+        console.log(task);
+
+    }
+    //функция для формирования ключа для задач
+    function formKey(){
+        var date = document.querySelector('.focus').innerHTML;
+        var month = document.getElementById('month').innerHTML;
+        var year = document.getElementById('year').innerHTML;
+        return date+', '+month+', '+year;
+    }
+    //функция для вывода задач
+    function taskOutput(){
+        clearTask();
+        var tr = document.createElement('tr');
+        tr.classList.add('taskList');
+        tr.innerHTML = 'Задачи для указанной даты';
+        tableTask.appendChild(tr);
+       for (var i = 0; i < task[formKey()].length; i++){
+           if (task[formKey()][i][1] == 'able') {
+           var tr = document.createElement('tr');
+           tr.classList.add('taskList');
+           var td = document.createElement('td');
+           td.classList.add('taskList');
+           td.setAttribute('data-number', i);
+           td.innerHTML =   task[formKey()][i][0];
+           tr.appendChild(td);
+           var del = document.createElement('input');//кнопка удалить
+           del.setAttribute('type', 'button');//кнопка удалить
+           del.setAttribute('value', 'удалить');//кнопка удалить
+           del.setAttribute('data-number', i);//кнопка удалить
+      //     del.style.position = "absolute";//кнопка удалить
+           del.style.float = "right";//кнопка удалить
+           del.addEventListener('click', function () {
+               this.parentElement.parentElement.removeChild(this.parentElement);
+               task[formKey()].splice(this.dataset.number,1);
+           })
+           tr.appendChild(del);//кнопка удалить
+           var done = document.createElement('input');//кнопка пометить как выполненную
+           done.setAttribute('type', 'button');//кнопка пометить как выполненную
+           done.setAttribute('value', 'отметить как выполненную');//кнопка пометить как выполненную
+           done.setAttribute('data-number', i);//кнопка удалить
+       //    done.style.position = "absolute";//кнопка пометить как выполненную
+           done.style.float = 'right';//кнопка пометить как выполненную
+           done.addEventListener('click', function(){
+               this.value = 'выполнена';
+               this.parentElement.querySelector('td').classList.add('done');
+               this.disabled = true;
+               task[formKey()][this.dataset.number][1] = 'done';
+           });
+           tr.appendChild(done);//кнопка пометить как выполненную
+           td.addEventListener('click', function inp(){
+               if(!this.classList.contains('done')) {
+                   var thisTd = this;
+                   thisTd.classList.add('tdnone');
+                   var input = document.createElement('input');
+                 //  input.style.float = 'left';
+                   input.setAttribute('type', 'text');
+                   input.setAttribute('value', thisTd.innerHTML);
+                   thisTd.parentElement.appendChild(input);
+                   input.addEventListener('blur', function () {
+                       var inp = this;
+                       thisTd.innerHTML = inp.value;
+                       console.log(thisTd.dataset.number);
+                       task[formKey()][thisTd.dataset.number] = inp.value;
+                       thisTd.classList.remove('tdnone');
+                       inp.parentNode.removeChild(inp);
+
+                   })
+               }})}
+               else {                                              ///////////////////////////////   для выполненных задач
+               var tr = document.createElement('tr');
+               tr.classList.add('taskList');
+               var td = document.createElement('td');
+               td.classList.add('taskList');
+               td.classList.add('done');
+               td.setAttribute('data-number', i);
+               td.innerHTML =   task[formKey()][i][0];
+               tr.appendChild(td);
+               var del = document.createElement('input');//кнопка удалить
+               del.setAttribute('type', 'button');//кнопка удалить
+               del.setAttribute('value', 'удалить');//кнопка удалить
+               del.setAttribute('data-number', i);//кнопка удалить
+               //     del.style.position = "absolute";//кнопка удалить
+               del.style.float = "right";//кнопка удалить
+               del.addEventListener('click', function () {
+                   this.parentElement.parentElement.removeChild(this.parentElement);
+                   task[formKey()].splice(this.dataset.number,1);
+               })
+               tr.appendChild(del);//кнопка удалить
+               var done = document.createElement('input');//кнопка пометить как выполненную
+               done.setAttribute('type', 'button');//кнопка пометить как выполненную
+               done.setAttribute('value', 'выполнена');//кнопка пометить как выполненную
+               done.setAttribute('data-number', i);//кнопка удалить
+               done.setAttribute('disabled', 'true');//кнопка удалить
+               done.style.float = 'right';//кнопка пометить как выполненную
+               tr.appendChild(done);//кнопка пометить как выполненную
+           }
+            tableTask.appendChild(tr);
+       }
+    }
+
+</script>
+</html>
