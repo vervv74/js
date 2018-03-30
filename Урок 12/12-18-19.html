@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+ .table{
+
+ }
+        div#bottom {
+width: 200px;
+            position: relative;
+        }
+        div#year {
+            right: 0px;
+            top: 0px;
+            position:absolute;
+        }
+        div#right {
+           right: 0px;
+            top: 0px;
+            position:absolute;
+        }
+        div#table {
+           left:30px;
+            top: 0px;
+            position:absolute;
+        }
+
+        div#top  {
+            width: 150px;
+            position: relative;
+        }
+        div#year {
+            right: 0px;
+            top: 0px;
+            position:absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="top">
+    <div id="month"></div>
+    <div id="year"></div>
+</div>
+<div id="bottom">
+    <div id="left">&#8592</div>
+    <div id="table">
+        <table>
+          </table>
+    </div>
+    <div id="right">&#8594</div>
+</div>
+</body>
+<script>
+    var month=['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь', 'ноябрь', 'декабрь'];
+    var now = new Date();
+    var year = now.getFullYear();
+    var currentMonth = now.getMonth();
+    document.getElementById('month').innerHTML = month[currentMonth];
+    document.getElementById('year').innerHTML = year;
+    var next =  document.getElementById('right');//стрелка - будущий месяц
+    var previous = document.getElementById('left');//стрелка - текущий месяц
+    var table =    document.querySelector('table');
+    tableFill(year,currentMonth);
+    // стрелка вправо
+    next.addEventListener('click', function(){
+        if (currentMonth != 11){
+            clear(table);
+            currentMonth++;
+            tableFill(year,currentMonth);
+            document.getElementById('month').innerHTML = month[currentMonth];
+            document.getElementById('year').innerHTML = year;
+        }
+        else{
+            clear(table);
+            currentMonth = 0;
+            year ++;
+            tableFill(year,currentMonth);
+            document.getElementById('month').innerHTML = month[currentMonth];
+            document.getElementById('year').innerHTML = year;
+        }
+    })
+    // стрелка влево
+    previous.addEventListener('click', function(){
+        if (currentMonth != 0){
+            clear(table);
+            currentMonth--;
+            tableFill(year,currentMonth);
+            document.getElementById('month').innerHTML = month[currentMonth];
+            document.getElementById('year').innerHTML = year;
+        }
+        else{
+            clear(table);
+            currentMonth = 11;
+            year --;
+            tableFill(year,currentMonth);
+            document.getElementById('month').innerHTML = month[currentMonth];
+            document.getElementById('year').innerHTML = year;
+        }
+    })
+  // функция для заполнения таблицы числами
+    function tableFill(year, month) {
+        var last = new Date(year,(month+1),0).getDate();// количество дней текущего месяца день
+     tableColumn(last,6);
+    }
+    //очистить таблицу
+    function clear(table) {
+        var arr = table.querySelectorAll('.table');
+        for (var i = 0; i < arr.length; i++){
+            arr[i].parentNode.removeChild(arr[i]);
+        }
+    }
+    //заполнение таблицы с заданным числом столбцов
+    function tableColumn(total, column){
+        var figure = 1;
+        for (var i = 0; i <= Math.ceil(total/column); i++){
+            var row = document.createElement('tr');
+            row.classList.add('table');
+            for (var j = 1; j <= column; j++){
+                var td = document.createElement('td');
+                if (figure <= total){
+                    td.innerHTML = figure;
+                    figure ++;
+                }
+                td.classList.add('table');
+                row.appendChild(td);
+            }
+            table.appendChild(row);
+        }
+    }
+</script>
+</html>
