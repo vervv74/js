@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .dvv {
+            width: 300px;
+            height: 300px;
+            overflow: scroll;
+        }
+        </style>
+</head>
+<body>
+<div class="dvv">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dapibus sagittis fringilla. Morbi nunc sem, viverra non rhoncus et, pulvinar sit amet nisl. Mauris ut sem a dui sollicitudin consectetur. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi pellentesque est et dolor tincidunt laoreet. Mauris porttitor lacus sed tellus vestibulum, a malesuada eros malesuada. Cras sit amet ipsum leo. Vivamus consectetur condimentum interdum. Pellentesque at mattis est, sed dapibus risus. Vivamus ac dictum tellus, quis dapibus eros. Morbi tincidunt ex cursus, egestas enim nec, feugiat nulla. Morbi vitae purus ante. Proin pellentesque tincidunt felis, sit amet volutpat nunc. Integer a magna sodales, tempor purus sed, commodo turpis. Duis sed magna mauris.
+
+    Nulla id lacus massa. Pellentesque hendrerit sed eros vitae dapibus. Pellentesque sed enim pellentesque, accumsan sem ut, semper risus. Aliquam porta maximus purus, dignissim sodales nisl dignissim et. Phasellus hendrerit, mi gravida vehicula auctor, erat ipsum aliquam diam, at tincidunt eros eros non lacus. Suspendisse feugiat elit nec arcu eleifend accumsan. Etiam dignissim lacinia erat scelerisque maximus. Nulla massa turpis, venenatis sed venenatis sed, sollicitudin eu enim. Nullam facilisis massa et lobortis scelerisque. Suspendisse non accumsan justo. Donec tempus vel nisl id pulvinar. Praesent dapibus condimentum velit nec lacinia. Nulla dignissim condimentum nibh non porttitor. Donec aliquet dapibus metus in lobortis. Nam quis congue nulla, vel efficitur libero.
+</div>
+
+</body>
+<script>
+    var div = document.querySelector('.dvv');
+
+    div.addEventListener('scroll', func);
+
+//функция для рассчета прокрутки div
+    function func() {
+             if(div.scrollTop > 300) {
+            alert('прокрутили вниз на '+div.scrollTop+'px. Начните сначала');
+            div.scrollTop = 0;
+        }
+          }
+</script>
+</html>
