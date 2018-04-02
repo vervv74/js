@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .elem1 {
+               width: 100px;
+               height: 100px;
+               background-color: red;
+               position:absolute;
+               top:0px;
+               left:0px;
+            z-index: 1;
+           }
+        .elem2 {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            position:absolute;
+            top:20px;
+            left:20px;
+            z-index: 2;
+        }
+        .elem3 {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            position:absolute;
+            top:40px;
+            left:40px;
+            z-index: 3;
+        }
+    </style>
+</head>
+</head>
+<body>
+<div class = 'elem1' onclick="establishZ(this)"></div>
+<div class = 'elem2' onclick="establishZ(this)"></div>
+<div class = 'elem3' onclick="establishZ(this)"></div>
+</body>
+<script>
+    var div = document.querySelectorAll('div');
+    //функция для задания максимального z-index
+    function establishZ(elem){
+        var max = maxZ();
+        console.log(max);
+        for (var i = 0; i < div.length; i++){
+            div[i].style.zIndex = 1;
+        }
+        elem.style.zIndex = max;
+    }
+    //функция для определения максимального z-index
+    function maxZ(){
+        var max = 0;
+        for (var i = 0; i < div.length; i++){
+            if (getComputedStyle(div[i]).zIndex > max) {
+                max = getComputedStyle(div[i]).zIndex;
+            }
+        }
+        return max;
+    }
+</script>
+</html>
