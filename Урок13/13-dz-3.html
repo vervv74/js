@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+<ul></ul>
+</body>
+<script>
+    var ul = document.querySelectorAll('ul');
+    var str1 = 'кол';
+    var str2 = ['выаваjколонна', 'qwe', 'колбаса', 'вкусная_колбаса', 'er'];
+   search(str1, str2);
+
+    //функция для поиска строки в массиве
+    function search(str, arr){
+        for (var i = 0; i < arr.length; i++){
+            if (subSearch(str, arr[i])){
+               var li = document.createElement('li');
+               li.innerHTML = arr[i];
+               ul[0].appendChild(li);
+            }
+        }
+    }
+    //функция для поиска подстроки в строке
+    function subSearch(str1, str2){
+        for (var i = 0; i < str2.length; i++){
+            console.log(str2.slice(i,i+str1.length));
+            if (str2.slice(i,i+str1.length) == str1){
+                return true;
+            }
+        }
+        return false;
+    }
+
+</script>
+</html>

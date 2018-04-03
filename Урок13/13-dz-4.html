@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+
+<input type ="text"> <input type="button" value="Найти строку в массиве">
+<p>Найдено в словах</p>
+<ul>
+</ul>
+</body>
+<script>
+    var ul = document.querySelectorAll('ul');
+    var str2 = ['выаваjколонна', 'qwe', 'колбаса', 'вкусная_колбаса', 'er'];
+    console.log(str2);
+    document.querySelectorAll('input')[1].addEventListener('click', function(){
+        clear(ul[0]);
+        search(document.querySelectorAll('input')[0].value, str2);
+    })
+
+    //функция для поиска строки в массиве
+    function search(str, arr){
+             for (var i = 0; i < arr.length; i++){
+            if (subSearch(str, arr[i])){
+               var li = document.createElement('li');
+               li.innerHTML = arr[i];
+               ul[0].appendChild(li);
+            }
+        }
+    }
+    //функция для поиска подстроки в строке
+    function subSearch(str1, str2){
+        for (var i = 0; i < str2.length; i++){
+           if (str2.slice(i,i+str1.length) == str1){
+                return true;
+            }
+        }
+        return false;
+    }
+//функция для очистки ul
+    function clear(ul){
+        var li  = ul.querySelectorAll('li');
+        for (var i = 0; i < li.length; i++){
+            ul.removeChild(li[i]);
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+       #container{
+           position:relative;
+           height: 2000px;
+
+       }
+       #sign{
+           position:absolute;
+           top: 0px;
+       }
+       #text{
+           position:absolute;
+           top: 20px;
+           width: 400px;
+           height: 200px;
+           background-color: red;
+           opacity: 0.7;
+       }
+       #green{
+           position:absolute;
+           top: 30px;
+           left: 10px;
+           width: 400px;
+           height: 200px;
+           background-color: green;
+       }
+        .hide {
+            display:none;
+        }
+.noscroll{
+    overflow: hidden;
+}
+
+    </style>
+</head>
+<body >
+<div id="container">
+    <div id="sign" onclick="hide()">
+<a href="#" >X</a>
+    </div>
+    <div id="green" >
+        Блок зеленого цвета без текста
+    </div>
+    <div id="text" class="hide">
+     Теперь видим текст поверх блока зеленого цвета
+    </div>
+</div>
+<script>
+
+var green = document.querySelector('[id="green"]');
+var text = document.querySelector('[id="text"]');
+var container = document.querySelector('[id="container"]');
+window.addEventListener('scroll', show);
+
+//функция для сокрытия текста
+    function hide() {
+        if(text)
+        { text.parentElement.removeChild(text);
+            document.documentElement.style.overflow = 'scroll';}
+    }
+// функция для показа скрытого элемента
+    function show(){
+        if (document.documentElement.scrollTop > 300) {
+             alert('прокрутили вниз на '+document.documentElement.scrollTop+'px. Начните сначала');
+            document.documentElement.scrollTop = 0;
+            if (green.nextElementSibling)
+            {
+                console.log(text.id);
+                text.classList.remove('hide');
+                text.style.zIndex = 1;
+                document.documentElement.style.overflow = 'hidden';
+            }
+            else {
+                green.innerHTML = 'Блок зеленого цвета без текста. Блок с текстом удалили';
+            }
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+
+</body>
+<script>
+    var str = 'кол';
+    var arr = ['колонна', 'колесо', 'стол', 'колба'];
+    document.write(search(str, arr));
+    //функция для поиска строки в массиве
+    function search(str, arr){
+        var arr2 = [];
+        for (var i =0; i < arr.length; i++){
+            if (arr[i].substr(0,str.length) == str){
+                arr2.push(arr[i]);
+            }
+        }
+        return arr2;
+    }
+</script>
+</html>

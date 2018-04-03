@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+       #container{
+           position:relative;
+       }
+       #sign{
+           position:absolute;
+           top: 0px;
+       }
+       #text{
+           position:absolute;
+           top: 20px;
+           width: 400px;
+       }
+        .hide {
+            display:none;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="sign" onclick="hide(this)">
+<a href="#" >X</a>
+    </div>
+    <div id="text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacinia lorem quis elit commodo maximus nec id turpis. Nunc sit amet ornare libero. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis dignissim, nisi nec varius blandit, magna diam pulvinar ante, ut scelerisque arcu lacus nec dui. Curabitur quis mi posuere, imperdiet nisi eget, porta nulla. Morbi posuere eu nulla at facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus facilisis convallis risus eu scelerisque.
+    </div>
+</div>
+<script>
+var sign = document.querySelector('[id="sign"]');
+//функция для сокрытия текста
+    function hide(elem) {
+        if(!elem.nextElementSibling.classList.contains('hide'))
+        { elem.nextElementSibling.classList.add('hide');}
+        else {
+            elem.nextElementSibling.classList.remove('hide');
+        }
+    }
+</script>
+</body>
+</html>
