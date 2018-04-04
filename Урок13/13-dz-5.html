@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .width{
+            width: 300px;
+        }
+        .none{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<p> Введите название страны</p>
+<input type="text" class="width" onclick="clearinput()"><br>
+<p >Выберите из списка</p>
+<select class="width" multiple></select>
+</body>
+<script>
+var country = ['Россия','Украина','Польша','Белоруссия','Чехия','Венгрия','Армения','Словакия','Словения','Чехословакия','Литва','Латвия','Швеция','Цвейцария','Турция','Туркмения','Танзания','Венесуэла'];
+console.log(country);
+var select = document.querySelector('select');
+var inp = document.querySelector('input');
+var p = document.querySelectorAll('p');
+inp.addEventListener('keyup', select1);
+//функция  заполнения списка
+    function select1(){
+        clear();
+        var countryArr = search(inp.value, country);
+        console.log(countryArr);
+        for (var i = 0; i < countryArr.length; i++) {
+            var option = document.createElement('option');
+            option.innerHTML = countryArr[i];
+            option.addEventListener('click', function(){
+                inp.value = this.innerHTML;
+            })
+            select.appendChild(option);
+        }
+    }
+//функция для поиска строки в массиве
+function search(str, arr){
+    var arr2 = [];
+    for (var i = 0; i < arr.length; i++){
+        if (arr[i].substr(0,str.length).toLowerCase() == str.toLowerCase()){
+            arr2.push(arr[i]);
+        }
+    }
+    return arr2;
+}
+//функция для очистки select
+function clear(){
+    var option  = select.querySelectorAll('option');
+    for (var i = 0; i < option.length; i++){
+        select.removeChild(option[i]);
+    }
+}
+//очистка инпута
+    function clearinput(){
+        inp.value = '';
+        clear();
+
+    }
+//перевод символов в
+</script>
+</html>
