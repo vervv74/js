@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Введите число</p>
+<input type="text"><input type="button" value="Вывести  сумму квадрата и куба числа">
+</body>
+<script>
+    var inp = document.querySelectorAll('input');
+    inp[1].addEventListener('click',function(){
+        console.log(qqq(inp[0].value, kvadrat, kub));
+    })
+
+    var qqq = function (q, func, func1) {
+    return func(q) + func1(q);
+ };
+
+  // функция вывода 3
+ function kvadrat(q) {
+     return q*q;
+ }
+    // функция вывода 4
+    function kub(q) {
+        return q*q*q;
+    }
+</script>
+</html>

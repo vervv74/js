@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Введите число</p>
+<input type="text"><input type="button" value="Вывести  число в степени 4">
+</body>
+<script>
+    var inp = document.querySelectorAll('input');
+    inp[1].addEventListener('click', function(){
+         alert(qqq(qqq(inp[0].value, qwe), qwe));
+    })
+    var qqq = function (q, func) {
+     return func(q);
+ };
+  // функция вывода квадрата числа
+ function qwe(a) {
+     return a * a;
+ }
+
+</script>
+</html>
