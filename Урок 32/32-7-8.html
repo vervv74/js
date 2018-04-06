@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+<input type = "button" value = "Нажали кнопку"><input type="text"><span>раз</span>
+</div>
+<div>
+    <input type = "button" value = "Нажали кнопку"><input type="text"><span>раз</span>
+</div>
+<div>
+    <input type = "button" value = "Нажали кнопку"><input type="text"><span>раз</span>
+</div>
+</body>
+<script>
+    var button = document.querySelectorAll('[type = "button"]');
+    console.log(button);
+    for (var i = 0; i < button.length; i++){
+        button[i].addEventListener('click', (function() {
+            var counter = 0;
+
+            return function() {
+                counter++; //замыкание - переменная, используемая внутренней функцией, остается доступной, и не меняет свое значение после вызова материнской функции
+                this.nextElementSibling.value = counter;
+            }
+        })());
+    }
+
+</script>
+</html>

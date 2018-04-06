@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    console.log(each([f1, f2, f3], [1,2,3,4,5]));
+    //функция для описания алгоритма расчета
+    function each(func, arr){
+        var result = 0;
+        var it = Math.ceil((arr.length)/(func.length)); //количество переборов
+        for (var i = 0; i < it; i++) {
+            for (var j = 0; j < func.length; j++) {
+                if (i*func.length+j < arr.length) {
+                  //  console.log(func[j] + '   ' + arr[i*func.length+j]+' '+'func'+func[j]+'('+arr[i*func.length+j]+')');
+                    result = result + func[j](arr[i*func.length+j]);
+                }
+            }
+        }
+        return result;
+    }
+    // функции для записи в массив функций
+    function f1(q) {
+        return q*5;
+    }
+    function f2(q) {
+        return q/4;
+    }
+    function f3(q) {
+        return q*3;
+    }
+
+</script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+p{
+    border: 1px solid black;
+    width: 400px;
+    opacity: 0.4;
+}
+    </style>
+</head>
+<body>
+<p> Абцаз 1</p>
+<p> Абцаз 2 </p>
+<p> Абцаз 3</p>
+</body>
+<script>
+    var color1 = ['red', 'yellow', 'green', 'gray', 'blue'];
+    var p = document.querySelectorAll('p');
+    for (var i = 0; i < p.length; i++) {
+        p[i].addEventListener('click', (function(){
+            var counter = 0;
+            return function(){
+                if (counter <= 4)
+                {this.style.backgroundColor = color1[counter];
+                console.log(counter + '  1');
+                counter ++;}
+                else {
+                    counter = 0;
+                    console.log(counter + '   2');
+                    this.style.backgroundColor = color1[counter];
+                    counter ++;
+
+                }
+}
+        })());
+    }
+</script>
+</html>
