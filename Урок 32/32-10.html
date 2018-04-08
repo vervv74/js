@@ -5,29 +5,29 @@
     <title>Title</title>
 </head>
 <body>
-<p>Первое число последовательности Фибоначчи - 0</p>
-<div>
-<input type = "button" value = "Выведи число 2">
-</div>
+<input type = "button" value = "Число 1 последовательности Фибоначчи - 0"><br>
+<input type = "button" value = "Число 1 последовательности Фибоначчи - 0"><br>
+<input type = "button" value = "Число 1 последовательности Фибоначчи - 0"><br>
 </body>
 <script>
-    var div = document.querySelector('div');
-    var inp = document.querySelector('input');
-    inp.addEventListener('click', (function(){
-        this.value = 1;
-         var count1 = 0;
-           return function(){
-               count1++;
-               var inp2 =   document.createElement('input');
-               inp2.setAttribute('type','button');
-               inp2.setAttribute('value', count1);
+  var inp = document.querySelectorAll('input');
+  for (var i = 0; i < inp.length; i++){
+      inp[i].addEventListener('click', (function(){
+          var count = 1;
+          var fib = [0];
+          return function(){
+              count++;
+              if (count == 2){
+                  fib.push(1);
+                  this.value = 'Число '+count+' последовательности Фибоначчи -'+1;
+              }
+              else {
+                  fib.push(fib[fib.length-1]+fib[fib.length-2]);
+                  this.value = 'Число '+count+' последовательности Фибоначчи -'+fib[fib.length-1];
+              }
 
-               div.appendChild(inp2);
-           }
-       })());
-
-
-
-
+          }
+      })());
+  }
 </script>
 </html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .choice{
+          background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div style ="position:relative; width: 300px;">
+<div style = "position: absolute; left:0px; top: 0px;">
+<a href="#" class = "back">&lt</a> <a href="#"  class = "ahead" style ="position: absolute; right:0px; top: 0px;">&gt</a> <br>
+    <input type="button" value="Нажали 0 раз">
+</div>
+<div style ="position: absolute; right:0px; top: 0px;">
+    <a href="#"  class = "back">&lt</a> <a href="#" class = "ahead" style ="position: absolute; right:0px; top: 0px;">&gt</a> <br>
+    <input type="button" value="Нажали 0 раз">
+</div>
+</div>
+</body>
+<script>
+    var inp = document.querySelectorAll('input');
+    var div = document.querySelectorAll('div');
+    var back = document.querySelectorAll('.back');
+    var ahead = document.querySelectorAll('.ahead');
+    for (var i = 0; i < inp.length; i++){
+        inp[i].addEventListener('click', (function(){
+            var count1 = 0;
+            var arrCount = [];
+            return function (){
+                count1++;
+                this.value = 'Нажали '+count1+' раз';
+                arrCount.push(this.value);
+
+               // console.log(arrCount);
+                if(this.parentElement.querySelectorAll('p')){
+                    var p = this.parentElement.querySelectorAll('p');
+                    clear(p);
+                }
+                for (var i = 0; i < arrCount.length; i++) {
+                    var p = document.createElement('p');
+                    p.innerHTML = arrCount[i];
+                    if(i == arrCount.length-1) {
+                        p.classList.add('choice');
+                    }
+                    this.parentElement.appendChild(p);
+                }
+            }
+        })() );
+    }
+    for (var i = 0; i < ahead.length; i++){// добавление функции ahead
+        ahead[i].addEventListener('click', function(){
+            var p = this.parentElement.querySelectorAll('p');
+            for (var i = 0; i < p.length; i++){
+                if (i < p.length-1 && p[i].classList.contains('choice')){
+                    console.log(i < p.length-1);
+                    console.log(p[i].classList.contains('choice'));
+                    p[i+1].classList.add('choice');
+                  //  p[i].classList.remove('choice');
+                } else  if (i == p.length-1 && p[p.length-1].classList.contains('choice') && (p.length > 1)){
+                    p[p.length-1].classList.remove('choice');
+                    p[0].classList.add('choice');
+                }
+            }
+        });
+    }
+    for (var i = 0; i < back.length; i++){// добавление функции back
+        back[i].addEventListener('click', function(){
+            var p = this.parentElement.querySelectorAll('p');
+            for (var i = 0; i < p.length; i++){
+                if (i > 0 && p[i].classList.contains('choice')){
+                    p[i].classList.remove('choice');
+                    p[i-1].classList.add('choice');
+                } else  if (i == 0 && p[0].classList.contains('choice') && (p.length > 1)){
+                    p[0].classList.remove('choice');
+                    var th = p[0].parentElement;
+                    console.log(th);
+                    th.lastChild.classList.add('choice');
+                }
+            }
+        });
+    }
+    //функция для очистки p
+    function clear(p){
+        for (var i = 0; i < p.length; i++){
+            p[i].parentElement.removeChild(p[i]);
+        }
+    }
+</script>
+</html>
