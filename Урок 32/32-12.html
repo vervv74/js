@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text"><span>Введите минимальное число</span><br>
+<input type="text"><span>Введите максимальное число</span><br>
+<input type="button" value ="Вывод чисел от минимального до максимального">
+<p></p>
+</body>
+<script>
+    var inp = document.querySelectorAll('input');
+    var p = document.querySelector('p');
+    inp[2].addEventListener('click', (function() {
+       p.innerHTML = '';
+        return function () {
+            var arr = [];
+            var min1;
+            var max1;
+            if (parseInt(inp[0].value) < parseInt(inp[1].value)){
+                min1 = parseInt(inp[0].value);
+                max1 = parseInt(inp[1].value);
+            } else{
+                min1 = parseInt(inp[1].value);
+                max1 = parseInt(inp[0].value);
+            }
+            console.log(min1);
+            console.log(max1);
+            while (arr.length <= (max1-min1)) {
+            arrAdd(arr, min1, max1);}
+            p.innerHTML = arr.sort(compareNumeric);
+            console.log(arr.sort(compareNumeric));
+        }
+
+    })());
+    //случайные числа
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    //заполнение массива случайными числами
+    function arrAdd(arr, min, max) {
+         var random = getRandomInt(min, max);
+         if (!arr.length)
+         {
+             arr.push(random);
+         }
+         else {
+             var check = true;
+             for (var i = 0; i < arr.length; i++){
+                 if (arr[i] == random) {
+                     check = false;
+                 }
+             }
+             if (check){
+                 arr.push(random);
+             }
+         }
+        }
+    function compareNumeric(a, b) {
+        if (a > b) return 1;
+        if (a < b) return -1;
+    }
+
+</script>
+</html>
