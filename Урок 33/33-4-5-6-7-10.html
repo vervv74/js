@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var arr = [1,2,3,4,-5,-6];
+    document.write('Все числа больше нуля? '+arr.every(function(elem){
+        if (elem >= 0) {
+            return true;
+        } else {
+            return false;
+        }
+    })+'<br>');
+    document.write('Есть числа меньше нуля? '+arr.some(function(elem){
+        if (elem < 0) {
+            return true;
+        } else {
+            return false;
+        }
+    })+'<br>');
+    document.write('Числа меньше нуля - '+arr.filter(function(elem){
+        if (elem < 0) {
+            return true;
+        } else {
+            return false;
+        }
+    })+'<br>');
+    document.write('Четных чисел  в массиве - '+arr.filter(function(elem){
+        if (elem%2 == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    })+'<br>');
+    document.write('Отрицательных элементов в массиве - '+arr.filter(function(elem){
+        if (elem < 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }).length+'<br>');
+</script>
+</html>

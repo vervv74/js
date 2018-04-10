@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var arr = [1,3,7,0,2,4,6];
+    var answer = 0;
+    var answer1 = 0;
+    var answer2 = 0;
+    var answer3 = 0;
+    var result = arr.reduce(function(sum,elem){
+        if (elem == 0){
+            answer = sum;
+        } else {
+            return sum + elem;
+        }
+    },0);
+    var result1 = arr.reduceRight(function(sum,elem){
+        if (elem == 0){
+            answer1 = sum;
+        } else {
+            return sum + elem;
+        }
+    },0);
+    var result2 = arr.reduce(function(sum,elem, index){
+        if (sum > 10){
+            answer2 = index;
+        } else {
+            return sum + elem;
+        }
+    },0);
+    var result3 = arr.reduceRight(function(sum,elem, index){
+        if (sum > 10){
+            answer3 = index;
+        } else {
+            return sum + elem;
+        }
+    },0);
+   if (answer){
+       document.write('Сумма чисел до нуля '+answer+'<br>');
+   } else{
+       document.write('Сумма чисел до нуля '+result+'<br>');
+   }
+    if (answer1){
+        document.write('Сумма чисел после нуля '+answer1+'<br>');
+    } else{
+        document.write('Сумма чисел после нуля '+result1+'<br>');
+    }
+    if (answer2){
+        document.write('Для суммы больше 10 сложить c начала массива элементов '+answer2+'<br>');
+    } else{
+        document.write('Сумма массива меньше 10'+'<br>');
+    }
+    if (answer3){
+        document.write('Для суммы больше 10 сложить c конца массива элементов '+answer3+'<br>');
+    } else{
+        document.write('Сумма массива меньше 10'+'<br>');
+    }
+</script>
+</html>
