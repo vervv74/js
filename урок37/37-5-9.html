@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+</head>
+<body>
+<p class = 'test'>ppp</p>
+<p>ppp</p>
+<h2 class = 'test'>h2h2</h2>
+<h2><li><i>i после li после h2</i></li></h2>
+<li>li</li>
+<h2><i>i непосредственно внутри h2</i></h2>
+<li class='www'>li после li класс www</li>
+</body>
+<script>
+    $('h2.test').css('color', 'red');
+    $('p + p').css('color', 'red');
+    $('li + li.www').css('color', 'red');
+    $('h2 i').css('color', 'red');
+    $('h2 > i').css('color', 'blue');
+</script>
+</html>
