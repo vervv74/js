@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <style type="text/css">
+p, span{
+    color:red;
+}
+    </style>
+</head>
+<body>
+<h2>1</h2>
+<h2>2</h2>
+<h2>3</h2>
+<h3>4</h3>
+</body>
+<script>
+    $('h2').before('<p>!</p>').after('<p>?</p>').append('<span>?</span>').prepend('<span>!</span>').css('color','red');
+</script>
+</html>
