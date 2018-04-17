@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+<li>1</li>
+<li>2</li>
+<li>3</li>
+<li>4</li>
+<li class = "test">5</li>
+<li class = "www">6</li>
+<li>7</li>
+<li>8</li>
+<li>9</li>
+<li>10</li>
+<li>11</li>
+<li>12</li>
+
+
+</body>
+<script>
+$('li').not('.test').css({color : 'red'});//39-1
+$('li').first().css({'font-size': '30px'});//39-2
+$('li').last().css({border:'1px solid black'});//39-3
+$('li').eq(4).css({border:'2px solid yellow'});//39-4
+$('li').eq(-2).css({background:'grey'});//39-5
+$('li').slice(2,10).css({background:'blue'});//39-6
+$('li').filter('.www').css({'text-decoration':'line-through'});//39-7
+</script>
+</html>
