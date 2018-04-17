@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+</head>
+<body>
+<input type="checkbox" checked>
+<input type="checkbox" >
+
+</body>
+<script>
+$('input').each(function(){
+  $(this).attr('checked', !$(this).attr('checked'));
+});
+</script>
+</html>
