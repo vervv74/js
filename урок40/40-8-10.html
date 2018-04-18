@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+</head>
+<body>
+<a href="#1">ссылка1</a>
+<a href="#2">ссылка2</a>
+<a href="#3">ссылка3</a>
+<p>Абзац1</p>
+<p>Абзац1</p>
+</body>
+<script>
+    $('a').on('click', function func(){//40-8-9
+        $(this).append($(this).attr('href'));
+        $(this).off('click', func);
+    });
+    $('p').one('click', function() {//40-10
+        $(this).append('!');
+    });
+</script>
+</html>
