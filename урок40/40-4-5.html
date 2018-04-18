@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+</head>
+<body>
+<input type = "button" value = "кнопка1">
+<input type = "button" value = "кнопка2">
+<input type = "button" value = "кнопка3">
+<p class = "test"></p>
+</body>
+<script>
+    $('input').blur(function() {//40-4
+        $('p.test').html($(this).val());
+    });
+    $('input').click(function func() {//40-5
+       alert($(this).val());
+        $(this).unbind('click', func);
+    });
+</script>
+</html>

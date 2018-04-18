@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+</head>
+<body>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<a href="#1">ссылка1</a>
+<a href="#2">ссылка2</a>
+<a href="#3">ссылка3</a>
+</body>
+<script>
+    $('p').click(function() {
+        alert($(this).html());
+    });
+    $('a').mousemove(function func() {
+        $(this).append($(this).attr('href'));
+        $(this).unbind('mousemove', func);
+    });
+</script>
+</html>
