@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+        .div {
+            border: 1px solid black;
+            width: 200px;
+        }
+
+    </style>
+</head>
+<body>
+<a href="#">Исчезнуть</a>
+<a href="#">Появиться</a>
+
+<div class = "div">
+    <p>1. Пункт 1 списка</p>
+    <p>2. Пункт 2 списка</p>
+    <p>3. Пункт 3 списка</p>
+    <p>4. Пункт 4 списка</p>
+    <p>5. Пункт 5 списка</p>
+    <p>6. Пункт 6 списка</p>
+</div>
+</body>
+<script>
+
+    $('a').eq(0).on('click', function(){
+        $('.div').hide();
+    });
+    $('a').eq(1).on('click', function(){
+        $('.div').show();
+    });
+
+</script>
+</html>

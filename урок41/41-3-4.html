@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+        .div {
+            border: 1px solid black;
+            width: 200px;
+        }
+
+    </style>
+</head>
+<body>
+<a href="#">Исчезнуть</a>
+<a href="#">Появиться</a>
+<a href="#">Затемнить</a>
+<a href="#">Оттемнить</a>
+<div><a href="#"><span>Исчезнуть</span>/<span>Появиться</span></a></div>
+<div class = "div">
+    <p>1. Пункт 1 списка</p>
+    <p>2. Пункт 2 списка</p>
+    <p>3. Пункт 3 списка</p>
+    <p>4. Пункт 4 списка</p>
+    <p>5. Пункт 5 списка</p>
+    <p>6. Пункт 6 списка</p>
+</div>
+</body>
+<script>
+    var check = true;
+    $('a').eq(0).on('click', function(){
+        $('.div').fadeOut(1500);
+    });
+    $('a').eq(1).on('click', function(){
+        $('.div').fadeIn(2000);
+    });
+
+    $('a').eq(2).on('click', function(){
+        console.log($('.div').html());
+        $('.div').fadeTo(1000, 0.2 );
+    });
+    $('a').eq(3).on('click', function(){
+        console.log($('.div').html());
+        $('.div').fadeTo(1000, 1 );
+    });
+    $('a').eq(4).on('click', function(){
+        if (check){
+            $('span').eq(1).css({'font-size': '25px'});
+            $('span').eq(0).css({'font-size':'15px'});
+            check = false;
+        } else {
+            $('span').eq(1).css({'font-size': '15px'});
+            $('span').eq(0).css({'font-size': '25px'});
+            check = true;
+        }
+        $('.div').fadeToggle(2000);});
+
+</script>
+</html>
