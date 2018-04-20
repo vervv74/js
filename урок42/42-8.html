@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+
+        </style>
+</head>
+<body>
+<p>Первый абзац</p>
+<h6>Заголовок</h6>
+<h6>Заголовок</h6>
+<h6>Заголовок</h6>
+<p></p>
+<h6>Заголовок</h6>
+<h6>Заголовок</h6>
+<p class = "test">Абзац</p>
+<p>Следующий абзац</p>
+<h6>Заголовок</h6>
+<h6>Заголовок</h6>
+</body>
+<script>
+$('.test').prevAll('p').first().html($('.test').html());
+</script>
+</html>
