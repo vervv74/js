@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+        div {
+            background: red;
+        }
+        </style>
+</head>
+<body>
+<p><b>Жирный текст</b></p>
+<p>Простой текст</p>
+<p><b>Жирный текст</b></p>
+<p>Простой текст</p>
+<p><b>Жирный текст</b></p>
+<p><b>Жирный текст</b></p>
+</body>
+<script>
+    $('p:has(b)').wrap('<div>');
+</script>
+</html>
