@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+p {
+    height: 20px;
+    background: red;
+}
+        </style>
+</head>
+<body>
+<h2>h2 первый</h2>
+<h3>h3</h3>
+<p></p>
+<p></p>
+<p></p>
+<h2>h2 второй</h2>
+<p></p>
+<p></p>
+<h3>h3</h3>
+<p></p>
+
+</body>
+<script>
+    $('p:empty').each(function(){
+        var $elem = $(this);
+        $elem.html($elem.prevAll('h2').html());
+    });
+</script>
+</html>

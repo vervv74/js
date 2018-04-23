@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+.before {
+    background: red;
+}
+.this {
+    background: green;
+}
+        </style>
+</head>
+<body>
+<p>Абзац1</p>
+<p>Абзац2</p>
+<p>Абзац3</p>
+<b>жирный текст</b>
+<p>Абзац4</p>
+<p>Абзац5</p>
+</body>
+<script>
+    $('p').each(function(){
+        $(this).before('<p class = "before">'+$(this).html()+'</p>');
+        $(this).addClass('this');
+    });
+
+</script>
+</html>
