@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+p{
+    height: 15px;
+    background: red;
+}
+        </style>
+</head>
+<body>
+<p>Абзац0</p>
+<p>Абзац 1</p>
+<p>Абзац2</p>
+<p class = "test"></p>
+<p>Абзац 3</p>
+<p>Абзац 4</p>
+<p>Абзац 5</p>
+
+</body>
+<script>
+    var prev = $('.test').prevAll(':eq(1)').html();
+    var next = $('.test').nextAll(':eq(1)').html();
+    $('.test').prevAll(':eq(1)').html(next);
+    $('.test').nextAll(':eq(1)').html(prev);
+
+</script>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+p {
+    background: red;
+    height: 20px;
+}
+        </style>
+</head>
+<body>
+<p>1</p>
+<p>2</p>
+<p class = "www">class = "www"</p>
+<p>4</p>
+<p>5</p>
+<p class = "www">class = "www"</p>
+<p>7</p>
+<p class = "www">class = "www"</p>
+</body>
+<script>
+    $('p').on('click', function(){
+        $(this).nextAll('.www').first().remove();
+    })
+
+</script>
+</html>

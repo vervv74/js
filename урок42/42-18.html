@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+
+        </style>
+</head>
+<body>
+<p>Абзац 1</p>
+<p>Абзац2</p>
+<p class = "test"></p>
+<p>Абзац 3</p>
+<p>Абзац 4</p>
+
+</body>
+<script>
+    $('.test').prepend($('.test').prev().html()).append($('.test').next().html());
+
+</script>
+</html>
