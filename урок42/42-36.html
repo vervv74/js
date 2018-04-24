@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+.p {
+    background: red;
+    height: 20px;
+}
+        </style>
+</head>
+<body>
+<h2>h1 1</h2>
+<h6>h6</h6>
+<p>0</p>
+<p>1</p>
+<h6>h6</h6>
+<p>2</p>
+<h2>h1 2</h2>
+<p>3</p>
+<p>4</p>
+</body>
+<script>
+
+ $('h2').first().nextUntil('h2').filter('p').addClass('p').each(function(){
+     console.log($(this).html());
+ });
+</script>
+</html>

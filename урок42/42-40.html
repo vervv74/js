@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+.www {
+    background: red;
+    height: 20px;
+}
+
+.zzz {
+    background: blue;
+    height: 20px;
+}
+        </style>
+</head>
+<body>
+<div class = "www2">
+<div class = "www1">
+<div class = "www"><p id = "test">2</p></div>
+</div>
+</div>
+</body>
+<script>
+    var arr = [];
+    var $attr = $('#test').parents().attr('class');
+    $('#test').parents().each(function(){
+        if ($(this).attr('class')){
+        arr.push($(this).attr('class'));}
+    })
+console.log(arr);
+
+
+</script>
+</html>

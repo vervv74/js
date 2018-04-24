@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+.www, .www1, .www2 {
+    background: red;
+    height: 20px;
+}
+
+        </style>
+</head>
+<body>
+<p class = "www2">Абзац с классом</p>
+<p class = "www1">Абзац с классом</p>
+<p >Абзац без класса</p>
+<p class = "www">Абзац с классом</p>
+<p >Абзац без класса</p>
+</body>
+<script>
+   $('p').each(function(){
+       if ($(this).attr('class')){
+
+           var cll = $(this).attr('class');
+           console.log(cll);
+           $(this).wrap('<div>');
+           $(this).parent().addClass(cll);
+           $(this).removeAttr('class');
+       }
+   })
+
+
+</script>
+</html>
