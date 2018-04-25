@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+
+        </style>
+</head>
+<body>
+<div>
+<li class = "www ">Красный цвет</li>
+    <li>Без цвета</li>
+    <li>Без цвета</li>
+    <li class = "www bbb">Красный цвет</li>
+    <li >Без цвета</li>
+    <li class = "www bbb">Красный цвет</li>
+    <li class = "www ">Красный цвет</li>
+    <li class = "www bbb">Красный цвет</li>
+    <li class = "www ">Красный цвет</li>
+    <li>Без цвета</li>
+    <li class = "www bbb">Красный цвет</li>
+    <li class = "www ">Красный цвет</li>
+</div>
+</body>
+<script>
+$('li.www').css({background : 'red'}).filter('.bbb').remove();
+</script>
+</html>

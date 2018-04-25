@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+div {
+    margin: 5px;
+    background: red;
+    height: 30px;
+}
+        </style>
+</head>
+<body>
+   <div class = "www">
+       <div class = "www">
+           <div>
+<p id = "test"></p>
+           </div>
+       </div>
+   </div>
+
+
+</body>
+<script>
+$('#test').parents('.www').first().append('<p>!</p>');
+</script>
+</html>

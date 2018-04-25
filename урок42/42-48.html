@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+li {
+    margin: 5px;
+    background: red;
+}
+        </style>
+</head>
+<body>
+<div>
+
+    <li class = "even">Без цвета</li>
+    <li class = "odd" >Без цвета</li>
+    <li class = "even">Красный цвет</li>
+    <li class = "odd" >Без цвета</li>
+    <li class = "even">Красный цвет</li>
+    <li class = "odd">Красный цвет</li>
+    <li class = "even">Красный цвет</li>
+    <li class = "odd">Красный цвет</li>
+    <li class = "even">Без цвета</li>
+    <li class = "odd">Красный цвет</li>
+    <li class = "even">Красный цвет</li>
+</div>
+</body>
+<script>
+$('li').empty(':even').filter(':odd').remove();
+</script>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+div {
+    margin: 5px;
+
+}
+        </style>
+</head>
+<body>
+<p>Не Будет красный </p>
+   <div class = "www">
+       <p>Не Будет красный </p>
+       <div class = "www">
+           <p>Будет красный после нажатия</p>
+           <div>
+<p><a href="#" id = "test">Нажми сюда</a></p>
+               <p>Будет красный после нажатия</p>
+           </div>
+           <p>Будет красный после нажатия</p>
+       </div>
+       <p>Не Будет красный </p>
+   </div>
+
+
+</body>
+<script>
+$('#test').on('click', function(){
+    $(this).parents('.www').first().find('p').css({background: 'red'});
+});
+</script>
+</html>
