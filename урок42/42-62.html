@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+select {
+    width: 200px;
+}
+        </style>
+</head>
+<body>
+<select>
+    <option>0</option>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+
+</select>
+<input type = "radio">
+<input type = "radio">
+<input type = "radio">
+<input type = "radio">
+<input type = "radio">
+<input type = "radio">
+</body>
+<script>
+    $('input').eq($('option:checked').html()).prop('checked', true);
+$('select').on('mouseout', function() {
+    $('input').prop('checked', false);
+     $('input').eq($('option:checked').html()).prop('checked', true);
+});
+</script>
+</html>

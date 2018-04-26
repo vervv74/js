@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+
+        </style>
+</head>
+<body>
+<input value = '1'>
+<input value = '2'>
+<input value = '3'>
+<input value = '4'>
+<input value = '5'>
+<input value = '6'>
+</body>
+<script>
+$('input').each(function(){
+    $(this).attr('placeholder',$(this).val());
+    $(this).removeAttr('value');
+})
+</script>
+</html>

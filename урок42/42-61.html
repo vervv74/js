@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+
+        </style>
+</head>
+<body>
+<input type = "text" >
+<input type = "checkbox">
+<input type = "checkbox">
+<input type = "checkbox">
+<input type = "checkbox">
+<input type = "checkbox">
+<input type = "checkbox">
+</body>
+<script>
+$('input[type = "text"]').on('blur', function(){
+    if(parseInt($(this).val()) > $(':checkbox').length ){
+        alert('Неправильное число');
+    } else {
+    console.log($(this).val());
+    $(':checkbox').prop('checked', false);
+    $(':checkbox').eq($(this).val()-1).prop('checked', true);}
+});
+</script>
+</html>

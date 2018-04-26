@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+
+        </style>
+</head>
+<body>
+<a href="http://google.com">Ссылка1</a>
+<a href="http://google.com">Ссылка2</a>
+<a href="http://google.com">Ссылка3</a>
+<a href="#">Ссылка4</a>
+<a href="#">Ссылка5</a>
+<a href="#">Ссылка6</a>
+</body>
+<script>
+    $("a[href^='http://']").attr('target', '_blank');
+</script>
+</html>

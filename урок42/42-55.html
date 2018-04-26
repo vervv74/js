@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+
+        </style>
+</head>
+<body>
+<li>Пункт1</li>
+<li>Пункт2</li>
+<li>Пункт3</li>
+<li>Пункт4</li>
+<li>Пункт5</li>
+<li>Пункт6</li>
+<li>Пункт7</li>
+<li>Пункт8</li>
+<li>Пункт9</li>
+<li>Пункт10</li>
+<li>Пункт11</li>
+<li>Пункт12</li>
+<li>Пункт13</li>
+</body>
+<script>
+$('li').slice(-10).css({background: 'red'}).filter(':even').wrapInner('<b>');
+</script>
+</html>
