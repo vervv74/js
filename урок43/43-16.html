@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <!-- 2. Подключим jQuery UI -->
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <style type="text/css">
+       .div{
+           width:250px;
+           padding-left: 50px;
+
+           padding-right: 50px;
+        }
+        .div2{
+            min-height: 300px;
+        }
+        ol{
+            background : orange;
+        }
+        h2, p {
+           color: orange;
+        }
+    </style>
+</head>
+<body>
+<div id="div1" class = "div2">
+<div class = "div">
+    <h2>Наведи на меня</h2>
+    <p>затемнение нижнего блока</p>
+    <ol><li>пункт</li>
+        <li>пункт</li>
+        <li>пункт</li>
+        <li>пункт</li>
+        <li>пункт</li>
+        <li>пункт</li></ol>
+</div></div>
+</body>
+<script>
+    $(".div").position({
+        my: "left top",  // место на позиционируемом элементе
+        at: "left+50 top",  // место на элементе относительно которого будет позиционирование
+        of: "#div1",        // элемент относительно которого будет позиционирование
+    });
+
+    $("h2").on('mouseover', function(){
+         $('ol').effect('highlight', {color: 'black'}, 200 );
+    });
+
+
+
+</script>
+</html>
