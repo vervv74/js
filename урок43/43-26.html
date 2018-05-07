@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <!-- 2. Подключим jQuery UI -->
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <style type="text/css">
+#accordion{
+    width: 400px;
+}
+    </style>
+</head>
+<body>
+<div id="accordion">
+    <h3>Первый заголовок</h3>
+    <div>Нажмите по заголовку закрытой вкладки и она развернется, открытая вкладка при этом свернется. По умолчанию, все вкладки будут иметь одинаковую высоту (такую, чтобы содержимое любой из вкладок могло бы туда вместиться).</div>
+    <h3>Второй заголовок</h3>
+    <div>Содержимое для второго заголовка</div>
+    <h3>Третий заголовок</h3>
+    <div>Содержимое для третьего заголовка</div>
+</div>
+</body>
+<script>
+    $( "#accordion" ).accordion();
+</script>
+</html>
