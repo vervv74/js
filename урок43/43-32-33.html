@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <!-- 2. Подключим jQuery UI -->
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+<a href = "#">Установить дату 10.12.2012</a><br>
+<a href = "#">Открыть календарь</a><br>
+<a href = "#">Скрыть календарь</a><br>
+<span>Дата</span>
+<input type = "text" id = "input">
+<div id = "datepicker"></div>
+</body>
+<script>
+    $.datepicker.regional['ru'] = {
+        monthNames: ['Яварь', 'Февраль', 'Март', 'Апрель',
+            'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь',
+            'Октябрь', 'Ноябрь', 'Декабрь'],
+        dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+        firstDay: 1,
+    };
+  $.datepicker.setDefaults($.datepicker.regional['ru']);
+    $("#input").datepicker({ dateFormat: "dd.mm.yy"});
+
+    $('a').eq(0).on('click', function(){
+        $("#input").datepicker("setDate", "10.12.2012" );
+    });
+    $('a').eq(1).on('click', function(){
+        $("#input").datepicker('show');
+    });
+    $('a').eq(2).on('click', function(){
+        $("#input").datepicker('hide');
+    });
+</script>
+</html>
