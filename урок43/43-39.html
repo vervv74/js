@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <!-- 2. Подключим jQuery UI -->
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <style type="text/css">
+.qwe{
+    background: orange;
+}
+    </style>
+</head>
+<body>
+<div title = "Простое окно" id = "dialog">This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</div>
+<a href = "#">показать окно</a><br>
+<a href = "#">скрыть окно</a>
+</body>
+<script>
+    $("#dialog").dialog({
+        classes: {
+            "ui-dialog-titlebar": "qwe"
+        },
+        autoOpen: false,
+        modal: true,
+        position: { my: "left top", at: "left top" },
+        buttons: [
+            {
+                text: "Ok",
+                click: function() {
+                    alert('Подтвердить нажатие кнопки ОК');
+                    $( this ).dialog( "close" );
+                }}
+        ]
+    });
+    $('a').eq(0).on('click', function(){
+        $("#dialog").dialog('open');
+    })
+    $('a').eq(1).on('click', function(){
+        $("#dialog").dialog(
+            'close'
+        );
+    })
+</script>
+</html>

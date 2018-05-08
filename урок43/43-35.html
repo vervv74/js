@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <!-- 2. Подключим jQuery UI -->
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <style type="text/css">
+.qwe{
+    background: orange;
+
+}
+        .locate{
+            top: 0px;
+        }
+    </style>
+</head>
+<body>
+<div class = "locate" title = "Простое окно" id = "dialog">This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</div>
+</body>
+<script>
+    $("#dialog").dialog({
+        classes: {
+            "ui-dialog-titlebar": "qwe"
+        },
+        position: { my: "left top", at: "left top" }
+    });
+</script>
+</html>
