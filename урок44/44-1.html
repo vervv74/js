@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    console.log('ahb acb aeb aeeb adcb axeb'.replace(/a.b/g, '!' )); //задача 1
+    console.log('aba aca aea abba adca abea'.replace(/a..a/g, '!' )); //задача 2
+    console.log('aba aca aea abba adca abea'.replace(/ab.a/g, '!' )); //задача 3
+    console.log('aa aba abba abbba abca abea'.replace(/ab+a/g, '!' )); //задача 4
+    console.log('aa aba abba abbba abca abea'.replace(/ab*a/g, '!' )); //задача 5
+    console.log('aa aba abba abbba abca abea'.replace(/ab?a/g, '!' )); //задача 6
+    console.log('aa aba abba abbba abca abea'.replace(/ab*a/g, '!' )); //задача 7
+    console.log('ab abab abab abababab abea'.replace(/(ab)+/g, '!' )); //задача 8
+    console.log('a.a aba aea'.replace(/a\.a/g, '!' )); //задача 9
+    console.log('2+3 223 2223'.replace(/2\+3/g, '!' )); //задача 10
+    console.log('23 2+3 2++3 2+++3 345 567'.replace(/2\++3/g, '!' )); //задача 11
+    console.log('23 2+3 2++3 2+++3 345 567'.replace(/2\+*3/g, '!' )); //задача 12
+    console.log('*+ *q+ *qq+ *qqq+ *qqq qqq+'.replace(/\*q+\+/g, '!' )); //задача 13
+    console.log('aba accca azzza wwwwa'.replace(/a.+?a/g, '!' )); //задача 14
+</script>
+</html>
