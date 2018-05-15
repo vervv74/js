@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    console.log('aaa@bbb eee7@kkk'.replace(/(\w+)@(\w+)/g, '$2@$1' )); //задача 1
+    console.log('a1b2c3'.replace(/(\d)/g, '$1$1' )); //задача 2
+    console.log(/^[a-zA-Z-._]+@[a-z]+\.[a-z]{2,3}$/.test('mymail@mail.ru')); //задача 3 вариант1
+    console.log(/^[a-zA-Z-._]+@[a-z]+\.[a-z]{2,3}$/.test('my.mail@mail.ru')); //задача 3 вариант2
+    console.log(/^[a-zA-Z-._]+@[a-z]+\.[a-z]{2,3}$/.test('my-mail@mail.ru')); //задача 3 вариант3
+    console.log(/^[a-zA-Z-._]+@[a-z]+\.[a-z]{2,3}$/.test('my_mail@mail.ru')); //задача 3 вариант4
+    console.log(/^[a-zA-Z-._]+@[a-z]+\.[a-z]{2,3}$/.test('mail@mail.com')); //задача 3 вариант5
+    console.log(/^[a-zA-Z-._]+@[a-z]+\.[a-z]{2,3}$/.test('mail@mail.by')); //задача 3 вариант6
+    console.log(/^[a-zA-Z-._]+@[a-z]+\.[a-z]{2,3}$/.test('mail@yandex.ru')); //задача 3 вариант7
+    console.log('mail@mail.by rrr mail@mail.by 444 mail@mail.com'.match(/[a-zA-Z-._]+@[a-z]+\.[a-z]{2,3}/g)); //задача 4
+    console.log(/^[a-zA-Z-._]+\.[a-z]{2,3}$/.test('yandex.ru')); //задача 5 вариант1
+    console.log(/^[a-zA-Z-._]+\.[a-z]{2,3}$/.test('site.com')); //задача 5 вариант2
+    console.log(/^[a-zA-Z-._]+\.[a-z]{2,3}$/.test('my-site.com')); //задача 5 вариант3
+    console.log(/^http:\/\/[a-zA-Z-._]+\.[a-z]{2,3}$/.test('http://site.ru')); //задача 6 вариант1
+    console.log(/^http:\/\/[a-zA-Z-._]+\.[a-z]{2,3}$/.test('http://site.com')); //задача 6 вариант2
+    console.log(/^(http|https):\/\/[a-zA-Z-._]+\.[a-z]{2,3}$/.test('https://site.com')); //задача 7 вариант1
+    console.log(/^(http|https):\/\/[a-zA-Z-._]+\.[a-z]{2,3}$/.test('http://site.com')); //задача 7 вариант1
+    console.log(/^https?/.test('http://site.com')); //задача 8 вариант 1
+    console.log(/^https?/.test('https://site.com')); //задача 8 вариант 2
+    console.log(/(txt|html|php)$/.test('mail.txt')); //задача 9 вариант 1
+    console.log(/(txt|html|php)$/.test('mail.php')); //задача 9 вариант 2
+    console.log(/(txt|html|php)$/.test('mail.html')); //задача 9 вариант 2
+    console.log(/\.jpe?g$/.test('mail.jpg')); //задача 10 вариант 1
+    console.log(/\.jpe?g$/.test('mail.jpeg')); //задача 10 вариант 2
+    console.log(/^[1-9]\d{1,10}$/.test('10023456789')); //задача 11
+    //Начало задача 12
+    var arr = 'erer 45 ghfy 3 yty 57'.match(/\d+/g);
+    var sum = 0;
+    for (var i = 0; i < arr.length; i++){
+        sum += parseInt(arr[i]);
+    }
+    console.log(arr);
+    console.log(sum);
+    //Конец задача 12
+    console.log('http://site.ru'.replace(/^(http:\/\/)([a-zA-Z-._]+\.[a-z]{2,3})$/, '<a href="$1$2">$2</a>' )); //задача 13
+    console.log('q     we     w  r'.replace(/\s+/g, ' ' )); //задача 14
+    console.log('/* Комментарий css rrr  */'.replace(/^\/\*[(\s\w)|(а-яА-ЯЁё)]+\*\/$/, 'убрали комментарий CSS' )); //задача 15
+    console.log('<!-- Комментарий HTML rrr  -->'.replace(/^<\!--.*-->$/, 'убрали комментарий HTML' )); //задача 16
+</script>
+</html>
