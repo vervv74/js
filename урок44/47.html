@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    console.log('aaab aaabr'.replace(/aaa(?=b)/g, '!')); //задача 1
+    console.log('aaab aaar'.replace(/aaa(?!b)/g, '!')); //задача 2
+    //задача 3 начало
+    '2 3 4'.replace(/\d/g, function(match){
+        console.log(match*match);
+    });
+    //задача 3 конец
+    //задача 4 начало
+    var req =  "2aaa'3'bbb4'".replace(/\d(?=')/g, function(match){
+        return match*2;
+    });
+    console.log(req);
+    //задача 4 конец
+    //задача 5 начало
+    var req = "2aaa{{text}}3bbb4'".replace(/\w+(?=}})/g, function(match){
+       var arr = match.split('');
+      return arr.reverse().join('');
+    });
+    console.log(req);
+    //задача 5 конец
+    //задача 6 начало
+    var req = "23 + 35 =".replace(/(\d+)\s*\+\s*(\d+)\s*=/g, function(match, match1, match2){
+        var sum = parseInt(match1) +parseInt(match2);
+        return match+' '+sum;
+    });
+    console.log(req);
+    //задача 6 конец
+    //задача 7 начало
+    var str = '2100';
+console.log(/^(19\d\d)|(20\d\d)|(2100)$/.test(str))
+    //задача 7 конец
+    //задача 8 начало
+    var str = '00:50';
+    console.log(/^[0-1][0-2]:[0-5]\d$/.test(str))
+    //задача 8 конец
+    //задача 9 начало
+    var str = '21.00 am';
+    console.log(/^(([1\d])|(2[0-3])|([1-9]))\.[0-5]\d\s(am|pm)$/.test(str))
+    //задача 9 конец
+</script>
+</html>
