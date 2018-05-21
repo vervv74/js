@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="canvas" width="700" height="700"></canvas>
+
+</body>
+<script>
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    ctx.strokeStyle = 'red';
+    ctx.moveTo(50, 15);
+    for (var i = 2; i <= 5; i++) {
+         ctx.lineTo(50*i, 15);
+    }
+    ctx.stroke();
+
+</script>
+</html>

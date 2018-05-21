@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="canvas" width="700" height="700"></canvas>
+</body>
+<script>
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    //начало задачи 1
+    ctx.beginPath();
+    ctx.moveTo(50, 50);
+    ctx.lineTo(150, 50);
+    ctx.stroke();
+    //конец задачи 1
+    //начало задачи 2
+    ctx.beginPath();
+    ctx.moveTo(50, 100);
+    ctx.lineTo(50, 200);
+    ctx.stroke();
+    //конец задачи 2
+    //начало задачи 3
+    ctx.beginPath();
+    ctx.moveTo(150, 100);
+    ctx.lineTo(250, 200);
+   ctx.moveTo(250, 100);
+    ctx.lineTo(150, 200);
+    ctx.stroke();
+    //конец задачи 3
+    ctx.strokeRect(50, 300, 75, 75); //задачи 4, 10
+    //начало задачи 5
+    ctx.beginPath();
+    ctx.moveTo(50, 400);
+    ctx.lineTo(150, 400);
+    ctx.lineTo(100, 450);
+    ctx.closePath();
+    ctx.stroke();
+    //конец задачи 5
+    //начало задачи 6
+    ctx.beginPath();
+    ctx.moveTo(50, 500);
+    ctx.lineTo(350, 500);
+    ctx.moveTo(300, 450);
+    ctx.lineTo(350, 500);
+    ctx.lineTo(300, 550);
+    ctx.stroke();
+    //конец задачи 6
+    //начало задачи 7-8
+    ctx.beginPath();
+    ctx.moveTo(300, 50);
+    ctx.lineTo(400, 50);
+    ctx.lineTo(400, 150);
+    ctx.lineTo(300, 150);
+    ctx.fill();
+    //конец задачи 7-8
+    ctx.fillRect(300, 200, 100, 100); //задача 9
+    ctx.clearRect(325, 225, 50, 50); // задача 11
+    // начало задач 12,13
+    ctx.rect(50, 600, 75, 75);
+    ctx.stroke();
+    ctx.rect(200, 600, 75, 75);
+    ctx.fill();
+    //конец задач 12,13
+</script>
+</html>
