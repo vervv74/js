@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id="elem" value="привет">
+</body>
+<script>
+    var elem = document.getElementById('elem');
+    function func(surname, name) {
+        alert(this.value + ', ' + surname + ' ' + name);
+    }
+    func.call(elem, 'Иванов', 'Иван'); //тут должно вывести value инпута
+</script>
+</html>

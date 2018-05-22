@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id="elem" value="привет">
+</body>
+<script>
+    var elem = document.getElementById('elem');
+
+    function func(surname, name) {
+        alert(this.value + ', ' + surname + ' ' + name);
+    }
+
+    //Тут напишите конструкцию с bind()
+    var func = func.bind(elem);
+
+    func('Иванов', 'Иван'); //тут должно вывести 'привет, Иванов Иван'
+    func('Петров', 'Петр'); //тут должно вывести 'привет, Петров Петр'
+</script>
+</html>
