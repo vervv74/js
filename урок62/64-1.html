@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style type="text/css">
+    .div1 {
+        width: 200px;
+        height: 200px;
+        border: 1px solid black;
+    }
+</style>
+<body>
+<div id = "div"></div>
+</body>
+<script>
+    class Elem{
+        constructor(elem){
+            this._elem = document.querySelector(elem);
+            }
+            html(text){
+            this._elem.innerHTML = text;
+                return this;
+        }
+        prepand(text){
+            this._elem.innerHTML = text + this._elem.innerHTML;
+            return this;
+        }
+        append(text){
+            this._elem.innerHTML += text;
+            return this;
+        }
+        attr(name1, value1){
+            this._elem.setAttribute(name1, value1);
+            return this;
+        }
+    }
+    var elem = new Elem('#div');
+    elem.attr('class', 'div1').html('hello').append('!  Конец').prepand('Начало   !');
+</script>
+</html>
