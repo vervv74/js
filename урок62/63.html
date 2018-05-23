@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    class User {
+        constructor(name, surname) {
+            this._name = name;
+            this._surname = surname;
+        }
+        getName(){
+            return this._name;
+        }
+        getSurname(){
+            return this._surname;
+        }
+        getYear(){
+            return this._year;
+        }
+        getFullName() {
+            return this._name + ' ' + this._surname;
+        }
+    }
+    class Student extends User {
+        constructor(name, surname, year) {
+          super(name, surname);
+          this._year = year;
+        }
+        getCourse(){
+            var date = new Date();
+            return 'текуший курс студента - '+(date.getFullYear()-this._year+1);
+        }
+    }
+    var  student = new Student ('Иван', 'Иванов', 2015);
+    console.log(student.getName());
+    console.log(student.getSurname());
+    console.log(student.getFullName());
+    console.log(student.getYear());
+    console.log(student.getCourse());
+</script>
+</html>
