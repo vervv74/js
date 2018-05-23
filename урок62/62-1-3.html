@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    class Worker {
+        constructor (name, surname, rate, days){
+            this._name = name;
+            this._surname = surname;
+            this._rate = rate;
+            this._days = days;
+        }
+        getSalary(){
+            return this._rate*this._days;
+        }
+        getSurname(){
+            return this._surname;
+        }
+        getName(){
+            return this._name;
+        }
+        getRate(){
+            return this._rate;
+        }
+        getDays(){
+            return this._days;
+        }
+        setRate(rate){
+            this._rate = rate;
+        }
+        setDays(days){
+            this._days = days;
+        }
+    }
+    var worker1 = new Worker('Иван', 'Иванов', 100, 10);
+    var worker2 = new Worker('Петр', 'Петров', 120, 5);
+    console.log(worker1.getSurname()+ ' '+worker2.getSurname()+' вместе заработали '+(worker1.getSalary()+worker2.getSalary())+' рублей');
+    worker1.setRate(200); //увеличим ставку
+    worker1.setDays(9);
+    console.log(worker1.getName());
+    console.log(worker1.getSurname());
+    console.log(worker1.getRate());
+    console.log(worker1.getDays());
+    console.log(worker1.getSalary());
+
+</script>
+</html>
