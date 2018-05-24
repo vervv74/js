@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style type="text/css">
+.div2{
+    border: 1px solid black;
+}
+</style>
+<body>
+
+</body>
+<script>
+  class Rectangle {
+      constructor (width, height) {
+          this._elem = document.createElement('div');
+          this._elem.style.width = width + 'px';
+          this._elem.style.height = height + 'px';
+          this._elem.classList.add('div2');
+          document.body.appendChild(this._elem);
+      }
+      setWidth(width){
+          this._elem.style.width = width + 'px';
+      }
+      setHeight(height){
+          this._elem.style.height = height + 'px';
+      }
+      getWidth(){
+          return  this._elem.style.width;
+      }
+      getHeight(){
+          return  this._elem.style.height;
+      }
+  }
+  var rect = new Rectangle(200, 200);
+  window.setTimeout(func, 2000);
+  function func(){
+      rect.setWidth(400);
+      rect.setHeight(300);
+      console.log(rect.getWidth()+' '+rect.getHeight());
+  }
+</script>
+</html>

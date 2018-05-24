@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style type="text/css">
+    .div1 {
+        width: 200px;
+        height: 200px;
+        border: 1px solid black;
+    }
+</style>
+<body>
+<div class = "div2"></div>
+<div class = "div2"></div>
+</body>
+<script>
+    class Elem{
+        constructor(elem){
+            this._elem = document.querySelectorAll(elem);
+            }
+            html(text){
+            for(var i = 0; i < this._elem.length; i++)
+            { this._elem[i].innerHTML = text;}
+                return this;
+        }
+        prepand(text){
+            for(var i = 0; i < this._elem.length; i++)
+            { this._elem[i].innerHTML = text + this._elem[i].innerHTML;}
+            return this;
+        }
+        append(text){
+            for(var i = 0; i < this._elem.length; i++)
+            {this._elem[i].innerHTML += text;}
+            return this;
+        }
+        attr(name1, value1){
+            for(var i = 0; i < this._elem.length; i++)
+            {this._elem[i].setAttribute(name1, value1);}
+            return this;
+        }
+      /*  each(func){
+            for(var i = 0; i < this._elem.length; i++)
+            {func(this._elem[i]);}
+            return this;
+        }*/
+    }
+    var elem = new Elem('.div2');
+    elem.html('hello').attr('class', 'div1').append('!  Конец').prepand('Начало   !');
+ // elem.each(console.log(elem.innerHTML));
+</script>
+</html>
