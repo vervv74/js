@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+                .qwe1 {
+            width: 100px;
+            border: 1px solid black;
+            height:20px
+        }
+        .active{
+            background: red;
+        }
+        .col{
+            width:100px;
+            margin: 0px;
+            padding: 0px;
+          }
+        .radio_col{
+            width: 100px;
+        }
+          .span{
+              display:none;
+          }
+
+    </style>
+</head>
+<body>
+<h3>Порядок копирования колонки</h3>
+<p>* Режим копирования колонки включается по нажатию на радиокнопку снизу колонки </p>
+<p>* Копирование производится по клику на ячейку колонки, для которой не включен соответствующий режим </p>
+<p>* Повторный клик на радиокнопку снимает выделение колонки и режим копирования</p>
+<p>* Ячейки заполняются по клику при снятом режиме копирования </p>
+<p>Статус режима копирования: <span id = "status"><b>ВЫКЛЮЧЕН</b></span></p>
+<table id = "table">
+    <tr >
+        <td class = "qwe1" data-number="0"></td>
+        <td class = "qwe1" data-number="1"></td>
+        <td class = "qwe1" data-number="2"></td>
+        <td class = "qwe1" data-number="3"></td>
+        <td class = "qwe1" data-number="4"></td>
+    </tr>
+    <tr >
+        <td class = "qwe1" data-number="0"></td>
+        <td class = "qwe1" data-number="1"></td>
+        <td class = "qwe1" data-number="2"></td>
+        <td class = "qwe1" data-number="3"></td>
+        <td class = "qwe1" data-number="4"></td>
+    </tr>
+    <tr >
+        <td class = "qwe1" data-number="0"></td>
+        <td class = "qwe1" data-number="1"></td>
+        <td class = "qwe1" data-number="2"></td>
+        <td class = "qwe1" data-number="3"></td>
+        <td class = "qwe1" data-number="4"></td>
+    </tr>
+</table>
+<table id = "radio">
+    <tr>
+        <td class = 'radio_col'>
+            <input type="radio"><span class ="span">copy</span>
+        </td>
+        <td class = 'radio_col'>
+            <input type="radio"><span class ="span">copy</span>
+        </td>
+        <td class = 'radio_col'>
+            <input type="radio"><span class ="span">copy</span>
+        </td>
+        <td class = 'radio_col'>
+            <input type="radio"><span class ="span">copy</span>
+        </td>
+        <td class = 'radio_col'>
+            <input type="radio"><span class ="span">copy</span>
+        </td>
+
+    </tr>
+</table>
+</body>
+<script>
+
+    var table = document.querySelector('#table');
+    var cells = table.querySelectorAll('td');
+    for (var i = 0; i < cells.length; i++) {
+        cells[i].addEventListener('click', input.bind(cells[i]));
+    }
+    var radio_table = document.querySelector('#radio');
+    var input_radio = document.querySelectorAll('input[type="radio"]');
+    var cells_radio = radio_table.querySelectorAll('input');
+    for (var i = 0; i < cells_radio.length; i++) {
+        cells_radio[i].addEventListener('click', col.bind(cells_radio[i]));
+    }
+    var tr = table.querySelectorAll('tr');
+    //функция для инпута по клику
+    function input(){
+       // console.log(document.querySelectorAll('.active')[0]);
+        if (!document.querySelectorAll('.active')[0]){
+            if(this.children[0]){
+                this.removeChild(this.children[0]);
+            }
+        var content = this.innerHTML;
+        var inp = document.createElement('input');
+        inp.classList.add('col');
+        inp.setAttribute('type','text');
+        inp.value = content;
+        this.innerHTML = '';
+        this.appendChild(inp);
+        inp.focus();
+        inp.addEventListener('mouseout',inputExit.bind(inp));}
+        else{
+           var col = activeCol();
+           var current_col = this.dataset.number;
+            for (var i = 0; i < 3; i++) {
+                var td = tr[i].querySelectorAll('td');
+             td[current_col].innerHTML = td[col].innerHTML;
+            }
+        }
+    }
+    //функция для выхода из инпута
+    function inputExit(){
+        var content = this.value;
+        parent = this.parentElement;
+        parent.removeChild(this);
+        parent.innerHTML = content;
+    }
+    //функция для выделения колонки
+    function col(){
+        if(this.nextElementSibling.classList.contains('span')){
+        uncol();
+        this.checked = true;
+        this.nextElementSibling.classList.remove('span');
+        status();
+      //  console.log(activeCol());
+      for (var i = 0; i < tr.length; i++) {
+            var td = tr[i].querySelectorAll('td');
+            for (var j = 0; j < td.length; j++) {
+                if (j == activeCol())
+                {td[j].classList.add('active');}
+            }
+        }}
+        else{
+            uncol();
+            status();
+        }
+    }
+    //активная колонка
+    function activeCol(){
+        var col;
+        for (var i = 0; i < input_radio.length; i++ ) {
+            if (input_radio[i].checked == true){
+                col = i;
+            }}
+        return col;
+    }
+//функция для снятия выделения колонки
+    function uncol(){
+        unactive();
+        var radio = document.querySelectorAll('input[type="radio"]:checked');
+              if(radio){
+                  for (var i = 0; i < radio.length; i++) {
+                      radio[i].checked = false;
+                      radio[i].nextElementSibling.classList.add('span');
+                  }
+              }
+    }
+//функция для убрать .active
+    function unactive(){
+        for (var i = 0; i < cells.length; i++) {
+           if (cells[i].classList.contains('active')){
+               cells[i].classList.remove('active');
+           }
+        }
+    }
+
+    //функция для указания статуса копирования
+    function status(){
+        if(!document.querySelectorAll('input[type="radio"]:checked')[0]){
+            document.querySelector('#status').innerHTML = '<b>ВЫКЛЮЧЕН</b>';
+        }
+        else{
+            document.querySelector('#status').innerHTML = '<b>ВКЛЮЧЕН ДЛЯ КОЛОНКИ №</b>'+(activeCol()+1);
+        }
+    };
+
+</script>
+
+</html>
