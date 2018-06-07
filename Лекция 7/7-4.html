@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .inp {
+            border: 1px solid black;
+            width:20px;
+            height: 20px;
+        }
+
+
+    </style>
+</head>
+<body>
+<table>
+    <tr>
+        <td><input type="text" class="inp"></td>
+        <td><input type="text" class="inp"></td>
+        <td><input type="text" class="inp"></td>
+    </tr>
+    <tr>
+        <td><input type="text" class="inp"></td>
+        <td><input type="text" class="inp"></td>
+        <td><input type="text" class="inp"></td>
+    </tr>
+    <tr>
+        <td><input type="text" class="inp"></td>
+        <td><input type="text" class="inp"></td>
+        <td><input type="text" class="inp"></td>
+    </tr>
+</table>
+<p>Играйте</p>
+<input type="submit" value="Играть с начала" onclick="null1(td)">
+</body>
+<script>
+    var table = document.querySelector('table');
+    var p = document.querySelector('p');
+    var td = document.querySelectorAll('.inp');
+    var addX=true;
+    //навешиваем на ячейки свойства заполнения
+    for(var i = 0; i < td.length; i++ ){
+        add(td[i]);
+        check(td[i]);
+    }
+    //заполняем ячейки
+    function add(elem) {
+        elem.addEventListener('click', function (){
+            if(checkX1(td)==0){
+                if (addX){
+                    elem.value = 'x';
+                    addX = false;
+                } else {
+                    elem.value = 'o';
+                    addX = true;
+                }}
+        })
+    }
+    //проверяем ячейки
+    function check(elem) {
+        elem.addEventListener('mousemove', function(){
+            if (checkX1(td)!=0){
+                p.innerHTML = checkX1(td)+' выиграл, начинайте снова';
+                console.log(checkX1(td));
+                null1(td);
+            }
+        })
+    }
+    // универсальная проверка х и о
+    function checkX1(arr){
+        var set = [
+            [0,1,2],
+            [3,4,5],
+            [6,7,8],
+            [0,3,6],
+            [1,4,7],
+            [2,5,8],
+            [0,4,8],
+            [2,4,6],
+        ];
+        var checkX1 = 0;
+        for (var i = 0; i < set.length; i++){
+            if ((arr[set[i][0]].value=='x' && arr[set[i][1]].value=='x' && arr[set[i][2]].value=='x') || (arr[set[i][0]].value=='o' && arr[set[i][1]].value=='o' && arr[set[i][2]].value=='o') ) {
+                checkX1 = arr[set[i][0]].value;
+            }
+        }
+        return checkX1;
+    }
+    //обнуление таблицы
+    function null1(arr){
+        for(var i = 0; i < arr.length; i++ ){
+            arr[i].value = '';
+            addX = true;
+        }
+    }
+</script>
+</html>

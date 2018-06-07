@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style type="text/css">
+    td{
+     border: 1px solid grey;
+    }
+
+</style>
+</body>
+<script>
+    var cellSize = 20 ;
+    var windowWidth = Math.floor(document.documentElement.clientWidth/cellSize);
+    var windowHeight = Math.floor(document.documentElement.clientHeight/cellSize)-10;
+           console.log(windowWidth );
+           var tdBlack = true;
+
+console.log(windowHeight );
+var table = document.createElement('table');
+document.body.appendChild(table);
+for (var i = 1; i <= windowHeight; i++){
+    var tr = document.createElement('tr');
+    tr.style.height = cellSize +'px';
+    for(var j = 1; j <= windowWidth; j++){
+        var td = document.createElement('td');
+        td.style.width = cellSize +'px';
+        td.dataset.y = i;
+        td.dataset.x = j;
+        td.addEventListener('click',func.bind(td));
+        td.addEventListener('click',check.bind(td));
+        tr.appendChild(td);
+    }
+    table.appendChild(tr);
+}
+function func(){
+if(!this.style.backgroundColor) {
+    console.log(this.dataset.y +' '+ this.dataset.x);
+    if(tdBlack)
+    {this.style.backgroundColor = "black";
+            tdBlack = false;
+    }
+    else {
+        this.style.backgroundColor = "red";
+        tdBlack = true;
+    }
+}
+    else{console.log(this.style.backgroundColor);}
+}
+function check(){
+    console.log(event.target.dataset.y +' '+ event.target.dataset.x);
+   console.log(tableColor());
+}
+//заполнение массива цветов
+    function tableColor(){
+       var tableColorArray = {}; //объект для заполнения цветов
+    var td = document.querySelectorAll('td');
+      for (var i = 0; i < td.length; i++){
+          tableColorArray[[td[i].dataset.y, td[i].dataset.x]] = td[i].style.backgroundColor;
+     }
+return tableColorArray;
+    }
+</script>
+</html>
