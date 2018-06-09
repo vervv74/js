@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+  var x = 1;
+  var y = 2;
+    var set = {
+        [y] : [
+            [x-4, x-3, x-2, x-1, x],
+            [x-3, x-2, x-1, x, x+1],
+            [x-2, x-1, x, x+1, x+2],
+            [x-2, x-1, x, x+1, x+2],
+            [x-1, x, x+1, x+2, x+3],
+            [x, x+1, x+2, x+3, x+4]
+        ],
+        [x] : [
+            [y-4, y-3, y-2, y-1, y],
+            [y-3, y-2, y-1, y, y+1],
+            [y-2, y-1, y, y+1, y+2],
+            [y-2, y-1, y, y+1, y+2],
+            [y-1, y, y+1, y+2, y+3],
+            [y, y+1, y+2, y+3, y+4]
+        ]
+    };
+  //console.log(set);
+    for (key in set) {
+
+        for (var i = 0; i < set[key].length; i++) {
+
+            for (var j = 0; j < set[key][i].length; j++) {
+           console.log(key+i+' '+set[key][i][j]);
+
+            }
+        }
+    }
+</script>
+</html>
