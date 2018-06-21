@@ -137,8 +137,8 @@ function check_straight(){
                 //console.log (y+' '+x+' '+set[i][j]);
             //    var elem = table.querySelector('[data-x = \'20\'][data-y = \'20\']');
              //   var selector = '[data-x = \''+x+'\']';
-                var elem = table.querySelector('[data-x = \''+x+'\'][data-y = \''+y+'\']');
-                var elem1 = table.querySelector('[data-x = \''+x1+'\'][data-y = \''+y+'\']');
+                var elem = table.querySelector('[data-x = \''+x+'\'][data-y = \''+y+'\']');// проверка по диагонали слева сверху направо вниз
+                var elem1 = table.querySelector('[data-x = \''+x1+'\'][data-y = \''+y+'\']');// проверка по диагонали сверху справа налево вниз
                 if (elem || elem1){
                     if(elem.style.backgroundColor == cellColor){
                         console.clear();
