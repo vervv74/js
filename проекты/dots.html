@@ -3,18 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+     <style type="text/css">
+        td{
+            border: 1px solid grey;
+        }
+        h3{
+            height: 40px;
+        }
+         .black{
+             background-color: rgb(0,0,0);
+         }
+        .red{
+            background-color: rgb(255,0,0);
+        }
+        .empty{
+            background-color: rgba(0,0,0,0);
+        }
+    </style>
 </head>
 <body>
-<style type="text/css">
-    td{
-     border: 1px solid grey;
-    }
-    h3{
-        height: 40px;
-    }
 
-</style>
 </body>
 <script>
     var checkresult; //контрольная переменная для проверки по горизонтали
@@ -27,7 +35,7 @@
 
 console.log(windowHeight );
 var h3 = document.createElement('h3');// заголовок для вывода результата
-    h3.innerHTML = 'Черные начинают'
+    h3.innerHTML = 'Черные начинают';
 document.body.appendChild(h3); //
 var table = document.createElement('table'); //строим таблицу
 document.body.appendChild(table);
@@ -39,10 +47,10 @@ for (var i = 1; i <= windowHeight; i++){
         td.style.width = cellSize +'px';
         td.dataset.y = i; // присваиваем ячейке координату y
         td.dataset.x = j; // присваиваем ячейке координату х
-        td.style.backgroundColor == "rgba(0,0,0,0)";
+        td.classList.add('empty');
         td.addEventListener('click',func.bind(td));//режим заполнения
-        td.addEventListener('click',check_straight.bind(td));//проверка по горизонтали и вертикали
-        td.addEventListener('click',check_cross.bind(td));//проверка по диагонали
+      td.addEventListener('click',checkStraight.bind(td));//проверка по горизонтали и вертикали
+        td.addEventListener('click',checkCross.bind(td));//проверка по диагонали
         tr.appendChild(td);
     }
     table.appendChild(tr);
@@ -50,25 +58,34 @@ for (var i = 1; i <= windowHeight; i++){
 
 //режим заполнения ячейки цветом
 function func(){
-if(!this.style.backgroundColor) {
+if(this.classList.contains('empty')) {
+    this.classList.remove('empty');
         if(tdBlack)
-    {this.style.backgroundColor = "rgba(0,0,0)";
+    {this.classList.add('black');
             tdBlack = false;
     }
     else {
-        this.style.backgroundColor = "rgba(255,0,0)";
+            this.classList.add('red');
         tdBlack = true;
     }
 }
-    else{console.log(this.style.backgroundColor);}
+    else{
+    console.log(this.classList.contains('empty'));
+}
 }
 //проверка по горизонтали и вертикали
-function check_straight(){
+function checkStraight(){
    // console.clear();
    // console.log(tableColor());
     var y = parseInt(this.dataset.y); //координата у текущей ячейки
     var x = parseInt(this.dataset.x); //координата х текущей ячейки
-    var cellColor = this.style.backgroundColor;
+    var cellClass;
+    if (this.classList.contains('black')){
+        cellClass = 'black';
+    }
+    else{
+        cellClass = 'red';
+    };
     //console.log(y +' '+ x+ ' '+ cellColor);
     var set = {
     [y]: [
@@ -93,18 +110,20 @@ function check_straight(){
             for (var i = 0; i < set[key].length; i++) {
                 checkresult = 0;
                 for (var j = 0; j < set[key][i].length; j++) {
-                   // console.log(key+i+' '+set[key][i][j]);
-                    var elem = $('[data-x = '+key+'][data-y = '+set[key][i][j]+']');
-                    var elem1 = $('[data-y = '+key+'][data-x = '+set[key][i][j]+']');
-                    if ($(elem).length != 0 || $(elem1).length != 0 )
+                   console.log(key+i+' '+set[key][i][j]);
+                   var elem_new = table.querySelector('[data-x = \''+key+'\'][data-y = \''+set[key][i][j]+'\']');
+                    var elem1_new = table.querySelector('[data-y = \''+key+'\'][data-x = \''+set[key][i][j]+'\']');
+                  //  var elem = $('[data-x = '+key+'][data-y = '+set[key][i][j]+']');
+                  //  var elem1 = $('[data-y = '+key+'][data-x = '+set[key][i][j]+']');
+                    if (elem_new || elem1_new )
                     {
-                        if (($(elem).css('background-color') == cellColor))
+                        if (elem_new.classList.contains(cellClass))
                         {checkresult++;
                        // console.log($(elem).css('background-color') + ' '+ checkresult);
                         if (checkresult == 5){
                             window.setTimeout(end.bind(this), 500);
                         }}
-                        else if (($(elem1).css('background-color') == cellColor))
+                        else if (elem1_new.classList.contains(cellClass))
                         {checkresult++;
                            // console.log($(elem1).css('background-color') + ' '+ checkresult);
                             if (checkresult == 5){
@@ -116,11 +135,17 @@ function check_straight(){
         }
 }
 //проверка по диагонали
-    function check_cross(){
+    function checkCross(){
         console.clear();
         //var y = parseInt(this.dataset.y); //координата у текущей ячейки
       //  var x = parseInt(this.dataset.x); //координата х текущей ячейки
-        var cellColor = this.style.backgroundColor;
+        var cellClass;
+        if (this.classList.contains('black')){
+            cellClass = 'black';
+        }
+        else{
+            cellClass = 'red';
+        };
         var set = [
             [-4,-3,-2,-1,0],
             [-3,-2,-1,0,1],
@@ -137,10 +162,10 @@ function check_straight(){
                 //console.log (y+' '+x+' '+set[i][j]);
             //    var elem = table.querySelector('[data-x = \'20\'][data-y = \'20\']');
              //   var selector = '[data-x = \''+x+'\']';
-                var elem = table.querySelector('[data-x = \''+x+'\'][data-y = \''+y+'\']');// проверка по диагонали слева сверху направо вниз
-                var elem1 = table.querySelector('[data-x = \''+x1+'\'][data-y = \''+y+'\']');// проверка по диагонали сверху справа налево вниз
+                var elem = table.querySelector('[data-x = \''+x+'\'][data-y = \''+y+'\']');
+                var elem1 = table.querySelector('[data-x = \''+x1+'\'][data-y = \''+y+'\']');
                 if (elem || elem1){
-                    if(elem.style.backgroundColor == cellColor){
+                    if(elem.classList.contains(cellClass)){
                         console.clear();
                         checkresult_cross ++;
                         console.log (elem.dataset.x+' '+elem.dataset.y+' '+elem.style.backgroundColor+' '+checkresult_cross);
@@ -149,7 +174,7 @@ function check_straight(){
                             window.setTimeout(end.bind(this), 500);
                         }
                     }
-                    else if(elem1.style.backgroundColor == cellColor){
+                    else if(elem1.classList.contains(cellClass)){
                         console.clear();
                         checkresult_cross ++;
                         console.log (elem1.dataset.x+' '+elem1.dataset.y+' '+elem1.style.backgroundColor+' '+checkresult_cross);
@@ -167,7 +192,7 @@ function check_straight(){
         h3.innerHTML ='';
         checkresult = 0;
         checkresult_cross = 0;
-if (this.style.backgroundColor == "rgb(0, 0, 0)")
+if (this.classList.contains('black'))
 {h3.innerHTML = 'Черные выиграли<br>Красные начинают';}
 else {
     h3.innerHTML = 'Красные выиграли<br>Черные начинают';
@@ -175,7 +200,14 @@ else {
 console.log(this.style.backgroundColor);
     var td = table.querySelectorAll('td');
     for (var i = 0; i < td.length; i++){
-        td[i].style.backgroundColor = '';
+        if(td[i].classList.contains('black')){
+            td[i].classList.remove('black');
+            td[i].classList.add('empty');
+        }
+        if(td[i].classList.contains('red')){
+            td[i].classList.remove('red');
+            td[i].classList.add('empty');
+        }
     }
     }
 </script>
