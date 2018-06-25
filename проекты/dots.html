@@ -12,11 +12,11 @@
             height: 40px;
         }
 
-        .black {
+        .playerOne {
             background-color: rgb(0, 0, 0);
         }
 
-        .red {
+        .playerTwo {
             background-color: rgb(255, 0, 0);
         }
 
@@ -35,7 +35,7 @@
     var windowHeight = Math.floor(document.documentElement.clientHeight / cellSize) - 10; //количество рядов
     console.log(windowWidth);
     console.log(windowHeight);
-    var tdBlack = true;
+    var tdPlayerOne = true;
     var h3 = document.createElement('h3');// заголовок для вывода результата
     h3.innerHTML = 'Черные начинают';
     document.body.appendChild(h3); //
@@ -60,13 +60,13 @@
     function func() {
         if (this.classList.contains('empty')) {
             this.classList.remove('empty');
-            if (tdBlack) {
-                this.classList.add('black');
-                tdBlack = false;
+            if (tdPlayerOne) {
+                this.classList.add('playerOne');
+                tdPlayerOne = false;
             }
             else {
-                this.classList.add('red');
-                tdBlack = true;
+                this.classList.add('playerTwo');
+                tdPlayerOne = true;
             }
         }
         else {
@@ -83,11 +83,11 @@
             for (j = 1; j <= windowHeight; j++) {
                 checkResult = 1;
                 var elem = table.querySelector('[data-x = \'' + i + '\'][data-y = \'' + j + '\']');
-                if (elem.classList.contains('black')) {
-                    elemClass = 'black';
+                if (elem.classList.contains('playerOne')) {
+                    elemClass = 'playerOne';
                 }
                 else {
-                    elemClass = 'red';
+                    elemClass = 'playerTwo';
                 }
                 if (!elem.classList.contains('empty')) {
                     //  console.log(elem.dataset.x + ' ' + elem.dataset.y + ' ' + elemClass);
@@ -110,11 +110,11 @@
             for (j = 1; j <= windowWidth; j++) {
                 checkResult = 1;
                 var elem = table.querySelector('[data-x = \'' + j + '\'][data-y = \'' + i + '\']');
-                if (elem.classList.contains('black')) {
-                    elemClass = 'black';
+                if (elem.classList.contains('playerOne')) {
+                    elemClass = 'playerOne';
                 }
                 else {
-                    elemClass = 'red';
+                    elemClass = 'playerTwo';
                 }
                 if (!elem.classList.contains('empty')) {
                     // console.log(elem.dataset.x + ' ' + elem.dataset.y + ' ' + elemClass);
@@ -137,11 +137,11 @@
             for (j = 1; j <= (windowWidth - 4); j++) {
                 checkResult = 1;
                 var elem = table.querySelector('[data-x = \'' + j + '\'][data-y = \'' + i + '\']');
-                if (elem.classList.contains('black')) {
-                    elemClass = 'black';
+                if (elem.classList.contains('playerOne')) {
+                    elemClass = 'playerOne';
                 }
                 else {
-                    elemClass = 'red';
+                    elemClass = 'playerTwo';
                 }
                 if (!elem.classList.contains('empty')) {
                     //  console.log(elem.dataset.x + ' ' + elem.dataset.y + ' ' + elemClass);
@@ -164,11 +164,11 @@
             for (j = 5; j <= (windowWidth); j++) {
                 checkResult = 1;
                 var elem = table.querySelector('[data-x = \'' + j + '\'][data-y = \'' + i + '\']');
-                if (elem.classList.contains('black')) {
-                    elemClass = 'black';
+                if (elem.classList.contains('playerOne')) {
+                    elemClass = 'playerOne';
                 }
                 else {
-                    elemClass = 'red';
+                    elemClass = 'playerTwo';
                 }
                 if (!elem.classList.contains('empty')) {
                     // console.log(elem.dataset.x + ' ' + elem.dataset.y + ' ' + elemClass);
@@ -193,7 +193,7 @@
         h3.innerHTML = '';
         checkResult = 0;
         checkResultCross = 0;
-        if (this.classList.contains('black')) {
+        if (this.classList.contains('playerOne')) {
             h3.innerHTML = 'Черные выиграли<br>Красные начинают';
         }
         else {
@@ -201,12 +201,12 @@
         }
         var td = table.querySelectorAll('td');
         for (var i = 0; i < td.length; i++) {
-            if (td[i].classList.contains('black')) {
-                td[i].classList.remove('black');
+            if (td[i].classList.contains('playerOne')) {
+                td[i].classList.remove('playerOne');
                 td[i].classList.add('empty');
             }
-            if (td[i].classList.contains('red')) {
-                td[i].classList.remove('red');
+            if (td[i].classList.contains('playerTwo')) {
+                td[i].classList.remove('playerTwo');
                 td[i].classList.add('empty');
             }
         }
