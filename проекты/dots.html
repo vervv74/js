@@ -3,21 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-     <style type="text/css">
-        td{
+    <style type="text/css">
+        td {
             border: 1px solid grey;
         }
-        h3{
+
+        h3 {
             height: 40px;
         }
-         .black{
-             background-color: rgb(0,0,0);
-         }
-        .red{
-            background-color: rgb(255,0,0);
+
+        .black {
+            background-color: rgb(0, 0, 0);
         }
-        .empty{
-            background-color: rgba(0,0,0,0);
+
+        .red {
+            background-color: rgb(255, 0, 0);
+        }
+
+        .empty {
+            background-color: rgba(0, 0, 0, 0);
         }
     </style>
 </head>
@@ -25,189 +29,188 @@
 
 </body>
 <script>
-    var checkresult; //контрольная переменная для проверки по горизонтали
-    var checkresult_cross; //контрольная переменная для проверки по диагонали
-    var cellSize = 20 ;//размер ячейки
-    var windowWidth = Math.floor(document.documentElement.clientWidth/cellSize); //количество столбцов
-    var windowHeight = Math.floor(document.documentElement.clientHeight/cellSize)-10; //количество рядов
-           console.log(windowWidth );
-           var tdBlack = true;
 
-console.log(windowHeight );
-var h3 = document.createElement('h3');// заголовок для вывода результата
+    var cellSize = 20;//размер ячейки
+    var windowWidth = Math.floor(document.documentElement.clientWidth / cellSize); //количество столбцов
+    var windowHeight = Math.floor(document.documentElement.clientHeight / cellSize) - 10; //количество рядов
+    console.log(windowWidth);
+    console.log(windowHeight);
+    var tdBlack = true;
+    var h3 = document.createElement('h3');// заголовок для вывода результата
     h3.innerHTML = 'Черные начинают';
-document.body.appendChild(h3); //
-var table = document.createElement('table'); //строим таблицу
-document.body.appendChild(table);
-for (var i = 1; i <= windowHeight; i++){
-    var tr = document.createElement('tr');
-    tr.style.height = cellSize +'px';
-    for(var j = 1; j <= windowWidth; j++){
-        var td = document.createElement('td');
-        td.style.width = cellSize +'px';
-        td.dataset.y = i; // присваиваем ячейке координату y
-        td.dataset.x = j; // присваиваем ячейке координату х
-        td.classList.add('empty');
-        td.addEventListener('click',func.bind(td));//режим заполнения
-      td.addEventListener('click',checkStraight.bind(td));//проверка по горизонтали и вертикали
-        td.addEventListener('click',checkCross.bind(td));//проверка по диагонали
-        tr.appendChild(td);
+    document.body.appendChild(h3); //
+    var table = document.createElement('table'); //строим таблицу
+    document.body.appendChild(table);
+    for (var i = 1; i <= windowHeight; i++) {
+        var tr = document.createElement('tr');
+        tr.style.height = cellSize + 'px';
+        for (var j = 1; j <= windowWidth; j++) {
+            var td = document.createElement('td');
+            td.style.width = cellSize + 'px';
+            td.dataset.y = i; // присваиваем ячейке координату y
+            td.dataset.x = j; // присваиваем ячейке координату х
+            td.classList.add('empty');
+            td.addEventListener('click', func.bind(td));//режим заполнения
+            td.addEventListener('click', check.bind(td));//проверка
+            tr.appendChild(td);
+        }
+        table.appendChild(tr);
     }
-    table.appendChild(tr);
-}
-
-//режим заполнения ячейки цветом
-function func(){
-if(this.classList.contains('empty')) {
-    this.classList.remove('empty');
-        if(tdBlack)
-    {this.classList.add('black');
-            tdBlack = false;
-    }
-    else {
-            this.classList.add('red');
-        tdBlack = true;
-    }
-}
-    else{
-    console.log(this.classList.contains('empty'));
-}
-}
-//проверка по горизонтали и вертикали
-function checkStraight(){
-   // console.clear();
-   // console.log(tableColor());
-    var y = parseInt(this.dataset.y); //координата у текущей ячейки
-    var x = parseInt(this.dataset.x); //координата х текущей ячейки
-    var cellClass;
-    if (this.classList.contains('black')){
-        cellClass = 'black';
-    }
-    else{
-        cellClass = 'red';
-    };
-    //console.log(y +' '+ x+ ' '+ cellColor);
-    var set = {
-    [y]: [
-            [x-4, x-3, x-2, x-1, x],
-            [x-3, x-2, x-1, x, x+1],
-            [x-2, x-1, x, x+1, x+2],
-            [x-2, x-1, x, x+1, x+2],
-            [x-1, x, x+1, x+2, x+3],
-            [x, x+1, x+2, x+3, x+4]
-        ],
-        [x] : [
-            [y-4, y-3, y-2, y-1, y],
-            [y-3, y-2, y-1, y, y+1],
-            [y-2, y-1, y, y+1, y+2],
-            [y-2, y-1, y, y+1, y+2],
-            [y-1, y, y+1, y+2, y+3],
-            [y, y+1, y+2, y+3, y+4]
-        ]
-};
-
-        for (key in set) {
-            for (var i = 0; i < set[key].length; i++) {
-                checkresult = 0;
-                for (var j = 0; j < set[key][i].length; j++) {
-                   console.log(key+i+' '+set[key][i][j]);
-                   var elem_new = table.querySelector('[data-x = \''+key+'\'][data-y = \''+set[key][i][j]+'\']');
-                    var elem1_new = table.querySelector('[data-y = \''+key+'\'][data-x = \''+set[key][i][j]+'\']');
-                  //  var elem = $('[data-x = '+key+'][data-y = '+set[key][i][j]+']');
-                  //  var elem1 = $('[data-y = '+key+'][data-x = '+set[key][i][j]+']');
-                    if (elem_new || elem1_new )
-                    {
-                        if (elem_new.classList.contains(cellClass))
-                        {checkresult++;
-                       // console.log($(elem).css('background-color') + ' '+ checkresult);
-                        if (checkresult == 5){
-                            window.setTimeout(end.bind(this), 500);
-                        }}
-                        else if (elem1_new.classList.contains(cellClass))
-                        {checkresult++;
-                           // console.log($(elem1).css('background-color') + ' '+ checkresult);
-                            if (checkresult == 5){
-                                window.setTimeout(end.bind(this), 500);
-                            }}
-                    }
-                }
+    //режим заполнения ячейки цветом
+    function func() {
+        if (this.classList.contains('empty')) {
+            this.classList.remove('empty');
+            if (tdBlack) {
+                this.classList.add('black');
+                tdBlack = false;
+            }
+            else {
+                this.classList.add('red');
+                tdBlack = true;
             }
         }
-}
-//проверка по диагонали
-    function checkCross(){
+        else {
+            console.log(this.classList.contains('empty'));
+        }
+    }
+    //проверка
+    function check() {
         console.clear();
-        //var y = parseInt(this.dataset.y); //координата у текущей ячейки
-      //  var x = parseInt(this.dataset.x); //координата х текущей ячейки
-        var cellClass;
-        if (this.classList.contains('black')){
-            cellClass = 'black';
-        }
-        else{
-            cellClass = 'red';
-        };
-        var set = [
-            [-4,-3,-2,-1,0],
-            [-3,-2,-1,0,1],
-            [-2,-1,0,1,2],
-            [-1,0,1,2,3],
-            [0,1,2,3,4],
-        ];
-        for (var i = 0; i < set.length; i ++){
-            checkresult_cross = 0;
-            for (j = 0; j < set[i].length; j++){
-                var y = parseInt(this.dataset.y)+set[i][j];
-                var x = parseInt(this.dataset.x)+set[i][j];
-                var x1 = parseInt(this.dataset.x)-set[i][j];
-                //console.log (y+' '+x+' '+set[i][j]);
-            //    var elem = table.querySelector('[data-x = \'20\'][data-y = \'20\']');
-             //   var selector = '[data-x = \''+x+'\']';
-                var elem = table.querySelector('[data-x = \''+x+'\'][data-y = \''+y+'\']');
-                var elem1 = table.querySelector('[data-x = \''+x1+'\'][data-y = \''+y+'\']');
-                if (elem || elem1){
-                    if(elem.classList.contains(cellClass)){
-                        console.clear();
-                        checkresult_cross ++;
-                        console.log (elem.dataset.x+' '+elem.dataset.y+' '+elem.style.backgroundColor+' '+checkresult_cross);
-                        if(checkresult_cross == 5){
-                            console.log(checkresult_cross);
-                            window.setTimeout(end.bind(this), 500);
-                        }
-                    }
-                    else if(elem1.classList.contains(cellClass)){
-                        console.clear();
-                        checkresult_cross ++;
-                        console.log (elem1.dataset.x+' '+elem1.dataset.y+' '+elem1.style.backgroundColor+' '+checkresult_cross);
-                        if(checkresult_cross == 5){
-                            console.log(checkresult_cross);
-                            window.setTimeout(end.bind(this), 500);
+        var checkResult; //контрольная переменная для проверки
+        var elemClass; // класс ячейки
+        //начало проверки по горизонтали
+        for (var i = 1; i <= (windowWidth - 4); i++) {
+            for (j = 1; j <= windowHeight; j++) {
+                checkResult = 1;
+                var elem = table.querySelector('[data-x = \'' + i + '\'][data-y = \'' + j + '\']');
+                if (elem.classList.contains('black')) {
+                    elemClass = 'black';
+                }
+                else {
+                    elemClass = 'red';
+                }
+                if (!elem.classList.contains('empty')) {
+                    //  console.log(elem.dataset.x + ' ' + elem.dataset.y + ' ' + elemClass);
+                    for (s = 1; s < 5; s++) {
+                        var elemNew = table.querySelector('[data-x = \'' + (i + s) + '\'][data-y = \'' + j + '\']');
+                        if (elemNew.classList.contains(elemClass)) {
+                            checkResult++;
+                            //  console.log(elemNew.dataset.x + ' ' + elemNew.dataset.y + ' ' + elemClass + ' ' + checkResult);
+                            if (checkResult == 5) {
+                                window.setTimeout(end.bind(this), 500);
+                            }
                         }
                     }
                 }
             }
         }
+        //конец проверки по горизонтали
+        //начало проверки по вертикали
+        for (var i = 1; i <= (windowHeight - 4); i++) {
+            for (j = 1; j <= windowWidth; j++) {
+                checkResult = 1;
+                var elem = table.querySelector('[data-x = \'' + j + '\'][data-y = \'' + i + '\']');
+                if (elem.classList.contains('black')) {
+                    elemClass = 'black';
+                }
+                else {
+                    elemClass = 'red';
+                }
+                if (!elem.classList.contains('empty')) {
+                    // console.log(elem.dataset.x + ' ' + elem.dataset.y + ' ' + elemClass);
+                    for (s = 1; s < 5; s++) {
+                        var elemNew = table.querySelector('[data-x = \'' + j + '\'][data-y = \'' + (i + s) + '\']');
+                        if (elemNew.classList.contains(elemClass)) {
+                            checkResult++;
+                            //  console.log(elemNew.dataset.x + ' ' + elemNew.dataset.y + ' ' + elemClass + ' ' + checkResult);
+                            if (checkResult == 5) {
+                                window.setTimeout(end.bind(this), 500);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        //конец проверки по вертикали
+        //начало проверки по диагонали вниз вправо
+        for (var i = 1; i <= (windowHeight - 4); i++) {
+            for (j = 1; j <= (windowWidth - 4); j++) {
+                checkResult = 1;
+                var elem = table.querySelector('[data-x = \'' + j + '\'][data-y = \'' + i + '\']');
+                if (elem.classList.contains('black')) {
+                    elemClass = 'black';
+                }
+                else {
+                    elemClass = 'red';
+                }
+                if (!elem.classList.contains('empty')) {
+                    //  console.log(elem.dataset.x + ' ' + elem.dataset.y + ' ' + elemClass);
+                    for (s = 1; s < 5; s++) {
+                        var elemNew = table.querySelector('[data-x = \'' + (j + s) + '\'][data-y = \'' + (i + s) + '\']');
+                        if (elemNew.classList.contains(elemClass)) {
+                            checkResult++;
+                            //  console.log(elemNew.dataset.x + ' ' + elemNew.dataset.y + ' ' + elemClass + ' ' + checkResult);
+                            if (checkResult == 5) {
+                                window.setTimeout(end.bind(this), 500);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        //конец проверки по диагонали вниз вправо
+        //начало проверки по диагонали вверх вправо
+        for (var i = 5; i <= (windowHeight); i++) {
+            for (j = 5; j <= (windowWidth); j++) {
+                checkResult = 1;
+                var elem = table.querySelector('[data-x = \'' + j + '\'][data-y = \'' + i + '\']');
+                if (elem.classList.contains('black')) {
+                    elemClass = 'black';
+                }
+                else {
+                    elemClass = 'red';
+                }
+                if (!elem.classList.contains('empty')) {
+                    // console.log(elem.dataset.x + ' ' + elem.dataset.y + ' ' + elemClass);
+                    for (s = 1; s < 5; s++) {
+                        var elemNew = table.querySelector('[data-x = \'' + (j + s) + '\'][data-y = \'' + (i - s) + '\']');
+                        if (elemNew.classList.contains(elemClass)) {
+                            checkResult++;
+                            // console.log(elemNew.dataset.x + ' ' + elemNew.dataset.y + ' ' + elemClass + ' ' + checkResult);
+                            if (checkResult == 5) {
+                                window.setTimeout(end.bind(this), 500);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        //конец проверки по диагонали вверх вправо
     }
+
     //конец игры
-    function end(){
-        h3.innerHTML ='';
-        checkresult = 0;
-        checkresult_cross = 0;
-if (this.classList.contains('black'))
-{h3.innerHTML = 'Черные выиграли<br>Красные начинают';}
-else {
-    h3.innerHTML = 'Красные выиграли<br>Черные начинают';
-}
-    var td = table.querySelectorAll('td');
-    for (var i = 0; i < td.length; i++){
-        if(td[i].classList.contains('black')){
-            td[i].classList.remove('black');
-            td[i].classList.add('empty');
+    function end() {
+        h3.innerHTML = '';
+        checkResult = 0;
+        checkResultCross = 0;
+        if (this.classList.contains('black')) {
+            h3.innerHTML = 'Черные выиграли<br>Красные начинают';
         }
-        if(td[i].classList.contains('red')){
-            td[i].classList.remove('red');
-            td[i].classList.add('empty');
+        else {
+            h3.innerHTML = 'Красные выиграли<br>Черные начинают';
+        }
+        var td = table.querySelectorAll('td');
+        for (var i = 0; i < td.length; i++) {
+            if (td[i].classList.contains('black')) {
+                td[i].classList.remove('black');
+                td[i].classList.add('empty');
+            }
+            if (td[i].classList.contains('red')) {
+                td[i].classList.remove('red');
+                td[i].classList.add('empty');
+            }
         }
     }
-    }
+
 </script>
 </html>
