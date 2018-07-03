@@ -56,6 +56,7 @@
         }
         table.appendChild(tr);
     }
+
     //режим заполнения ячейки цветом
     function func() {
         if (this.classList.contains('empty')) {
@@ -73,15 +74,13 @@
             console.log(this.classList.contains('empty'));
         }
     }
+
     //проверка
     function check() {
-        console.clear();
-        var checkResult; //контрольная переменная для проверки
+       // console.clear();
         var elemClass; // класс ячейки
-        //начало проверки по горизонтали
-        for (var i = 1; i <= (windowWidth - 4); i++) {
-            for (j = 1; j <= windowHeight; j++) {
-                checkResult = 1;
+        for (var i = 1; i <= windowWidth; i++) {
+            for (var j = 1; j <= windowHeight; j++) {
                 var elem = table.querySelector('[data-x = \'' + i + '\'][data-y = \'' + j + '\']');
                 if (elem.classList.contains('playerOne')) {
                     elemClass = 'playerOne';
@@ -91,126 +90,51 @@
                 }
                 if (!elem.classList.contains('empty')) {
                     //  console.log(elem.dataset.x + ' ' + elem.dataset.y + ' ' + elemClass);
-                    for (s = 1; s < 5; s++) {
-                        var elemNew = table.querySelector('[data-x = \'' + (i + s) + '\'][data-y = \'' + j + '\']');
-                        if (elemNew.classList.contains(elemClass)) {
-                            checkResult++;
-                            //  console.log(elemNew.dataset.x + ' ' + elemNew.dataset.y + ' ' + elemClass + ' ' + checkResult);
-                            if (checkResult == 5) {
-                                window.setTimeout(end.bind(this), 500);
-                            }
-                        }
-                    }
+                    checkUniversal(elem, elemClass, i, j, 1, 0); //проверка по горизонтали
+                   checkUniversal(elem, elemClass, i, j, 0, 1); //проверка по вертикали
+                   checkUniversal(elem, elemClass, i, j, 1, 1); //проверка по диагонали вниз
+                   checkUniversal(elem, elemClass, i, j, 1, (-1)); //проверка по диагонали вверх
                 }
             }
         }
-        //конец проверки по горизонтали
-        //начало проверки по вертикали
-        for (var i = 1; i <= (windowHeight - 4); i++) {
-            for (j = 1; j <= windowWidth; j++) {
-                checkResult = 1;
-                var elem = table.querySelector('[data-x = \'' + j + '\'][data-y = \'' + i + '\']');
-                if (elem.classList.contains('playerOne')) {
-                    elemClass = 'playerOne';
-                }
-                else {
-                    elemClass = 'playerTwo';
-                }
-                if (!elem.classList.contains('empty')) {
-                    // console.log(elem.dataset.x + ' ' + elem.dataset.y + ' ' + elemClass);
-                    for (s = 1; s < 5; s++) {
-                        var elemNew = table.querySelector('[data-x = \'' + j + '\'][data-y = \'' + (i + s) + '\']');
-                        if (elemNew.classList.contains(elemClass)) {
-                            checkResult++;
-                            //  console.log(elemNew.dataset.x + ' ' + elemNew.dataset.y + ' ' + elemClass + ' ' + checkResult);
-                            if (checkResult == 5) {
-                                window.setTimeout(end.bind(this), 500);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        //конец проверки по вертикали
-        //начало проверки по диагонали вниз вправо
-        for (var i = 1; i <= (windowHeight - 4); i++) {
-            for (j = 1; j <= (windowWidth - 4); j++) {
-                checkResult = 1;
-                var elem = table.querySelector('[data-x = \'' + j + '\'][data-y = \'' + i + '\']');
-                if (elem.classList.contains('playerOne')) {
-                    elemClass = 'playerOne';
-                }
-                else {
-                    elemClass = 'playerTwo';
-                }
-                if (!elem.classList.contains('empty')) {
-                    //  console.log(elem.dataset.x + ' ' + elem.dataset.y + ' ' + elemClass);
-                    for (s = 1; s < 5; s++) {
-                        var elemNew = table.querySelector('[data-x = \'' + (j + s) + '\'][data-y = \'' + (i + s) + '\']');
-                        if (elemNew.classList.contains(elemClass)) {
-                            checkResult++;
-                            //  console.log(elemNew.dataset.x + ' ' + elemNew.dataset.y + ' ' + elemClass + ' ' + checkResult);
-                            if (checkResult == 5) {
-                                window.setTimeout(end.bind(this), 500);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        //конец проверки по диагонали вниз вправо
-        //начало проверки по диагонали вверх вправо
-        for (var i = 5; i <= (windowHeight); i++) {
-            for (j = 5; j <= (windowWidth); j++) {
-                checkResult = 1;
-                var elem = table.querySelector('[data-x = \'' + j + '\'][data-y = \'' + i + '\']');
-                if (elem.classList.contains('playerOne')) {
-                    elemClass = 'playerOne';
-                }
-                else {
-                    elemClass = 'playerTwo';
-                }
-                if (!elem.classList.contains('empty')) {
-                    // console.log(elem.dataset.x + ' ' + elem.dataset.y + ' ' + elemClass);
-                    for (s = 1; s < 5; s++) {
-                        var elemNew = table.querySelector('[data-x = \'' + (j + s) + '\'][data-y = \'' + (i - s) + '\']');
-                        if (elemNew.classList.contains(elemClass)) {
-                            checkResult++;
-                            // console.log(elemNew.dataset.x + ' ' + elemNew.dataset.y + ' ' + elemClass + ' ' + checkResult);
-                            if (checkResult == 5) {
-                                window.setTimeout(end.bind(this), 500);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        //конец проверки по диагонали вверх вправо
     }
+
+        //конец игры
+        function end() {
+            h3.innerHTML = '';
+            if (this.classList.contains('playerOne')) {
+                h3.innerHTML = 'Черные выиграли<br>Красные начинают';
+            }
+            else {
+                h3.innerHTML = 'Красные выиграли<br>Черные начинают';
+            }
+            var td = table.querySelectorAll('td');
+            for (var i = 0; i < td.length; i++) {
+                if (td[i].classList.contains('playerOne')) {
+                    td[i].classList.remove('playerOne');
+                    td[i].classList.add('empty');
+                }
+                if (td[i].classList.contains('playerTwo')) {
+                    td[i].classList.remove('playerTwo');
+                    td[i].classList.add('empty');
+                }
+            }
+        }
 
-    //конец игры
-    function end() {
-        h3.innerHTML = '';
-        checkResult = 0;
-        checkResultCross = 0;
-        if (this.classList.contains('playerOne')) {
-            h3.innerHTML = 'Черные выиграли<br>Красные начинают';
-        }
-        else {
-            h3.innerHTML = 'Красные выиграли<br>Черные начинают';
-        }
-        var td = table.querySelectorAll('td');
-        for (var i = 0; i < td.length; i++) {
-            if (td[i].classList.contains('playerOne')) {
-                td[i].classList.remove('playerOne');
-                td[i].classList.add('empty');
-            }
-            if (td[i].classList.contains('playerTwo')) {
-                td[i].classList.remove('playerTwo');
-                td[i].classList.add('empty');
+        //проверка по 4-м направлениям
+        function checkUniversal(elem, elemClass1, x, y, gor, vertical) {
+            var checkResult = 1;
+            for (var i = 1; i < 5; i++) {
+                var elemNew = table.querySelector('[data-x = \'' + (x + i * gor) + '\'][data-y = \'' + (y + i * vertical) + '\']');
+                if (elemNew.classList.contains(elemClass1)) {
+                    checkResult++;
+                   // console.log(elemClass1 + ' ' + checkResult);
+                    if (checkResult == 5) {
+                        window.setTimeout(end.bind(elem), 1000);
+                    }
+                }
             }
         }
-    }
 
 </script>
 </html>
