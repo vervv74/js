@@ -89,11 +89,11 @@
                     elemClass = 'playerTwo';
                 }
                 if (!elem.classList.contains('empty')) {
-                    //  console.log(elem.dataset.x + ' ' + elem.dataset.y + ' ' + elemClass);
+                    console.log(elem.dataset.x + ' ' + elem.dataset.y + ' ' + elemClass);
                     checkUniversal(elem, elemClass, i, j, 1, 0); //проверка по горизонтали
-                   checkUniversal(elem, elemClass, i, j, 0, 1); //проверка по вертикали
-                   checkUniversal(elem, elemClass, i, j, 1, 1); //проверка по диагонали вниз
-                   checkUniversal(elem, elemClass, i, j, 1, (-1)); //проверка по диагонали вверх
+                    checkUniversal(elem, elemClass, i, j, 0, 1); //проверка по вертикали
+                    checkUniversal(elem, elemClass, i, j, 1, 1); //проверка по диагонали вниз
+                    checkUniversal(elem, elemClass, i, j, 1, (-1)); //проверка по диагонали вверх
                 }
             }
         }
@@ -123,16 +123,20 @@
 
         //проверка по 4-м направлениям
         function checkUniversal(elem, elemClass1, x, y, gor, vertical) {
-            var checkResult = 1;
+                    var checkResult = 1;
+            console.log(elemClass1 + ' ' + checkResult);
             for (var i = 1; i < 5; i++) {
-                var elemNew = table.querySelector('[data-x = \'' + (x + i * gor) + '\'][data-y = \'' + (y + i * vertical) + '\']');
-                if (elemNew.classList.contains(elemClass1)) {
-                    checkResult++;
-                   // console.log(elemClass1 + ' ' + checkResult);
-                    if (checkResult == 5) {
-                        window.setTimeout(end.bind(elem), 1000);
-                    }
-                }
+             if ((x + i * gor) <= windowWidth && (x + i * gor) > 0 && (y + i * vertical) <= windowHeight && (y + i * vertical) > 0) {
+                 var elemNew = table.querySelector('[data-x = \'' + (x + i * gor) + '\'][data-y = \'' + (y + i * vertical) + '\']');
+                 console.log(elemNew.dataset.x + ' ' + elemNew.dataset.y + ' ' + elemClass1 + ' ' + checkResult);
+                 if (elemNew.classList.contains(elemClass1)) {
+                     checkResult++;
+                     console.log(elemClass1 + ' ' + checkResult);
+                     if (checkResult == 5) {
+                         window.setTimeout(end.bind(elem), 1000);
+                     }
+                 }
+             }
             }
         }
 
