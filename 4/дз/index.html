@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button class="btn-lg btn btn-success" id="btn">Get Data!!!</button>
+<div id="output"></div>
+</body>
+<script>
+window.onload = function () {
+    console.log('qwqe');
+    var btn = document.getElementById('btn');
+    var container = document.getElementById('output');
+    function ajax(data) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'request');
+        xhr.onload = function() {
+            container.innerHTML += this.responseText;
+        };
+        xhr.send(data);
+    }
+    btn.addEventListener('click', ()=>{
+        var data1 = 'Hello';
+        ajax(data1);
+    });
+}
+</script>
+</html>
